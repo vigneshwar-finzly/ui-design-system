@@ -1,0 +1,101 @@
+<div class="design-principles-page">
+  <header class="page-header">
+    <h1>Design Principles</h1>
+    <p class="lead">Core principles that guide the design and development of Finzly UI components.</p>
+  </header>
+
+  <div class="principles-grid">
+    <div *ngFor="let principle of principles" class="principle-card">
+      <div class="principle-icon">
+        <span class="material-icons">{{ principle.icon }}</span>
+      </div>
+      <h3>{{ principle.title }}</h3>
+      <p>{{ principle.description }}</p>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <h2>Color System</h2>
+    <p>Our color system is designed to provide a cohesive visual language across all components.</p>
+    <div class="color-palette">
+      <div class="color-swatch primary">
+        <div class="swatch-color"></div>
+        <div class="swatch-info">
+          <strong>Primary</strong>
+          <span>#1976d2</span>
+        </div>
+      </div>
+      <div class="color-swatch success">
+        <div class="swatch-color"></div>
+        <div class="swatch-info">
+          <strong>Success</strong>
+          <span>#10b981</span>
+        </div>
+      </div>
+      <div class="color-swatch warning">
+        <div class="swatch-color"></div>
+        <div class="swatch-info">
+          <strong>Warning</strong>
+          <span>#f59e0b</span>
+        </div>
+      </div>
+      <div class="color-swatch error">
+        <div class="swatch-color"></div>
+        <div class="swatch-info">
+          <strong>Error</strong>
+          <span>#ef4444</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Typography</h2>
+    <p>Clear typography hierarchy ensures readability and visual organization.</p>
+    <div class="typography-showcase">
+      <div class="type-example">
+        <h1>Heading 1</h1>
+        <span class="type-info">36px / 700</span>
+      </div>
+      <div class="type-example">
+        <h2>Heading 2</h2>
+        <span class="type-info">28px / 600</span>
+      </div>
+      <div class="type-example">
+        <h3>Heading 3</h3>
+        <span class="type-info">20px / 600</span>
+      </div>
+      <div class="type-example">
+        <p>Body Text</p>
+        <span class="type-info">16px / 400</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Spacing System</h2>
+    <p>Consistent spacing creates visual rhythm and improves usability.</p>
+    <div class="spacing-system">
+      <div class="spacing-item">
+        <div class="spacing-visual xs"></div>
+        <strong>XS:</strong> 4px
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual sm"></div>
+        <strong>SM:</strong> 8px
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual md"></div>
+        <strong>MD:</strong> 16px
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual lg"></div>
+        <strong>LG:</strong> 24px
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-visual xl"></div>
+        <strong>XL:</strong> 32px
+      </div>
+    </div>
+  </section>
+</div>

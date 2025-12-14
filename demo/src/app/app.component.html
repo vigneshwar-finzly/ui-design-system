@@ -1,39 +1,70 @@
-<div class="app-layout" [class.showcase-route]="isShowcaseRoute">
-  <!-- Header -->
-  <header class="app-header" *ngIf="!isShowcaseRoute">
-    <div class="header-content">
-      <h1 class="app-title">Finzly Design System</h1>
+<div class="docs-app" [class.dark-theme]="currentTheme === 'dark'">
+  <header class="docs-header">
+    <div class="header-left">
+      <button class="menu-toggle" (click)="toggleSidebar()" aria-label="Toggle menu">
+        <span class="material-icons">menu</span>
+      </button>
+      <h1 class="docs-title">
+        <a routerLink="/" class="title-link">Finzly UI</a>
+      </h1>
+    </div>
+
+    <div class="header-center">
+      <div class="search-box">
+        <span class="material-icons search-icon">search</span>
+        <input
+          type="text"
+          placeholder="Search components..."
+          class="search-input"
+          (input)="onSearch($event)"
+          [value]="searchQuery"
+        />
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="'Switch to ' + (currentTheme === 'light' ? 'dark' : 'light') + ' theme'">
+        <span class="material-icons">{{ currentTheme === 'light' ? 'dark_mode' : 'light_mode' }}</span>
+      </button>
+      <a href="https://github.com/npmswapstech/finzly-theme" target="_blank" class="github-link" aria-label="View on GitHub">
+        <span class="material-icons">code</span>
+      </a>
     </div>
   </header>
 
-  <!-- Navigation -->
-  <nav class="app-nav" *ngIf="!isShowcaseRoute">
-    <div class="nav-content">
-      <a routerLink="/showcase" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
-        Showcase
-      </a>
-      <a routerLink="/overview" routerLinkActive="active" class="nav-link">
-        Overview
-      </a>
-      <a routerLink="/finzly-buttons" routerLinkActive="active" class="nav-link">Buttons</a>
-      <a routerLink="/finzly-inputs" routerLinkActive="active" class="nav-link">Inputs</a>
-      <a routerLink="/finzly-pickers" routerLinkActive="active" class="nav-link">Pickers</a>
-      <a routerLink="/dropdowns" routerLinkActive="active" class="nav-link">Dropdowns</a>
-      <a routerLink="/alerts" routerLinkActive="active" class="nav-link">Alerts & Toasts</a>
-      <a routerLink="/badges" routerLinkActive="active" class="nav-link">Badges</a>
-      <a routerLink="/dialogs" routerLinkActive="active" class="nav-link">Dialogs</a>
-      <a routerLink="/icons" routerLinkActive="active" class="nav-link">Icons</a>
-      <a routerLink="/tooltips" routerLinkActive="active" class="nav-link">Tooltips</a>
-      <a routerLink="/utilities" routerLinkActive="active" class="nav-link">Utilities</a>
-    </div>
-  </nav>
+  <div class="docs-container">
+    <aside class="docs-sidebar" [class.open]="sidebarOpen">
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-section-title">Getting Started</h3>
+          <ul class="nav-list">
+            <li><a routerLink="/overview" routerLinkActive="active" class="nav-link">Overview</a></li>
+            <li><a routerLink="/getting-started" routerLinkActive="active" class="nav-link">Installation</a></li>
+            <li><a routerLink="/design-principles" routerLinkActive="active" class="nav-link">Design Principles</a></li>
+          </ul>
+        </div>
 
-  <!-- Main Content -->
-  <main class="app-main" [class.showcase-main]="isShowcaseRoute">
-    <router-outlet></router-outlet>
-  </main>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Components</h3>
+          <ul class="nav-list">
+            <li *ngFor="let category of categories">
+              <a
+                [routerLink]="['/components', category.id]"
+                routerLinkActive="active"
+                class="nav-link category-link"
+              >
+                <span class="material-icons category-icon">{{ category.icon }}</span>
+                {{ category.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
 
-  <!-- Toast Container -->
-  <finzly-toastr></finzly-toastr>
+    <main class="docs-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>
 

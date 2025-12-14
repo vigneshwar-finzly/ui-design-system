@@ -1,0 +1,25 @@
+<div class="category-page" *ngIf="category">
+  <header class="page-header">
+    <div class="header-icon">
+      <span class="material-icons">{{ category.icon }}</span>
+    </div>
+    <div>
+      <h1>{{ category.name }}</h1>
+      <p class="lead">{{ category.description }}</p>
+    </div>
+  </header>
+
+  <div class="components-grid">
+    <a
+      *ngFor="let component of components"
+      [routerLink]="['/components', category.id, component.id]"
+      class="component-card"
+    >
+      <h3>{{ component.name }}</h3>
+      <p>{{ component.description }}</p>
+      <div class="component-tags">
+        <span *ngFor="let tag of component.tags.slice(0, 3)" class="tag">{{ tag }}</span>
+      </div>
+    </a>
+  </div>
+</div>

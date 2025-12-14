@@ -1,227 +1,67 @@
-<div class="demo-container-with-sidebar">
-  <!-- Left Sidebar Minimap -->
-  <aside class="sidebar-minimap">
-    <div class="minimap-items">
-      <div
-        *ngFor="let section of sections"
-        class="minimap-item"
-        [class.active]="activeSection === section.id"
-        (click)="scrollToSection(section.id)">
-        <span class="material-icons">{{ section.icon }}</span>
-        <span class="item-label">{{ section.title }}</span>
+<div class="overview-page">
+  <div class="hero-section">
+    <h1 class="hero-title">Finzly Component Library</h1>
+    <p class="hero-subtitle">
+      A comprehensive Angular UI component library with {{ totalComponents }} production-ready components.
+      Build beautiful, accessible, and responsive applications with ease.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/getting-started" class="btn-primary">
+        Get Started
+        <span class="material-icons">arrow_forward</span>
+      </a>
+      <a routerLink="/components/inputs" class="btn-secondary">
+        Browse Components
+        <span class="material-icons">apps</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="features-section">
+    <h2 class="section-title">Why Finzly UI?</h2>
+    <div class="features-grid">
+      <div *ngFor="let feature of features" class="feature-card">
+        <div class="feature-icon">
+          <span class="material-icons">{{ feature.icon }}</span>
+        </div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
       </div>
     </div>
-  </aside>
+  </section>
 
-  <!-- Main Content -->
-  <div class="demo-content">
-    <h1 class="demo-section-title">Finzly Design System</h1>
-    <p class="demo-intro">
-      A comprehensive, modern SCSS-based design system built with Angular. Featuring clean aesthetics, smooth rounded edges, and a complete set of UI components.
+  <section class="categories-section">
+    <h2 class="section-title">Component Categories</h2>
+    <p class="section-description">
+      Explore our organized collection of components across {{ categories.length }} categories.
     </p>
-
-    <!-- ========================================================================= -->
-    <!-- DESIGN TOKENS -->
-    <!-- ========================================================================= -->
-    
-    <section id="design-tokens" class="component-section">
-      <div class="section-header">
-        <span class="material-icons section-icon">palette</span>
-        <h2>Design Tokens</h2>
-      </div>
-      <p class="section-description">
-        Core design tokens including colors, typography, and spacing scales used throughout the design system.
-      </p>
-
-      <div class="demo-section">
-        <h3 class="demo-section-subtitle">Color Palette</h3>
-        <div class="color-grid">
-          <div class="color-swatch">
-            <div class="color-box" style="background: #6366f1;"></div>
-            <div class="color-name">Primary</div>
-            <div class="color-code">#6366f1</div>
-          </div>
-          <div class="color-swatch">
-            <div class="color-box" style="background: #16a34a;"></div>
-            <div class="color-name">Success</div>
-            <div class="color-code">#16a34a</div>
-          </div>
-          <div class="color-swatch">
-            <div class="color-box" style="background: #f59e0b;"></div>
-            <div class="color-name">Warning</div>
-            <div class="color-code">#f59e0b</div>
-          </div>
-          <div class="color-swatch">
-            <div class="color-box" style="background: #dc2626;"></div>
-            <div class="color-name">Error</div>
-            <div class="color-code">#dc2626</div>
-          </div>
-          <div class="color-swatch">
-            <div class="color-box" style="background: #2563eb;"></div>
-            <div class="color-name">Info</div>
-            <div class="color-code">#2563eb</div>
-          </div>
+    <div class="categories-grid">
+      <a
+        *ngFor="let category of categories"
+        [routerLink]="['/components', category.id]"
+        class="category-card"
+      >
+        <div class="category-icon">
+          <span class="material-icons">{{ category.icon }}</span>
         </div>
-      </div>
-
-      <div class="demo-section">
-        <h3 class="demo-section-subtitle">Typography</h3>
-        <div class="typography-demo">
-          <h1>Heading 1 - 2.25rem (36px)</h1>
-          <h2>Heading 2 - 1.875rem (30px)</h2>
-          <h3>Heading 3 - 1.5rem (24px)</h3>
-          <h4>Heading 4 - 1.25rem (20px)</h4>
-          <h5>Heading 5 - 1.125rem (18px)</h5>
-          <h6>Heading 6 - 1rem (16px)</h6>
-          <p>Body text - 1rem (16px) with Inter font family. The quick brown fox jumps over the lazy dog.</p>
+        <h3>{{ category.name }}</h3>
+        <p>{{ category.description }}</p>
+        <div class="category-arrow">
+          <span class="material-icons">arrow_forward</span>
         </div>
-      </div>
+      </a>
+    </div>
+  </section>
 
-      <div class="demo-section">
-        <h3 class="demo-section-subtitle">Spacing Scale</h3>
-        <div class="spacing-demo">
-          <div class="spacing-item" style="padding: 0.25rem; background: #e0ebff;">4px (space-1)</div>
-          <div class="spacing-item" style="padding: 0.5rem; background: #e0ebff;">8px (space-2)</div>
-          <div class="spacing-item" style="padding: 0.75rem; background: #e0ebff;">12px (space-3)</div>
-          <div class="spacing-item" style="padding: 1rem; background: #e0ebff;">16px (space-4)</div>
-          <div class="spacing-item" style="padding: 1.5rem; background: #e0ebff;">24px (space-6)</div>
-          <div class="spacing-item" style="padding: 2rem; background: #e0ebff;">32px (space-8)</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- QUICK START -->
-    <!-- ========================================================================= -->
-    
-    <section id="quick-start" class="component-section">
-      <div class="section-header">
-        <span class="material-icons section-icon">rocket_launch</span>
-        <h2>Quick Start</h2>
-      </div>
-      <p class="section-description">
-        Get started with Finzly Design System in your Angular project.
-      </p>
-
-      <div class="demo-section">
-        <h3 class="demo-section-subtitle">Installation</h3>
-        <div class="code-block">
-          <button class="copy-btn" (click)="copyCode(codeExamples.install)" [class.copied]="isCopied(codeExamples.install)">
-            <span class="material-icons">{{ isCopied(codeExamples.install) ? 'check' : 'content_copy' }}</span>
-            {{ isCopied(codeExamples.install) ? 'Copied!' : 'Copy' }}
-          </button>
-          <pre class="demo-code">npm install &#64;npmswapstech/finzly-theme</pre>
-        </div>
-      </div>
-
-      <div class="demo-section">
-        <h3 class="demo-section-subtitle">Import Styles</h3>
-        <div class="code-block">
-          <button class="copy-btn" (click)="copyCode(codeExamples.importStyles)" [class.copied]="isCopied(codeExamples.importStyles)">
-            <span class="material-icons">{{ isCopied(codeExamples.importStyles) ? 'check' : 'content_copy' }}</span>
-            {{ isCopied(codeExamples.importStyles) ? 'Copied!' : 'Copy' }}
-          </button>
-          <pre class="demo-code">&#64;import '~&#64;npmswapstech/finzly-theme/styles/finzly_theme.scss';</pre>
-        </div>
-      </div>
-
-      <div class="demo-section">
-        <h3 class="demo-section-subtitle">Import Module</h3>
-        <div class="code-block">
-          <button class="copy-btn" (click)="copyCode(codeExamples.importModule)" [class.copied]="isCopied(codeExamples.importModule)">
-            <span class="material-icons">{{ isCopied(codeExamples.importModule) ? 'check' : 'content_copy' }}</span>
-            {{ isCopied(codeExamples.importModule) ? 'Copied!' : 'Copy' }}
-          </button>
-          <pre class="demo-code">import {{ '{' }} UiKitModule {{ '}' }} from '&#64;npmswapstech/finzly-theme';
-
-&#64;NgModule({{'{' }}
-  imports: [UiKitModule]
-{{'}' }})</pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- EXPLORE COMPONENTS -->
-    <!-- ========================================================================= -->
-    
-    <section id="explore-components" class="component-section">
-      <div class="section-header">
-        <span class="material-icons section-icon">apps</span>
-        <h2>Explore Components</h2>
-      </div>
-      <p class="section-description">
-        Browse our comprehensive collection of UI components and start building beautiful interfaces.
-      </p>
-
-      <div class="demo-section">
-        <h3 class="demo-section-subtitle">Available Components</h3>
-        <div class="explore-grid">
-          <a routerLink="/finzly-buttons" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">smart_button</span>
-            </div>
-            <h3>Buttons</h3>
-            <p>Specialized button components with icons, loading states, and configurable styling</p>
-          </a>
-          <a routerLink="/finzly-inputs" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">input</span>
-            </div>
-            <h3>Inputs</h3>
-            <p>Complete set of form components with validation, formatting, and consistent styling</p>
-          </a>
-          <a routerLink="/finzly-pickers" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">calendar_today</span>
-            </div>
-            <h3>Pickers</h3>
-            <p>Modern date and time picker components with beautiful UI and form integration</p>
-          </a>
-          <a routerLink="/dropdowns" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">arrow_drop_down</span>
-            </div>
-            <h3>Dropdowns</h3>
-            <p>Premium dropdown component with search, multi-select, and advanced features</p>
-          </a>
-          <a routerLink="/alerts" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">notifications</span>
-            </div>
-            <h3>Alerts & Toasts</h3>
-            <p>Comprehensive alert and toast notification system with multiple variants</p>
-          </a>
-          <a routerLink="/badges" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">label</span>
-            </div>
-            <h3>Badges</h3>
-            <p>Versatile badge components for status indicators, labels, and counts</p>
-          </a>
-          <a routerLink="/dialogs" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">chat_bubble</span>
-            </div>
-            <h3>Dialogs</h3>
-            <p>Premium dialog system with smooth animations and programmatic control</p>
-          </a>
-          <a routerLink="/tooltips" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">info</span>
-            </div>
-            <h3>Tooltips</h3>
-            <p>Tooltips, progress bars, avatars, spinners, and other utility components</p>
-          </a>
-          <a routerLink="/utilities" class="explore-card card">
-            <div class="explore-icon">
-              <span class="material-icons">build</span>
-            </div>
-            <h3>Utilities</h3>
-            <p>Comprehensive utility classes for spacing, typography, layout, and more</p>
-          </a>
-        </div>
-      </div>
-    </section>
-  </div>
+  <section class="cta-section">
+    <h2>Ready to Get Started?</h2>
+    <p>Install Finzly UI and start building amazing applications today.</p>
+    <div class="code-snippet">
+      <code>npm install &#64;npmswapstech/finzly-theme</code>
+    </div>
+    <a routerLink="/getting-started" class="btn-primary">
+      View Installation Guide
+      <span class="material-icons">arrow_forward</span>
+    </a>
+  </section>
 </div>

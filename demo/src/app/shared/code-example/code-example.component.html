@@ -1,0 +1,10 @@
+<div class="code-example">
+  <div class="code-header">
+    <span class="code-language">{{ language }}</span>
+    <button class="copy-button" (click)="copyCode()" [class.copied]="copied">
+      <span class="material-icons">{{ copied ? 'check' : 'content_copy' }}</span>
+      <span class="copy-text">{{ copied ? 'Copied!' : 'Copy' }}</span>
+    </button>
+  </div>
+  <pre class="code-block"><code [class]="'language-' + language">{{ code }}</code></pre>
+</div>
