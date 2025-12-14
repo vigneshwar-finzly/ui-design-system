@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+
+.finzly-container {
+  width: 100%;
+  
+  // Max width variants - matching Tailwind screen sizes
+  &.finzly-container-sm {
+    max-width: 640px;  // max-w-screen-sm
+  }
+  
+  &.finzly-container-md {
+    max-width: 768px;  // max-w-screen-md
+  }
+  
+  &.finzly-container-lg {
+    max-width: 1024px;  // max-w-screen-lg
+  }
+  
+  &.finzly-container-xl {
+    max-width: 1280px;  // max-w-screen-xl
+  }
+  
+  &.finzly-container-2xl {
+    max-width: 1536px;  // max-w-screen-2xl
+  }
+  
+  &.finzly-container-full {
+    max-width: 100%;  // max-w-full
+  }
+  
+  // Padding - matching px-4 lg:px-6
+  &.finzly-container-padded {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    
+    @media (min-width: 1024px) {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  // Centered - matching mx-auto
+  &.finzly-container-centered {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+

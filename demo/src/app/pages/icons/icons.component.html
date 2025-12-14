@@ -1,0 +1,216 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Icons Library</h1>
+    <p class="demo-intro">
+      Comprehensive collection of commonly used icons for your application. All icons are SVG-based for perfect scaling and customization.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- ACTION ICONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="action-icons" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">touch_app</span>
+        <h2>Action Icons</h2>
+      </div>
+      <p class="section-description">
+        Common action icons for user interactions like copy, paste, refresh, and reset.
+      </p>
+
+      <div class="demo-section">
+        <div class="icons-grid">
+          <div *ngFor="let icon of actionIcons" class="icon-item" (click)="copyIconCode(icon.svg, icon.name)">
+            <div class="icon-preview" [innerHTML]="icon.safeSvg"></div>
+            <div class="icon-name">{{ icon.name }}</div>
+            <div class="icon-description">{{ icon.description }}</div>
+            <div class="icon-copied" *ngIf="isCopied(icon.svg)">
+              <span class="material-icons">check</span> Copied!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- EDITING ICONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="editing-icons" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">edit</span>
+        <h2>Editing Icons</h2>
+      </div>
+      <p class="section-description">
+        Icons for editing, writing, and content modification actions.
+      </p>
+
+      <div class="demo-section">
+        <div class="icons-grid">
+          <div *ngFor="let icon of editingIcons" class="icon-item" (click)="copyIconCode(icon.svg, icon.name)">
+            <div class="icon-preview" [innerHTML]="icon.safeSvg"></div>
+            <div class="icon-name">{{ icon.name }}</div>
+            <div class="icon-description">{{ icon.description }}</div>
+            <div class="icon-copied" *ngIf="isCopied(icon.svg)">
+              <span class="material-icons">check</span> Copied!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- NAVIGATION ICONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="navigation-icons" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">explore</span>
+        <h2>Navigation Icons</h2>
+      </div>
+      <p class="section-description">
+        Icons for navigation, menus, and date selection.
+      </p>
+
+      <div class="demo-section">
+        <div class="icons-grid">
+          <div *ngFor="let icon of navigationIcons" class="icon-item" (click)="copyIconCode(icon.svg, icon.name)">
+            <div class="icon-preview" [innerHTML]="icon.safeSvg"></div>
+            <div class="icon-name">{{ icon.name }}</div>
+            <div class="icon-description">{{ icon.description }}</div>
+            <div class="icon-copied" *ngIf="isCopied(icon.svg)">
+              <span class="material-icons">check</span> Copied!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FILE ICONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="file-icons" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">insert_drive_file</span>
+        <h2>File Type Icons</h2>
+      </div>
+      <p class="section-description">
+        Icons representing different file types like PDF, Excel, CSV, and documents.
+      </p>
+
+      <div class="demo-section">
+        <div class="icons-grid">
+          <div *ngFor="let icon of fileIcons" class="icon-item" (click)="copyIconCode(icon.svg, icon.name)">
+            <div class="icon-preview" [innerHTML]="icon.safeSvg"></div>
+            <div class="icon-name">{{ icon.name }}</div>
+            <div class="icon-description">{{ icon.description }}</div>
+            <div class="icon-copied" *ngIf="isCopied(icon.svg)">
+              <span class="material-icons">check</span> Copied!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BUSINESS ICONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="business-icons" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">business_center</span>
+        <h2>Business Icons</h2>
+      </div>
+      <p class="section-description">
+        Financial and business-related icons including currency and payment symbols.
+      </p>
+
+      <div class="demo-section">
+        <div class="icons-grid">
+          <div *ngFor="let icon of businessIcons" class="icon-item" (click)="copyIconCode(icon.svg, icon.name)">
+            <div class="icon-preview" [innerHTML]="icon.safeSvg"></div>
+            <div class="icon-name">{{ icon.name }}</div>
+            <div class="icon-description">{{ icon.description }}</div>
+            <div class="icon-copied" *ngIf="isCopied(icon.svg)">
+              <span class="material-icons">check</span> Copied!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- COMMUNICATION ICONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="communication-icons" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">chat</span>
+        <h2>Communication Icons</h2>
+      </div>
+      <p class="section-description">
+        Icons for chat, messaging, and communication features.
+      </p>
+
+      <div class="demo-section">
+        <div class="icons-grid">
+          <div *ngFor="let icon of communicationIcons" class="icon-item" (click)="copyIconCode(icon.svg, icon.name)">
+            <div class="icon-preview" [innerHTML]="icon.safeSvg"></div>
+            <div class="icon-name">{{ icon.name }}</div>
+            <div class="icon-description">{{ icon.description }}</div>
+            <div class="icon-copied" *ngIf="isCopied(icon.svg)">
+              <span class="material-icons">check</span> Copied!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage Guide -->
+    <section class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">code</span>
+        <h2>How to Use</h2>
+      </div>
+      
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Usage</h3>
+        <p style="margin-bottom: 1rem; color: #6b7280;">Click on any icon to copy its SVG code to your clipboard.</p>
+        
+        <div class="usage-example">
+          <h4>In HTML:</h4>
+          <pre class="demo-code" style="margin-bottom: 1.5rem;">&lt;svg fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+  &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="..."&gt;&lt;/path&gt;
+&lt;/svg&gt;</pre>
+
+          <h4>With Custom Size:</h4>
+          <pre class="demo-code" style="margin-bottom: 1.5rem;">&lt;svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+  &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="..."&gt;&lt;/path&gt;
+&lt;/svg&gt;</pre>
+
+          <h4>With Custom Color:</h4>
+          <pre class="demo-code">&lt;svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+  &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="..."&gt;&lt;/path&gt;
+&lt;/svg&gt;</pre>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+

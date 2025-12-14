@@ -1,0 +1,165 @@
+// =============================================================================
+// Finzly Theme - Main Entry Point
+// =============================================================================
+// Matching React Tailwind CSS Design System
+// Built with SCSS for Angular compatibility
+// =============================================================================
+
+// Import Component Styles (in order)
+@import 'variables';
+@import 'buttons';
+@import 'inputs';
+@import 'badges';
+@import 'alerts';
+@import 'dialogs';
+
+// =============================================================================
+// Global Reset & Base Styles (Matching Tailwind Base)
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-base;
+  font-size: $text-base;
+  color: $gray-900;
+  background-color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// =============================================================================
+// Utility Classes (Essential only)
+// =============================================================================
+
+// Spacing utilities
+.space-y-2 > * + * {
+  margin-top: $spacing-2;
+}
+
+.space-y-3 > * + * {
+  margin-top: $spacing-3;
+}
+
+.space-y-4 > * + * {
+  margin-top: $spacing-4;
+}
+
+.space-y-6 > * + * {
+  margin-top: $spacing-6;
+}
+
+// Width
+.w-full {
+  width: 100%;
+}
+
+// Display
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+// Flex utilities
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-2 {
+  gap: $spacing-2;
+}
+
+.gap-3 {
+  gap: $spacing-3;
+}
+
+// Margin utilities
+.mb-1 {
+  margin-bottom: $spacing-1;
+}
+
+.mb-2 {
+  margin-bottom: $spacing-2;
+}
+
+.mb-3 {
+  margin-bottom: $spacing-3;
+}
+
+.mb-4 {
+  margin-bottom: $spacing-4;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mt-1 {
+  margin-top: $spacing-1;
+}
+
+.mt-2 {
+  margin-top: $spacing-2;
+}
+
+.ml-2 {
+  margin-left: $spacing-2;
+}
+
+.ml-3 {
+  margin-left: $spacing-3;
+}
+
+.mr-2 {
+  margin-right: $spacing-2;
+}
+
+// Screen reader only
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+
+
+

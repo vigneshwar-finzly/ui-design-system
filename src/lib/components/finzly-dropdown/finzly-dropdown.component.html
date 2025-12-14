@@ -1,0 +1,152 @@
+<div class="finzly-dropdown" 
+     [class.finzly-dropdown-open]="isOpen"
+     [class.finzly-dropdown-disabled]="disabled"
+     [class.finzly-dropdown-error]="error"
+     [class.finzly-dropdown-xs]="size === 'xs'"
+     [class.finzly-dropdown-sm]="size === 'sm'"
+     [class.finzly-dropdown-lg]="size === 'lg'">
+  
+  <!-- Dropdown Trigger -->
+  <div class="finzly-dropdown-trigger" (click)="toggleDropdown()">
+    <div class="finzly-dropdown-value">
+      <!-- Single Select Display -->
+      <span 
+        *ngIf="!multiSelect"
+        class="finzly-dropdown-text" 
+        [class.placeholder]="!hasSelection()">
+        {{ getDisplayText() }}
+      </span>
+      
+      <!-- Multi-Select Display with Badges -->
+      <div *ngIf="multiSelect" class="finzly-dropdown-badges">
+        <!-- Placeholder when no selection -->
+        <span 
+          *ngIf="selectedValues.length === 0" 
+          class="finzly-dropdown-text placeholder">
+          {{ placeholder }}
+        </span>
+        
+        <!-- Selected items as badges -->
+        <span 
+          *ngFor="let value of selectedValues"
+          class="finzly-dropdown-badge"
+          (click)="$event.stopPropagation()">
+          {{ getOptionLabel(value) }}
+          <button 
+            class="finzly-dropdown-badge-remove"
+            type="button"
+            (click)="removeValue(value, $event)"
+            aria-label="Remove">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </span>
+      </div>
+    </div>
+    
+    <div class="finzly-dropdown-actions">
+      <!-- Clear Button (single select only) -->
+      <button 
+        *ngIf="clearable && hasSelection() && !disabled && !multiSelect"
+        class="finzly-dropdown-clear"
+        type="button"
+        (click)="clearSelection($event)"
+        aria-label="Clear selection">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <!-- Clear All Button (multi select) -->
+      <button 
+        *ngIf="clearable && hasSelection() && !disabled && multiSelect"
+        class="finzly-dropdown-clear"
+        type="button"
+        (click)="clearSelection($event)"
+        aria-label="Clear all">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <!-- Arrow Icon -->
+      <div class="finzly-dropdown-arrow">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown Panel -->
+  <div class="finzly-dropdown-panel" *ngIf="isOpen" [style.--finzly-dropdown-max-height]="maxHeight" [style.max-height]="maxHeight">
+    <!-- Search Input -->
+    <div class="finzly-dropdown-search" *ngIf="searchable">
+      <div class="finzly-dropdown-search-wrapper">
+        <svg class="finzly-dropdown-search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input
+          #searchInput
+          type="text"
+          class="finzly-dropdown-search-input"
+          placeholder="Search..."
+          [value]="searchTerm"
+          (input)="onSearch($event)"
+          (click)="$event.stopPropagation()">
+      </div>
+    </div>
+
+    <!-- Options List -->
+    <div class="finzly-dropdown-options">
+      <div 
+        *ngFor="let option of filteredOptions"
+        class="finzly-dropdown-option"
+        [class.finzly-dropdown-option-selected]="isSelected(option)"
+        [class.finzly-dropdown-option-disabled]="option.disabled"
+        (click)="selectOption(option)">
+        
+        <!-- Checkbox (for multi-select) -->
+        <div class="finzly-dropdown-option-checkbox" *ngIf="multiSelect || showCheckboxes">
+          <input 
+            type="checkbox" 
+            class="checkbox"
+            [checked]="isSelected(option)"
+            [disabled]="option.disabled"
+            (click)="$event.stopPropagation()"
+            readonly>
+        </div>
+
+        <!-- Icon -->
+        <div class="finzly-dropdown-option-icon" *ngIf="option.icon">
+          <span [innerHTML]="option.icon"></span>
+        </div>
+
+        <!-- Content -->
+        <div class="finzly-dropdown-option-content">
+          <div class="finzly-dropdown-option-label">{{ option.label }}</div>
+          <div class="finzly-dropdown-option-description" *ngIf="option.description">
+            {{ option.description }}
+          </div>
+        </div>
+
+        <!-- Selected Icon -->
+        <div class="finzly-dropdown-option-check" *ngIf="!multiSelect && !showCheckboxes && isSelected(option) && size !== 'xs'">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- No Results -->
+      <div class="finzly-dropdown-empty" *ngIf="filteredOptions.length === 0">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p>No results found</p>
+      </div>
+    </div>
+  </div>
+</div>
+

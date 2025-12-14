@@ -1,0 +1,27 @@
+<div class="finzly-textarea-wrapper" [class.finzly-textarea-wrapper-full-width]="fullWidth">
+  <label *ngIf="label" class="finzly-textarea-label">
+    {{ label }}
+  </label>
+  
+  <textarea
+    #textarea
+    [class]="textareaClass"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [required]="required"
+    [attr.maxlength]="maxLength"
+    [attr.minlength]="minLength"
+    [rows]="rows"
+    [value]="value"
+    (input)="onInputChange($event)"
+    (blur)="onInputBlur()"
+  ></textarea>
+  
+  <div *ngIf="showCharCount && maxLength" class="finzly-textarea-char-count">
+    {{ charCount }} / {{ maxLength }}
+  </div>
+  
+  <span *ngIf="showHelper" class="finzly-textarea-helper">{{ helperText }}</span>
+  <span *ngIf="showError" class="finzly-textarea-error-message">{{ errorMessage }}</span>
+</div>
+

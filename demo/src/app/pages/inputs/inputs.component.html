@@ -1,0 +1,224 @@
+<div class="demo-container">
+  <h1 class="demo-section-title">Inputs & Forms</h1>
+
+  <!-- Text Inputs -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Text Inputs</h2>
+    <div class="demo-column">
+      <div class="form-group">
+        <label class="form-label">Default Input</label>
+        <input type="text" class="input" placeholder="Enter text..." [(ngModel)]="inputValue">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Small Input</label>
+        <input type="text" class="input input-sm" placeholder="Small input...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Large Input</label>
+        <input type="text" class="input input-lg" placeholder="Large input...">
+      </div>
+    </div>
+    <pre class="demo-code">&lt;input type="text" class="input" placeholder="Enter text..."&gt;</pre>
+  </div>
+
+  <!-- Input States -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Input States</h2>
+    <div class="demo-column">
+      <div class="form-group">
+        <label class="form-label">Success State</label>
+        <input type="text" class="input input-success" placeholder="Valid input" value="valid&#64;email.com">
+        <span class="form-helper">This field looks good!</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Error State</label>
+        <input type="text" class="input input-error" placeholder="Invalid input" value="invalid">
+        <span class="form-error">This field is required.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Warning State</label>
+        <input type="text" class="input input-warning" placeholder="Warning input" value="warning">
+        <span class="form-helper">Please double-check this value.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Disabled State</label>
+        <input type="text" class="input" placeholder="Disabled input" disabled>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Group -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Input Groups</h2>
+    <div class="demo-column">
+      <div class="form-group">
+        <label class="form-label">With Prefix</label>
+        <div class="input-group">
+          <span class="input-addon">$</span>
+          <input type="text" class="input" placeholder="0.00">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">With Suffix</label>
+        <div class="input-group">
+          <input type="text" class="input" placeholder="Enter amount">
+          <span class="input-addon">.00</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">With Both</label>
+        <div class="input-group">
+          <span class="input-addon">https://</span>
+          <input type="text" class="input" placeholder="example.com">
+          <span class="input-addon">.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Textarea -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Textarea</h2>
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <textarea class="textarea" placeholder="Enter description..." rows="4" [(ngModel)]="textareaValue"></textarea>
+      <span class="form-helper">Maximum 500 characters.</span>
+    </div>
+    <pre class="demo-code">&lt;textarea class="textarea" placeholder="Enter description..." rows="4"&gt;&lt;/textarea&gt;</pre>
+  </div>
+
+  <!-- Select -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Select Dropdown</h2>
+    <div class="demo-column">
+      <div class="form-group">
+        <label class="form-label">Default Select</label>
+        <select class="select" [(ngModel)]="selectValue">
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+          <option value="option4">Option 4</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Small Select</label>
+        <select class="select select-sm">
+          <option>Small Option 1</option>
+          <option>Small Option 2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Large Select</label>
+        <select class="select select-lg">
+          <option>Large Option 1</option>
+          <option>Large Option 2</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkbox -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Checkboxes</h2>
+    <div class="form-check">
+      <input type="checkbox" class="checkbox" id="check1" [(ngModel)]="checkboxValue">
+      <label class="form-check-label" for="check1">Accept terms and conditions</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="checkbox" id="check2" checked>
+      <label class="form-check-label" for="check2">Subscribe to newsletter</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="checkbox" id="check3" disabled>
+      <label class="form-check-label" for="check3">Disabled checkbox</label>
+    </div>
+    <pre class="demo-code">&lt;div class="form-check"&gt;
+  &lt;input type="checkbox" class="checkbox" id="check1"&gt;
+  &lt;label class="form-check-label" for="check1"&gt;Label&lt;/label&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <!-- Radio Buttons -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Radio Buttons</h2>
+    <div class="form-check">
+      <input type="radio" class="radio" name="radio-group" id="radio1" value="option1" [(ngModel)]="radioValue">
+      <label class="form-check-label" for="radio1">Option 1</label>
+    </div>
+    <div class="form-check">
+      <input type="radio" class="radio" name="radio-group" id="radio2" value="option2" [(ngModel)]="radioValue">
+      <label class="form-check-label" for="radio2">Option 2</label>
+    </div>
+    <div class="form-check">
+      <input type="radio" class="radio" name="radio-group" id="radio3" value="option3" disabled>
+      <label class="form-check-label" for="radio3">Disabled option</label>
+    </div>
+  </div>
+
+  <!-- Toggle Switch -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Toggle Switches</h2>
+    <div class="form-check">
+      <input type="checkbox" class="toggle" id="toggle1" [(ngModel)]="toggleValue">
+      <label class="form-check-label" for="toggle1">Enable notifications</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="toggle" id="toggle2" checked>
+      <label class="form-check-label" for="toggle2">Dark mode (checked)</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="toggle" id="toggle3" disabled>
+      <label class="form-check-label" for="toggle3">Disabled toggle</label>
+    </div>
+    <pre class="demo-code">&lt;div class="form-check"&gt;
+  &lt;input type="checkbox" class="toggle" id="toggle1"&gt;
+  &lt;label class="form-check-label" for="toggle1"&gt;Enable feature&lt;/label&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <!-- Complete Form Example -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Complete Form Example</h2>
+    <div class="card" style="max-width: 600px;">
+      <form>
+        <div class="form-group">
+          <label class="form-label required">Full Name</label>
+          <input type="text" class="input" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Email Address</label>
+          <input type="email" class="input" placeholder="john&#64;example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <div class="input-group">
+            <span class="input-addon">+1</span>
+            <input type="tel" class="input" placeholder="(555) 123-4567">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <select class="select">
+            <option>United States</option>
+            <option>Canada</option>
+            <option>United Kingdom</option>
+            <option>Australia</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="textarea" placeholder="Your message..." rows="4"></textarea>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="checkbox" id="terms">
+          <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
+        </div>
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+          <button type="submit" class="btn btn-primary">Submit Form</button>
+          <button type="button" class="btn btn-outline">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,223 @@
+// =============================================================================
+// Alerts - Matching React FinzlyAlert Component
+// =============================================================================
+
+@import 'variables';
+
+// -----------------------------------------------------------------------------
+// Finzly Alert (Exact React Match)
+// -----------------------------------------------------------------------------
+.alert {
+  // border rounded-lg p-4
+  font-family: $font-family-base;
+  border: 1px solid;
+  border-radius: $radius-lg;
+  padding: $spacing-4;
+
+  // Variant colors
+  &.alert-success {
+    // bg-green-50 border-green-200 text-green-800
+    background-color: $green-50;
+    border-color: $green-200;
+    color: $green-800;
+  }
+
+  &.alert-warning {
+    // bg-yellow-50 border-yellow-200 text-yellow-800
+    background-color: $yellow-50;
+    border-color: $yellow-200;
+    color: $yellow-800;
+  }
+
+  &.alert-error {
+    // bg-red-50 border-red-200 text-red-800
+    background-color: $red-50;
+    border-color: $red-200;
+    color: $red-800;
+  }
+
+  &.alert-info {
+    // bg-blue-50 border-blue-200 text-blue-800
+    background-color: $blue-50;
+    border-color: $blue-200;
+    color: $blue-800;
+  }
+
+  // Flex container for proper layout
+  .flex {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3; // 0.75rem gap between icon, content, and close button
+  }
+
+  // Icon at the start - flex-shrink-0
+  .alert-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.125rem; // Align icon with first line of title text
+
+    svg, .material-icons {
+      // h-5 w-5 with variant color
+      height: 1.25rem;
+      width: 1.25rem;
+      display: block;
+    }
+  }
+
+  // Success icon color
+  &.alert-success .alert-icon {
+    color: $green-500;
+  }
+
+  // Warning icon color
+  &.alert-warning .alert-icon {
+    color: $yellow-500;
+  }
+
+  // Error icon color
+  &.alert-error .alert-icon {
+    color: $red-500;
+  }
+
+  // Info icon color
+  &.alert-info .alert-icon {
+    color: $blue-500;
+  }
+
+  // Content area - flex-1 with proper alignment
+  .alert-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2; // 0.5rem gap between title and description
+
+    .alert-title {
+      // text-sm font-medium
+      font-family: $font-family-base;
+      font-size: $text-sm;
+      font-weight: $font-medium;
+      margin: 0;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+    }
+
+    .alert-description {
+      // text-sm
+      font-family: $font-family-base;
+      font-size: $text-sm;
+      margin: 0;
+      line-height: 1.5;
+      color: inherit;
+      opacity: 0.9;
+    }
+  }
+
+  // Close button - flex-shrink-0 with proper alignment
+  .alert-close {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding-top: 0.125rem; // Align with first line of title text
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    svg, .material-icons {
+      height: 1.25rem;
+      width: 1.25rem;
+      display: block;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Toast Container (Exact React Match)
+// -----------------------------------------------------------------------------
+.toast-container {
+  // fixed top-4 right-4 z-50 space-y-2 max-w-md
+  position: fixed;
+  top: $spacing-4;
+  right: $spacing-4;
+  z-index: 50;
+  max-width: 28rem;
+  pointer-events: none;
+
+  .toast {
+    pointer-events: auto;
+    margin-bottom: $spacing-2;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Position variants
+  &.toast-top-right {
+    top: $spacing-4;
+    right: $spacing-4;
+  }
+
+  &.toast-top-left {
+    top: $spacing-4;
+    left: $spacing-4;
+  }
+
+  &.toast-top-center {
+    top: $spacing-4;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.toast-bottom-right {
+    bottom: $spacing-4;
+    right: $spacing-4;
+    top: auto;
+  }
+
+  &.toast-bottom-left {
+    bottom: $spacing-4;
+    left: $spacing-4;
+    top: auto;
+  }
+
+  &.toast-bottom-center {
+    bottom: $spacing-4;
+    left: 50%;
+    top: auto;
+    transform: translateX(-50%);
+  }
+}
+
+// Toast specific styles (same as alert but with shadow)
+.toast.alert {
+  // min-w-80 shadow-lg
+  min-width: 20rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+

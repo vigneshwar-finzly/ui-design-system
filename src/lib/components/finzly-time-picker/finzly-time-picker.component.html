@@ -1,0 +1,77 @@
+<div class="finzly-time-picker-wrapper">
+  <label *ngIf="label" class="finzly-input-label">
+    {{ label }}
+  </label>
+  
+  <div class="time-input-container">
+    <input
+      #inputElement
+      type="text"
+      class="finzly-input finzly-input-default time-input"
+      [placeholder]="placeholder"
+      [value]="formattedTime"
+      [disabled]="disabled"
+      [required]="required"
+      (click)="toggleTimePicker()"
+      readonly
+    />
+    <span class="material-icons time-icon" (click)="toggleTimePicker()">
+      schedule
+    </span>
+  </div>
+
+  <!-- Time Picker Dropdown -->
+  <div class="time-picker-dropdown" #timePickerDropdown *ngIf="isTimePickerOpen" (click)="$event.stopPropagation()">
+    <div class="time-display">
+      <div class="time-unit">
+        <button type="button" class="time-btn" (click)="incrementHour(); $event.stopPropagation()">
+          <span class="material-icons">keyboard_arrow_up</span>
+        </button>
+        <div class="time-value">{{ hour | number:'2.0-0' }}</div>
+        <button type="button" class="time-btn" (click)="decrementHour(); $event.stopPropagation()">
+          <span class="material-icons">keyboard_arrow_down</span>
+        </button>
+      </div>
+
+      <div class="time-separator">:</div>
+
+      <div class="time-unit">
+        <button type="button" class="time-btn" (click)="incrementMinute(); $event.stopPropagation()">
+          <span class="material-icons">keyboard_arrow_up</span>
+        </button>
+        <div class="time-value">{{ minute | number:'2.0-0' }}</div>
+        <button type="button" class="time-btn" (click)="decrementMinute(); $event.stopPropagation()">
+          <span class="material-icons">keyboard_arrow_down</span>
+        </button>
+      </div>
+
+      <div class="period-toggle" *ngIf="!use24Hour">
+        <button 
+          type="button" 
+          class="period-btn" 
+          [class.active]="period === 'AM'"
+          (click)="period = 'AM'; updateValue(); $event.stopPropagation()">
+          AM
+        </button>
+        <button 
+          type="button" 
+          class="period-btn" 
+          [class.active]="period === 'PM'"
+          (click)="period = 'PM'; updateValue(); $event.stopPropagation()">
+          PM
+        </button>
+      </div>
+    </div>
+
+    <div class="time-picker-footer">
+      <button type="button" class="cancel-btn" (click)="closeTimePicker(); $event.stopPropagation()">Cancel</button>
+      <button type="button" class="select-btn" (click)="selectTime(); $event.stopPropagation()">Select</button>
+    </div>
+  </div>
+
+  <p *ngIf="helperText" class="finzly-input-helper">{{ helperText }}</p>
+  <p *ngIf="showError" class="finzly-input-error-message">{{ errorText }}</p>
+</div>
+
+<!-- Backdrop removed - using document click listener instead -->
+

@@ -1,0 +1,56 @@
+@import '../../styles/variables';
+
+.finzly-close-btn {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid rgba($blue-600, 0.15);
+  border-radius: 10px;
+  color: $gray-500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+
+  .material-icons {
+    font-size: 1.25rem;
+  }
+
+  &:hover:not(:disabled) {
+    background: $red-50;
+    color: $red-500;
+    border-color: $red-500;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.close-btn-sm {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+
+    .material-icons {
+      font-size: 1.125rem;
+    }
+  }
+
+  &.close-btn-lg {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+
+    .material-icons {
+      font-size: 1.5rem;
+    }
+  }
+}
+

@@ -1,0 +1,499 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Utility Classes</h1>
+    <p class="demo-intro">
+      Comprehensive utility classes for spacing, typography, layout, colors, and more.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- SPACING UTILITIES -->
+    <!-- ========================================================================= -->
+    
+    <section id="spacing-utilities" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">space_bar</span>
+        <h2>Spacing Utilities</h2>
+      </div>
+      <p class="section-description">
+        Margin and padding utilities for consistent spacing throughout your application.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Spacing Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('spacing-utilities', 'preview')" (click)="setActiveTab('spacing-utilities', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('spacing-utilities', 'code')" (click)="setActiveTab('spacing-utilities', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('spacing-utilities', 'preview')">
+              <div class="demo-code">
+                <div><strong>Margin:</strong> .m-0, .m-1, .m-2, .m-3, .m-4, .m-5, .m-6, .m-8</div>
+                <div><strong>Margin Top:</strong> .mt-0, .mt-1, .mt-2, .mt-3, .mt-4, .mt-5, .mt-6, .mt-8</div>
+                <div><strong>Margin Bottom:</strong> .mb-0, .mb-1, .mb-2, .mb-3, .mb-4, .mb-5, .mb-6, .mb-8</div>
+                <div><strong>Margin X (Horizontal):</strong> .mx-0, .mx-1, .mx-2, .mx-3, .mx-4, .mx-auto</div>
+                <div><strong>Margin Y (Vertical):</strong> .my-0, .my-1, .my-2, .my-3, .my-4</div>
+                <div style="margin-top: 1rem;"><strong>Padding:</strong> .p-0, .p-1, .p-2, .p-3, .p-4, .p-5, .p-6, .p-8</div>
+                <div><strong>Padding Top:</strong> .pt-0, .pt-1, .pt-2, .pt-3, .pt-4, .pt-5, .pt-6</div>
+                <div><strong>Padding X/Y:</strong> .px-*, .py-*</div>
+                <div><strong>Gap:</strong> .gap-0, .gap-1, .gap-2, .gap-3, .gap-4, .gap-6, .gap-8</div>
+              </div>
+              <div class="demo-row" style="margin-top: 1rem;">
+                <div class="demo-card p-2">p-2</div>
+                <div class="demo-card p-4">p-4</div>
+                <div class="demo-card p-6">p-6</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('spacing-utilities', 'code')">
+              <pre class="demo-code">&lt;div class="p-4"&gt;Padding 4&lt;/div&gt;
+&lt;div class="m-2"&gt;Margin 2&lt;/div&gt;
+&lt;div class="mt-4 mb-2"&gt;Margin top 4, bottom 2&lt;/div&gt;
+&lt;div class="px-3 py-2"&gt;Padding X 3, Y 2&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TYPOGRAPHY UTILITIES -->
+    <!-- ========================================================================= -->
+    
+    <section id="typography-utilities" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">text_fields</span>
+        <h2>Typography Utilities</h2>
+      </div>
+      <p class="section-description">
+        Font sizes, weights, alignment, and text transformation utilities.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Typography Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('typography-utilities', 'preview')" (click)="setActiveTab('typography-utilities', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('typography-utilities', 'code')" (click)="setActiveTab('typography-utilities', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('typography-utilities', 'preview')">
+              <div class="demo-code" style="margin-bottom: 1rem;">
+                <div><strong>Font Sizes:</strong> .text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl</div>
+                <div><strong>Font Weights:</strong> .font-light, .font-normal, .font-medium, .font-semibold, .font-bold</div>
+                <div><strong>Text Align:</strong> .text-left, .text-center, .text-right, .text-justify</div>
+                <div><strong>Text Transform:</strong> .uppercase, .lowercase, .capitalize</div>
+                <div><strong>Text Decoration:</strong> .underline, .line-through, .no-underline</div>
+              </div>
+              <div>
+                <p class="text-xs">Extra small text (.text-xs)</p>
+                <p class="text-sm">Small text (.text-sm)</p>
+                <p class="text-base">Base text (.text-base)</p>
+                <p class="text-lg">Large text (.text-lg)</p>
+                <p class="text-xl">Extra large text (.text-xl)</p>
+              </div>
+              <div style="margin-top: 1rem;">
+                <p class="font-light">Light weight (.font-light)</p>
+                <p class="font-normal">Normal weight (.font-normal)</p>
+                <p class="font-medium">Medium weight (.font-medium)</p>
+                <p class="font-semibold">Semibold weight (.font-semibold)</p>
+                <p class="font-bold">Bold weight (.font-bold)</p>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('typography-utilities', 'code')">
+              <pre class="demo-code">&lt;p class="text-lg font-semibold"&gt;Large semibold text&lt;/p&gt;
+&lt;p class="text-sm text-center"&gt;Small centered text&lt;/p&gt;
+&lt;p class="uppercase font-bold"&gt;UPPERCASE BOLD&lt;/p&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- DISPLAY UTILITIES -->
+    <!-- ========================================================================= -->
+    
+    <section id="display-utilities" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">view_module</span>
+        <h2>Display Utilities</h2>
+      </div>
+      <p class="section-description">
+        Control element visibility and display type.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Display Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('display-utilities', 'preview')" (click)="setActiveTab('display-utilities', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('display-utilities', 'code')" (click)="setActiveTab('display-utilities', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('display-utilities', 'preview')">
+              <div class="demo-code">
+                <div><strong>Display:</strong> .d-none, .d-block, .d-inline, .d-inline-block, .d-flex, .d-inline-flex, .d-grid</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('display-utilities', 'code')">
+              <pre class="demo-code">&lt;div class="d-flex"&gt;Flex container&lt;/div&gt;
+&lt;div class="d-none"&gt;Hidden element&lt;/div&gt;
+&lt;div class="d-block"&gt;Block element&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FLEXBOX UTILITIES -->
+    <!-- ========================================================================= -->
+    
+    <section id="flexbox-utilities" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">view_column</span>
+        <h2>Flexbox Utilities</h2>
+      </div>
+      <p class="section-description">
+        Comprehensive flexbox utilities for layout and alignment.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Flexbox Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('flexbox-utilities', 'preview')" (click)="setActiveTab('flexbox-utilities', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('flexbox-utilities', 'code')" (click)="setActiveTab('flexbox-utilities', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('flexbox-utilities', 'preview')">
+              <div class="demo-code" style="margin-bottom: 1rem;">
+                <div><strong>Direction:</strong> .flex-row, .flex-col, .flex-row-reverse, .flex-col-reverse</div>
+                <div><strong>Wrap:</strong> .flex-wrap, .flex-nowrap</div>
+                <div><strong>Justify:</strong> .justify-start, .justify-end, .justify-center, .justify-between, .justify-around, .justify-evenly</div>
+                <div><strong>Align Items:</strong> .items-start, .items-end, .items-center, .items-baseline, .items-stretch</div>
+                <div><strong>Flex:</strong> .flex-1, .flex-auto, .flex-initial, .flex-none</div>
+              </div>
+              <div class="demo-card mb-3">
+                <div class="demo-label">.d-flex .justify-between .items-center</div>
+                <div class="d-flex justify-between items-center">
+                  <div class="badge badge-primary">Left</div>
+                  <div class="badge badge-success">Center</div>
+                  <div class="badge badge-error">Right</div>
+                </div>
+              </div>
+              <div class="demo-card">
+                <div class="demo-label">.d-flex .flex-col .gap-3</div>
+                <div class="d-flex flex-col gap-3">
+                  <div class="badge badge-primary">Item 1</div>
+                  <div class="badge badge-success">Item 2</div>
+                  <div class="badge badge-error">Item 3</div>
+                </div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('flexbox-utilities', 'code')">
+              <pre class="demo-code">&lt;div class="d-flex justify-between items-center"&gt;
+  &lt;div&gt;Left&lt;/div&gt;
+  &lt;div&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="d-flex flex-col gap-3"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BORDER & SHADOW -->
+    <!-- ========================================================================= -->
+    
+    <section id="border-shadow" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">border_style</span>
+        <h2>Border & Shadow Utilities</h2>
+      </div>
+      <p class="section-description">
+        Border and shadow utilities for visual depth and separation.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Border & Shadow Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('border-shadow', 'preview')" (click)="setActiveTab('border-shadow', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('border-shadow', 'code')" (click)="setActiveTab('border-shadow', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('border-shadow', 'preview')">
+              <div class="demo-code" style="margin-bottom: 1rem;">
+                <div><strong>Borders:</strong> .border, .border-0, .border-t, .border-r, .border-b, .border-l</div>
+                <div><strong>Border Radius:</strong> .rounded-none, .rounded-sm, .rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-full</div>
+                <div><strong>Shadows:</strong> .shadow-none, .shadow-xs, .shadow-sm, .shadow, .shadow-md, .shadow-lg, .shadow-xl</div>
+              </div>
+              <div class="demo-row">
+                <div class="demo-card shadow-sm">shadow-sm</div>
+                <div class="demo-card shadow">shadow</div>
+                <div class="demo-card shadow-lg">shadow-lg</div>
+              </div>
+              <div class="demo-row" style="margin-top: 1rem;">
+                <div class="demo-card rounded-sm">rounded-sm</div>
+                <div class="demo-card rounded-md">rounded-md</div>
+                <div class="demo-card rounded-lg">rounded-lg</div>
+                <div class="demo-card rounded-full" style="aspect-ratio: 1;">rounded-full</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('border-shadow', 'code')">
+              <pre class="demo-code">&lt;div class="border rounded-lg shadow-md"&gt;
+  Content with border, rounded corners, and shadow
+&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TEXT COLORS -->
+    <!-- ========================================================================= -->
+    
+    <section id="text-colors" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">format_color_text</span>
+        <h2>Text Color Utilities</h2>
+      </div>
+      <p class="section-description">
+        Text and background color utilities for consistent theming.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Color Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('text-colors', 'preview')" (click)="setActiveTab('text-colors', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('text-colors', 'code')" (click)="setActiveTab('text-colors', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('text-colors', 'preview')">
+              <div class="demo-code">
+                <div><strong>Text Colors:</strong> .text-primary, .text-secondary, .text-tertiary, .text-disabled, .text-white</div>
+                <div><strong>Brand Colors:</strong> .text-primary-color, .text-success-color, .text-warning-color, .text-error-color, .text-info-color</div>
+                <div><strong>Background:</strong> .bg-transparent, .bg-white, .bg-primary</div>
+              </div>
+              <div style="margin-top: 1rem;">
+                <p class="text-primary-color">Primary color text</p>
+                <p class="text-success-color">Success color text</p>
+                <p class="text-warning-color">Warning color text</p>
+                <p class="text-error-color">Error color text</p>
+                <p class="text-info-color">Info color text</p>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('text-colors', 'code')">
+              <pre class="demo-code">&lt;p class="text-primary-color"&gt;Primary text&lt;/p&gt;
+&lt;p class="text-success-color"&gt;Success text&lt;/p&gt;
+&lt;div class="bg-primary text-white"&gt;White text on primary background&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- WIDTH & HEIGHT -->
+    <!-- ========================================================================= -->
+    
+    <section id="width-height" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">aspect_ratio</span>
+        <h2>Width & Height Utilities</h2>
+      </div>
+      <p class="section-description">
+        Width and height utilities for sizing elements.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('width-height', 'preview')" (click)="setActiveTab('width-height', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('width-height', 'code')" (click)="setActiveTab('width-height', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('width-height', 'preview')">
+              <div class="demo-code">
+                <div><strong>Width:</strong> .w-full, .w-auto, .w-screen</div>
+                <div><strong>Height:</strong> .h-full, .h-auto, .h-screen</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('width-height', 'code')">
+              <pre class="demo-code">&lt;div class="w-full"&gt;Full width&lt;/div&gt;
+&lt;div class="h-screen"&gt;Full screen height&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- POSITION & OVERFLOW -->
+    <!-- ========================================================================= -->
+    
+    <section id="position-overflow" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">open_with</span>
+        <h2>Position & Overflow Utilities</h2>
+      </div>
+      <p class="section-description">
+        Position, overflow, cursor, visibility, and opacity utilities.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Position & Overflow Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('position-overflow', 'preview')" (click)="setActiveTab('position-overflow', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('position-overflow', 'code')" (click)="setActiveTab('position-overflow', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('position-overflow', 'preview')">
+              <div class="demo-code">
+                <div><strong>Position:</strong> .position-static, .position-relative, .position-absolute, .position-fixed, .position-sticky</div>
+                <div><strong>Overflow:</strong> .overflow-auto, .overflow-hidden, .overflow-visible, .overflow-scroll</div>
+                <div><strong>Cursor:</strong> .cursor-auto, .cursor-pointer, .cursor-not-allowed</div>
+                <div><strong>Visibility:</strong> .visible, .invisible, .sr-only</div>
+                <div><strong>Opacity:</strong> .opacity-0, .opacity-50, .opacity-75, .opacity-100</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('position-overflow', 'code')">
+              <pre class="demo-code">&lt;div class="position-relative"&gt;Relative positioning&lt;/div&gt;
+&lt;div class="overflow-hidden"&gt;Hidden overflow&lt;/div&gt;
+&lt;button class="cursor-pointer"&gt;Pointer cursor&lt;/button&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- QUICK EXAMPLES -->
+    <!-- ========================================================================= -->
+    
+    <section id="quick-examples" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">apps</span>
+        <h2>Quick Examples</h2>
+      </div>
+      <p class="section-description">
+        Real-world examples combining multiple utility classes.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Common Patterns</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('quick-examples', 'preview')" (click)="setActiveTab('quick-examples', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('quick-examples', 'preview')">
+              <div class="demo-card mb-4">
+                <div class="demo-label">Centered Content Card</div>
+                <div class="d-flex flex-col items-center text-center p-6">
+                  <div class="avatar avatar-xl mb-3">JD</div>
+                  <h3 class="text-xl font-semibold mb-2">John Doe</h3>
+                  <p class="text-secondary mb-4">Full Stack Developer</p>
+                  <button class="btn btn-primary">View Profile</button>
+                </div>
+              </div>
+
+              <div class="demo-card">
+                <div class="demo-label">Utility Class Combination</div>
+                <div class="d-flex justify-between items-center p-4 border rounded-lg shadow-sm">
+                  <div class="d-flex items-center gap-3">
+                    <div class="avatar">AB</div>
+                    <div>
+                      <div class="font-semibold">Alice Brown</div>
+                      <div class="text-sm text-secondary">alice&#64;example.com</div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline">View</button>
+                    <button class="btn btn-sm btn-primary">Edit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

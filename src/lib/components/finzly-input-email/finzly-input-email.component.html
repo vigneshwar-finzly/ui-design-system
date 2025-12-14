@@ -1,0 +1,31 @@
+<div class="finzly-input-wrapper" [class.finzly-input-wrapper-full-width]="fullWidth">
+  <label *ngIf="label" class="finzly-input-label">
+    {{ label }}
+  </label>
+  
+  <div class="finzly-input-container">
+    <span *ngIf="startIcon" class="finzly-input-icon-start">
+      <span class="material-icons">{{ startIcon }}</span>
+    </span>
+  
+    <input
+      type="email"
+      [class]="inputClass"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [required]="required"
+      [attr.autocomplete]="autocomplete"
+      [value]="value"
+      (input)="onInputChange($event)"
+      (blur)="onInputBlur()"
+    />
+  
+    <span *ngIf="endIcon" class="finzly-input-icon-end">
+      <span class="material-icons">{{ endIcon }}</span>
+    </span>
+  </div>
+  
+  <span *ngIf="showHelper" class="finzly-input-helper">{{ helperText }}</span>
+  <span *ngIf="showError" class="finzly-input-error-message">{{ displayErrorText }}</span>
+</div>
+

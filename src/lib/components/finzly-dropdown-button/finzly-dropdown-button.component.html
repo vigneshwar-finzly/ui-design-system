@@ -1,0 +1,42 @@
+<div class="finzly-dropdown-button-wrapper" #dropdownContainer>
+  <div class="dropdown-button-group">
+    <!-- Dropdown Toggle (Left) -->
+    <button
+      type="button"
+      [class]="dropdownToggleClass"
+      [disabled]="disabled"
+      (click)="toggleDropdown($event)">
+      <span class="dropdown-toggle-text">{{ displayText }}</span>
+      <span class="material-icons dropdown-arrow">{{ isDropdownOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
+    </button>
+
+    <!-- Main Action Button (Right) -->
+    <button
+      [type]="type"
+      [class]="buttonClass"
+      [disabled]="disabled"
+      (click)="onButtonClick()">
+      <span *ngIf="icon" class="material-icons">{{ icon }}</span>
+      {{ text }}
+    </button>
+  </div>
+
+  <!-- Dropdown Menu -->
+  <div class="dropdown-menu" *ngIf="isDropdownOpen" [style.top]="dropdownPosition.top" [style.left]="dropdownPosition.left">
+    <div
+      *ngFor="let option of options"
+      class="dropdown-item"
+      [class.disabled]="option.disabled"
+      (click)="selectOption(option, $event)">
+      <span *ngIf="option.icon" class="material-icons item-icon">{{ option.icon }}</span>
+      <span class="item-label">{{ option.label }}</span>
+    </div>
+    <div *ngIf="options.length === 0" class="dropdown-empty">
+      No options available
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="dropdown-backdrop" *ngIf="isDropdownOpen" (click)="closeDropdown()"></div>
+

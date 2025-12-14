@@ -1,0 +1,70 @@
+@import '../../styles/variables';
+
+.finzly-text {
+  font-family: $font-family-base;
+  margin: 0;
+  
+  // Size styles
+  &.finzly-text-xs {
+    font-size: $text-xs;
+  }
+  
+  &.finzly-text-sm {
+    font-size: $text-sm;
+  }
+  
+  &.finzly-text-base {
+    font-size: $text-base;
+  }
+  
+  &.finzly-text-lg {
+    font-size: $text-lg;
+  }
+  
+  &.finzly-text-xl {
+    font-size: $text-xl;
+  }
+  
+  // Weight styles
+  &.finzly-text-normal {
+    font-weight: 400;
+  }
+  
+  &.finzly-text-medium {
+    font-weight: $font-medium;
+  }
+  
+  &.finzly-text-semibold {
+    font-weight: $font-semibold;
+  }
+  
+  &.finzly-text-bold {
+    font-weight: 700;
+  }
+  
+  // Color styles
+  &.finzly-text-default {
+    color: $gray-900;
+  }
+  
+  &.finzly-text-muted {
+    color: $gray-600;
+  }
+  
+  &.finzly-text-primary {
+    color: $blue-600;
+  }
+  
+  &.finzly-text-success {
+    color: $green-600;
+  }
+  
+  &.finzly-text-warning {
+    color: $yellow-600;
+  }
+  
+  &.finzly-text-error {
+    color: $red-600;
+  }
+}
+

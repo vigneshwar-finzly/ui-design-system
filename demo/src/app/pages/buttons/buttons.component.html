@@ -1,0 +1,145 @@
+<div class="demo-container">
+  <h1 class="demo-section-title">Buttons</h1>
+
+  <!-- Button Variants -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Button Variants</h2>
+    <div class="demo-row">
+      <button class="btn btn-primary" (click)="buttonClicked('Primary')">Primary</button>
+      <button class="btn btn-success" (click)="buttonClicked('Success')">Success</button>
+      <button class="btn btn-warning" (click)="buttonClicked('Warning')">Warning</button>
+      <button class="btn btn-error" (click)="buttonClicked('Error')">Error</button>
+      <button class="btn btn-info" (click)="buttonClicked('Info')">Info</button>
+    </div>
+    <pre class="demo-code">&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Warning&lt;/button&gt;</pre>
+  </div>
+
+  <!-- Outline Buttons -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Outline Buttons</h2>
+    <div class="demo-row">
+      <button class="btn btn-outline">Default</button>
+      <button class="btn btn-outline-primary">Primary</button>
+      <button class="btn btn-outline-success">Success</button>
+      <button class="btn btn-outline-error">Error</button>
+    </div>
+    <pre class="demo-code">&lt;button class="btn btn-outline-primary"&gt;Outline Primary&lt;/button&gt;</pre>
+  </div>
+
+  <!-- Button Sizes -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Button Sizes</h2>
+    <div class="demo-row" style="align-items: center;">
+      <button class="btn btn-primary btn-xs">Extra Small</button>
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary btn-md">Medium</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+      <button class="btn btn-primary btn-xl">Extra Large</button>
+    </div>
+    <pre class="demo-code">&lt;button class="btn btn-primary btn-xs"&gt;Extra Small&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;</pre>
+  </div>
+
+  <!-- Ghost & Text Buttons -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Ghost & Text Buttons</h2>
+    <div class="demo-row">
+      <button class="btn btn-ghost">Ghost Button</button>
+      <button class="btn btn-text">Text Button</button>
+    </div>
+    <pre class="demo-code">&lt;button class="btn btn-ghost"&gt;Ghost Button&lt;/button&gt;
+&lt;button class="btn btn-text"&gt;Text Button&lt;/button&gt;</pre>
+  </div>
+
+  <!-- Icon Buttons -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Icon Buttons</h2>
+    <div class="demo-row">
+      <button class="btn btn-primary btn-icon btn-xs">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </button>
+      <button class="btn btn-primary btn-icon btn-sm">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+      </button>
+      <button class="btn btn-primary btn-icon btn-md">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+        </svg>
+      </button>
+      <button class="btn btn-primary btn-icon btn-lg">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+      </button>
+    </div>
+    <pre class="demo-code">&lt;button class="btn btn-primary btn-icon"&gt;
+  &lt;svg&gt;...&lt;/svg&gt;
+&lt;/button&gt;</pre>
+  </div>
+
+  <!-- Buttons with Icons -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Buttons with Icons</h2>
+    <div class="demo-row">
+      <button class="btn btn-primary">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Add New
+      </button>
+      <button class="btn btn-success">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        Save Changes
+      </button>
+      <button class="btn btn-error">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <!-- Disabled Buttons -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Disabled State</h2>
+    <div class="demo-row">
+      <button class="btn btn-primary" disabled>Disabled Primary</button>
+      <button class="btn btn-outline-primary" disabled>Disabled Outline</button>
+      <button class="btn btn-ghost" disabled>Disabled Ghost</button>
+    </div>
+    <pre class="demo-code">&lt;button class="btn btn-primary" disabled&gt;Disabled&lt;/button&gt;</pre>
+  </div>
+
+  <!-- Block Buttons -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Block Buttons</h2>
+    <button class="btn btn-primary btn-block">Full Width Button</button>
+    <pre class="demo-code">&lt;button class="btn btn-primary btn-block"&gt;Full Width Button&lt;/button&gt;</pre>
+  </div>
+
+  <!-- Button Group -->
+  <div class="demo-section">
+    <h2 class="demo-section-subtitle">Button Group</h2>
+    <div class="btn-group">
+      <button class="btn btn-outline-primary">Left</button>
+      <button class="btn btn-outline-primary">Center</button>
+      <button class="btn btn-outline-primary">Right</button>
+    </div>
+    <pre class="demo-code">&lt;div class="btn-group"&gt;
+  &lt;button class="btn btn-outline-primary"&gt;Left&lt;/button&gt;
+  &lt;button class="btn btn-outline-primary"&gt;Center&lt;/button&gt;
+  &lt;button class="btn btn-outline-primary"&gt;Right&lt;/button&gt;
+&lt;/div&gt;</pre>
+  </div>
+</div>
+

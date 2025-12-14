@@ -1,0 +1,85 @@
+<div class="finzly-dialog-backdrop" 
+     [class.finzly-dialog-open]="isOpen"
+     (click)="onBackdropClick()">
+  
+  <div class="finzly-dialog-container"
+       [class.finzly-dialog-open]="isOpen"
+       [ngClass]="'finzly-dialog-' + config.size"
+       (click)="$event.stopPropagation()">
+    
+    <!-- Dialog Header -->
+    <div class="finzly-dialog-header">
+      <div class="finzly-dialog-header-content">
+        <!-- Type Icon -->
+        <div class="finzly-dialog-type-icon" *ngIf="config.type !== 'default'" [innerHTML]="getTypeIcon()"></div>
+        
+        <div class="finzly-dialog-header-text">
+          <!-- Title -->
+          <h3 class="finzly-dialog-title">{{ config.title }}</h3>
+          
+          <!-- Subtitle -->
+          <p class="finzly-dialog-subtitle" *ngIf="config.subtitle">{{ config.subtitle }}</p>
+        </div>
+      </div>
+      
+      <!-- Close Button -->
+      <button 
+        class="finzly-dialog-close"
+        *ngIf="config.showClose"
+        (click)="close(null)"
+        type="button"
+        aria-label="Close">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Dialog Body -->
+    <div class="finzly-dialog-body">
+      <p class="finzly-dialog-content">{{ config.content }}</p>
+    </div>
+
+    <!-- Dialog Footer -->
+    <div class="finzly-dialog-footer" [ngClass]="'finzly-dialog-footer-' + (config.footerAlign || 'right')">
+      <!-- Default Buttons -->
+      <ng-container *ngIf="!hasCustomButtons()">
+        <button 
+          class="btn btn-outline"
+          *ngIf="config.cancelText"
+          (click)="onCancel()"
+          type="button">
+          {{ config.cancelText }}
+        </button>
+        <button 
+          class="btn"
+          [ngClass]="{
+            'btn-primary': config.type === 'default' || config.type === 'info',
+            'btn-success': config.type === 'success',
+            'btn-warning': config.type === 'warning',
+            'btn-error': config.type === 'error'
+          }"
+          (click)="onConfirm()"
+          type="button">
+          {{ config.confirmText }}
+        </button>
+      </ng-container>
+
+      <!-- Custom Buttons -->
+      <ng-container *ngIf="hasCustomButtons()">
+        <button
+          *ngFor="let button of config.customButtons; let i = index"
+          [ngClass]="getButtonClass(button)"
+          [disabled]="button.disabled || buttonLoadingStates[i]"
+          (click)="onCustomButtonClick(button, i)"
+          type="button">
+          <!-- Loading Spinner -->
+          <span *ngIf="buttonLoadingStates[i]" class="btn-spinner"></span>
+          <!-- Button Text -->
+          <span [class.btn-text-loading]="buttonLoadingStates[i]">{{ button.text }}</span>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>
+

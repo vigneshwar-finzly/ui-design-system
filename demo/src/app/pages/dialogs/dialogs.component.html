@@ -1,0 +1,432 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Finzly Dialog Component</h1>
+    <p class="demo-intro">
+      A premium, modern dialog system with smooth animations, type-specific styling, and programmatic control.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- BASIC DIALOGS -->
+    <!-- ========================================================================= -->
+    
+    <section id="basic-dialogs" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">chat_bubble</span>
+        <h2>Basic Dialogs</h2>
+      </div>
+      <p class="section-description">
+        Simple dialogs with confirm and cancel buttons for user interactions.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Usage</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('basic-dialogs', 'preview')" (click)="setActiveTab('basic-dialogs', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('basic-dialogs', 'code')" (click)="setActiveTab('basic-dialogs', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('basic-dialogs', 'preview')">
+              <div class="demo-row">
+                <button class="btn btn-primary" (click)="openBasicDialog()">Open Basic Dialog</button>
+                <button class="btn btn-outline-primary" (click)="openConfirmDialog()">Confirmation Dialog</button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('basic-dialogs', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.basicDialogs)" [class.copied]="isCopied(examples.basicDialogs)">
+                <span class="material-icons">{{ isCopied(examples.basicDialogs) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.basicDialogs) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.basicDialogs }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TYPE-SPECIFIC DIALOGS -->
+    <!-- ========================================================================= -->
+    
+    <section id="type-dialogs" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">category</span>
+        <h2>Type-Specific Dialogs</h2>
+      </div>
+      <p class="section-description">
+        Pre-styled dialogs with icons and colors for success, error, warning, and info types.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Dialog Types</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('type-dialogs', 'preview')" (click)="setActiveTab('type-dialogs', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('type-dialogs', 'code')" (click)="setActiveTab('type-dialogs', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('type-dialogs', 'preview')">
+              <div class="demo-row">
+                <button class="btn btn-success" (click)="openSuccessDialog()">Success Dialog</button>
+                <button class="btn btn-error" (click)="openErrorDialog()">Error Dialog</button>
+                <button class="btn btn-warning" (click)="openWarningDialog()">Warning Dialog</button>
+                <button class="btn btn-info" (click)="openInfoDialog()">Info Dialog</button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('type-dialogs', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.typeDialogs)" [class.copied]="isCopied(examples.typeDialogs)">
+                <span class="material-icons">{{ isCopied(examples.typeDialogs) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.typeDialogs) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.typeDialogs }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- DIALOG SIZES -->
+    <!-- ========================================================================= -->
+    
+    <section id="dialog-sizes" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">aspect_ratio</span>
+        <h2>Dialog Sizes</h2>
+      </div>
+      <p class="section-description">
+        Five size variants: small, medium (default), large, extra large, and full width.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('dialog-sizes', 'preview')" (click)="setActiveTab('dialog-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('dialog-sizes', 'code')" (click)="setActiveTab('dialog-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('dialog-sizes', 'preview')">
+              <div class="demo-row">
+                <button class="btn btn-outline" (click)="openSmallDialog()">Small Dialog</button>
+                <button class="btn btn-outline" (click)="openMediumDialog()">Medium Dialog</button>
+                <button class="btn btn-outline" (click)="openLargeDialog()">Large Dialog</button>
+                <button class="btn btn-outline" (click)="openFullDialog()">Full Dialog</button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('dialog-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dialogSizes)" [class.copied]="isCopied(examples.dialogSizes)">
+                <span class="material-icons">{{ isCopied(examples.dialogSizes) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dialogSizes) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dialogSizes }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- ADVANCED USAGE -->
+    <!-- ========================================================================= -->
+    
+    <section id="advanced-usage" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">settings</span>
+        <h2>Advanced Usage</h2>
+      </div>
+      <p class="section-description">
+        Advanced configuration options for custom dialog behavior.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Advanced Configuration</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('advanced-usage', 'preview')" (click)="setActiveTab('advanced-usage', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('advanced-usage', 'code')" (click)="setActiveTab('advanced-usage', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('advanced-usage', 'preview')">
+              <div class="demo-row">
+                <button class="btn btn-error btn-outline" (click)="openDeleteDialog()">Delete Confirmation</button>
+                <button class="btn btn-outline-primary" (click)="openCustomDialog()">Custom Config</button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('advanced-usage', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.advancedUsage)" [class.copied]="isCopied(examples.advancedUsage)">
+                <span class="material-icons">{{ isCopied(examples.advancedUsage) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.advancedUsage) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.advancedUsage }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- CUSTOM BUTTONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="custom-buttons" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">tune</span>
+        <h2>Custom Buttons</h2>
+      </div>
+      <p class="section-description">
+        Define custom buttons with different types, actions, and behaviors.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Custom Button Examples</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-buttons', 'preview')" (click)="setActiveTab('custom-buttons', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-buttons', 'code')" (click)="setActiveTab('custom-buttons', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-buttons', 'preview')">
+              <div class="demo-row">
+                <button class="btn btn-primary" (click)="openCustomButtonsDialog()">Custom Buttons</button>
+                <button class="btn btn-outline-primary" (click)="openMultiActionDialog()">Multi-Action Dialog</button>
+                <button class="btn btn-outline-primary" (click)="openAsyncButtonDialog()">Async Button Action</button>
+              </div>
+              <div class="demo-row" style="margin-top: 0.5rem;">
+                <button class="btn btn-outline" (click)="openNoCloseButtonDialog()">Keep Dialog Open</button>
+                <button class="btn btn-outline" (click)="openComplexDialog()">Complex Example</button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-buttons', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customButtons)" [class.copied]="isCopied(examples.customButtons)">
+                <span class="material-icons">{{ isCopied(examples.customButtons) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customButtons) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customButtons }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- API REFERENCE -->
+    <!-- ========================================================================= -->
+    
+    <section id="api-reference" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">code</span>
+        <h2>Service API</h2>
+      </div>
+      <p class="section-description">
+        Complete API reference for FinzlyDialogService methods and interfaces.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">API Documentation</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-reference', 'preview')" (click)="setActiveTab('api-reference', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-reference', 'preview')">
+              <div class="card">
+                <h4>FinzlyDialogService Methods</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">// Open custom dialog
+open(config: DialogConfig): DialogRef
+
+// Confirmation dialog
+confirm(title: string, content: string, config?: Partial&lt;DialogConfig&gt;): DialogRef
+
+// Alert dialog (OK button only)
+alert(title: string, content: string, config?: Partial&lt;DialogConfig&gt;): DialogRef
+
+// Type-specific shortcuts
+success(title: string, content: string, config?: Partial&lt;DialogConfig&gt;): DialogRef
+error(title: string, content: string, config?: Partial&lt;DialogConfig&gt;): DialogRef
+warning(title: string, content: string, config?: Partial&lt;DialogConfig&gt;): DialogRef
+
+// Close current dialog
+close(result?: any): void</pre>
+
+                <h4 style="margin-top: 2rem;">DialogConfig Interface</h4>
+                <pre class="demo-code">interface DialogConfig {{'{' }}
+  title?: string;
+  content?: string;
+  confirmText?: string;
+  cancelText?: string;
+  customButtons?: DialogButton[];
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  type?: 'default' | 'info' | 'success' | 'warning' | 'error';
+  showClose?: boolean;
+  closeOnBackdropClick?: boolean;
+  closeOnEscape?: boolean;
+  customClass?: string;
+{{'}' }}
+
+interface DialogButton {{'{' }}
+  text: string;
+  type?: 'primary' | 'success' | 'warning' | 
+         'error' | 'info' | 'outline' | 'ghost';
+  result?: any;
+  action?: () => void | Promise&lt;void&gt;;
+  closeOnClick?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+{{'}' }}</pre>
+
+                <h4 style="margin-top: 2rem;">DialogRef Methods</h4>
+                <pre class="demo-code">const dialogRef = this.dialogService.open(config);
+
+// Close dialog programmatically
+dialogRef.close(result);
+
+// Get result after dialog closes
+const result = await dialogRef.afterClosed();
+
+// Or with .then()
+dialogRef.afterClosed().then(result => {{'{' }}
+  if (result === true) {{'{' }}
+    // User clicked confirm
+  {{'}' }} else if (result === false) {{'{' }}
+    // User clicked cancel
+  {{'}' }} else {{'{' }}
+    // User closed dialog (ESC or X button)
+  {{'}' }}
+{{'}' }});</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- REAL-WORLD EXAMPLES -->
+    <!-- ========================================================================= -->
+    
+    <section id="real-world-examples" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">apps</span>
+        <h2>Real-World Examples</h2>
+      </div>
+      <p class="section-description">
+        Common use cases and practical examples for dialog implementation.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Common Use Cases</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('real-world-examples', 'preview')" (click)="setActiveTab('real-world-examples', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('real-world-examples', 'preview')">
+              <div class="card">
+                <h4>Common Use Cases</h4>
+                <pre class="demo-code">// 1. Delete Confirmation
+deleteItem(id: number) {{'{' }}
+  const dialogRef = this.dialogService.open({{'{' }}
+    title: 'Delete Item',
+    content: 'This action cannot be undone.',
+    type: 'error',
+    confirmText: 'Delete',
+    cancelText: 'Cancel'
+  {{'}' }});
+
+  dialogRef.afterClosed().then(result => {{'{' }}
+    if (result) {{'{' }}
+      this.api.delete(id).subscribe();
+    {{'}' }}
+  {{'}' }});
+{{'}' }}
+
+// 2. Save Confirmation
+async saveChanges() {{'{' }}
+  const result = await this.dialogService.confirm(
+    'Save Changes',
+    'Do you want to save your changes?'
+  ).afterClosed();
+
+  if (result) {{'{' }}
+    await this.save();
+  {{'}' }}
+{{'}' }}
+
+// 3. Success Notification
+onSuccess() {{'{' }}
+  this.dialogService.success(
+    'Success!',
+    'Your profile has been updated successfully.'
+  );
+{{'}' }}
+
+// 4. Error Handling
+onError(error: any) {{'{' }}
+  this.dialogService.error(
+    'Operation Failed',
+    error.message || 'An unexpected error occurred.'
+  );
+{{'}' }}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<finzly-toastr></finzly-toastr>

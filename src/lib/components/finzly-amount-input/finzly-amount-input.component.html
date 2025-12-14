@@ -1,0 +1,35 @@
+<div class="finzly-input-wrapper" [class.finzly-input-wrapper-full-width]="fullWidth">
+  <label *ngIf="label" class="finzly-input-label">
+    {{ label }}
+  </label>
+  
+  <div class="finzly-input-container">
+    <span *ngIf="showPrefix && prefix" class="finzly-input-icon-start amount-prefix">
+      {{ prefix }}
+    </span>
+    
+    <input
+      type="text"
+      [class]="inputClass"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [required]="required"
+      [(ngModel)]="value"
+      (ngModelChange)="onValueChange($event)"
+      (blur)="onInputBlur()"
+      finzlyAmountFormatter
+      [decimalPrecision]="decimalPrecision"
+      [allowNegative]="allowNegative"
+      [maxValue]="maxValue"
+      [minValue]="minValue"
+    />
+    
+    <span *ngIf="showSuffix && suffix" class="finzly-input-icon-end amount-suffix">
+      {{ suffix }}
+    </span>
+  </div>
+  
+  <span *ngIf="showHelper" class="finzly-input-helper">{{ helperText }}</span>
+  <span *ngIf="showError" class="finzly-input-error-message">{{ errorText }}</span>
+</div>
+

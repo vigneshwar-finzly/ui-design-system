@@ -1,0 +1,462 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Tooltips & Popovers</h1>
+    <p class="demo-intro">
+      Tooltips, progress bars, avatars, spinners, skeleton loaders, and other utility components.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- TOOLTIP STRUCTURE -->
+    <!-- ========================================================================= -->
+    
+    <section id="tooltip-structure" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">code</span>
+        <h2>Tooltip Structure</h2>
+      </div>
+      <p class="section-description">
+        Tooltips require JavaScript to position and show/hide. Below is the HTML structure used for tooltips.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Structure</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('tooltip-structure', 'preview')" (click)="setActiveTab('tooltip-structure', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('tooltip-structure', 'code')" (click)="setActiveTab('tooltip-structure', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('tooltip-structure', 'preview')">
+              <div class="tooltip-wrapper">
+                <button class="btn btn-primary">Hover me</button>
+                <div class="tooltip tooltip-top tooltip-visible">
+                  Tooltip content
+                </div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('tooltip-structure', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.tooltipStructure)" [class.copied]="isCopied(examples.tooltipStructure)">
+                <span class="material-icons">{{ isCopied(examples.tooltipStructure) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.tooltipStructure) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.tooltipStructure }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TOOLTIP POSITIONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="tooltip-positions" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">navigation</span>
+        <h2>Tooltip Positions</h2>
+      </div>
+      <p class="section-description">
+        Four position options for tooltip placement relative to the target element.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Position Classes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('tooltip-positions', 'preview')" (click)="setActiveTab('tooltip-positions', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('tooltip-positions', 'code')" (click)="setActiveTab('tooltip-positions', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('tooltip-positions', 'preview')">
+              <div class="demo-code">
+                <div>.tooltip-top - Appears above the element</div>
+                <div>.tooltip-bottom - Appears below the element</div>
+                <div>.tooltip-left - Appears to the left</div>
+                <div>.tooltip-right - Appears to the right</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('tooltip-positions', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.tooltipPositions)" [class.copied]="isCopied(examples.tooltipPositions)">
+                <span class="material-icons">{{ isCopied(examples.tooltipPositions) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.tooltipPositions) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.tooltipPositions }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TOOLTIP VARIANTS -->
+    <!-- ========================================================================= -->
+    
+    <section id="tooltip-variants" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">palette</span>
+        <h2>Tooltip Variants</h2>
+      </div>
+      <p class="section-description">
+        Different color variants for tooltips to match your design system.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Color Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('tooltip-variants', 'preview')" (click)="setActiveTab('tooltip-variants', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('tooltip-variants', 'code')" (click)="setActiveTab('tooltip-variants', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('tooltip-variants', 'preview')">
+              <div class="demo-code">
+                <div>.tooltip (default) - Dark background</div>
+                <div>.tooltip-primary - Primary color</div>
+                <div>.tooltip-success - Success color</div>
+                <div>.tooltip-warning - Warning color</div>
+                <div>.tooltip-error - Error color</div>
+                <div>.tooltip-light - Light background with border</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('tooltip-variants', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.tooltipVariants)" [class.copied]="isCopied(examples.tooltipVariants)">
+                <span class="material-icons">{{ isCopied(examples.tooltipVariants) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.tooltipVariants) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.tooltipVariants }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TOOLTIP SIZES -->
+    <!-- ========================================================================= -->
+    
+    <section id="tooltip-sizes" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">aspect_ratio</span>
+        <h2>Tooltip Sizes</h2>
+      </div>
+      <p class="section-description">
+        Three size variants: small, medium (default), and large.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('tooltip-sizes', 'preview')" (click)="setActiveTab('tooltip-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('tooltip-sizes', 'code')" (click)="setActiveTab('tooltip-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('tooltip-sizes', 'preview')">
+              <div class="demo-code">
+                <div>.tooltip-sm - Small tooltip</div>
+                <div>.tooltip (default) - Medium tooltip</div>
+                <div>.tooltip-lg - Large tooltip</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('tooltip-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.tooltipSizes)" [class.copied]="isCopied(examples.tooltipSizes)">
+                <span class="material-icons">{{ isCopied(examples.tooltipSizes) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.tooltipSizes) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.tooltipSizes }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PROGRESS BAR -->
+    <!-- ========================================================================= -->
+    
+    <section id="progress-bar" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">linear_scale</span>
+        <h2>Progress Bar</h2>
+      </div>
+      <p class="section-description">
+        Visual progress indicators for showing completion status.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Progress Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('progress-bar', 'preview')" (click)="setActiveTab('progress-bar', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('progress-bar', 'code')" (click)="setActiveTab('progress-bar', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('progress-bar', 'preview')">
+              <div class="demo-column" style="max-width: 600px;">
+                <div class="form-label">Default Progress</div>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 60%;"></div>
+                </div>
+
+                <div class="form-label" style="margin-top: 1.5rem;">Success Progress</div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" style="width: 80%;"></div>
+                </div>
+
+                <div class="form-label" style="margin-top: 1.5rem;">Warning Progress</div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-warning" style="width: 45%;"></div>
+                </div>
+
+                <div class="form-label" style="margin-top: 1.5rem;">Error Progress</div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-error" style="width: 30%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('progress-bar', 'code')">
+              <pre class="demo-code">&lt;div class="progress"&gt;
+  &lt;div class="progress-bar" style="width: 60%;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="progress"&gt;
+  &lt;div class="progress-bar progress-bar-success" style="width: 80%;"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- AVATAR COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="avatar-component" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">account_circle</span>
+        <h2>Avatar Component</h2>
+      </div>
+      <p class="section-description">
+        User avatars with multiple sizes and shape variants.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Avatar Sizes & Shapes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('avatar-component', 'preview')" (click)="setActiveTab('avatar-component', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('avatar-component', 'code')" (click)="setActiveTab('avatar-component', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('avatar-component', 'preview')">
+              <div class="demo-row" style="align-items: center;">
+                <div class="avatar avatar-xs">JD</div>
+                <div class="avatar avatar-sm">JD</div>
+                <div class="avatar">JD</div>
+                <div class="avatar avatar-lg">JD</div>
+                <div class="avatar avatar-xl">JD</div>
+              </div>
+              <div class="demo-row" style="align-items: center; margin-top: 1rem;">
+                <div class="avatar avatar-square avatar-sm">JS</div>
+                <div class="avatar avatar-square">AB</div>
+                <div class="avatar avatar-square avatar-lg">CD</div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('avatar-component', 'code')">
+              <pre class="demo-code">&lt;div class="avatar"&gt;JD&lt;/div&gt;
+&lt;div class="avatar avatar-lg"&gt;JD&lt;/div&gt;
+&lt;div class="avatar avatar-square"&gt;JS&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SPINNER LOADING -->
+    <!-- ========================================================================= -->
+    
+    <section id="spinner-loading" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">refresh</span>
+        <h2>Spinner / Loading</h2>
+      </div>
+      <p class="section-description">
+        Loading spinners for indicating async operations.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Spinner Sizes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('spinner-loading', 'preview')" (click)="setActiveTab('spinner-loading', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('spinner-loading', 'code')" (click)="setActiveTab('spinner-loading', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('spinner-loading', 'preview')">
+              <div class="demo-row" style="align-items: center;">
+                <div class="spinner spinner-sm"></div>
+                <div class="spinner"></div>
+                <div class="spinner spinner-lg"></div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('spinner-loading', 'code')">
+              <pre class="demo-code">&lt;div class="spinner"&gt;&lt;/div&gt;
+&lt;div class="spinner spinner-lg"&gt;&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SKELETON LOADERS -->
+    <!-- ========================================================================= -->
+    
+    <section id="skeleton-loaders" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">view_column</span>
+        <h2>Skeleton Loaders</h2>
+      </div>
+      <p class="section-description">
+        Placeholder loaders for content that is being loaded.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Skeleton Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('skeleton-loaders', 'preview')" (click)="setActiveTab('skeleton-loaders', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('skeleton-loaders', 'code')" (click)="setActiveTab('skeleton-loaders', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('skeleton-loaders', 'preview')">
+              <div class="demo-column" style="max-width: 400px;">
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text" style="width: 60%;"></div>
+                <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">
+                  <div class="skeleton skeleton-circle"></div>
+                  <div style="flex: 1;">
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text" style="width: 70%;"></div>
+                  </div>
+                </div>
+                <div class="skeleton skeleton-rectangle" style="margin-top: 1rem;"></div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('skeleton-loaders', 'code')">
+              <pre class="demo-code">&lt;div class="skeleton skeleton-text"&gt;&lt;/div&gt;
+&lt;div class="skeleton skeleton-circle"&gt;&lt;/div&gt;
+&lt;div class="skeleton skeleton-rectangle"&gt;&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- DIVIDER -->
+    <!-- ========================================================================= -->
+    
+    <section id="divider" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">horizontal_rule</span>
+        <h2>Divider</h2>
+      </div>
+      <p class="section-description">
+        Horizontal divider for separating content sections.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Divider Usage</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('divider', 'preview')" (click)="setActiveTab('divider', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('divider', 'code')" (click)="setActiveTab('divider', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('divider', 'preview')">
+              <p>Content above divider</p>
+              <hr class="divider">
+              <p>Content below divider</p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('divider', 'code')">
+              <pre class="demo-code">&lt;hr class="divider"&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,454 @@
+// =============================================================================
+// Inputs & Form Controls - Matching React Components
+// =============================================================================
+
+@import 'variables';
+
+// -----------------------------------------------------------------------------
+// Finzly Input (Exact React Match)
+// -----------------------------------------------------------------------------
+.finzly-input-wrapper {
+  display: block;
+  
+  &.finzly-input-wrapper-full-width {
+    width: 100%;
+  }
+}
+
+.finzly-input-label {
+  // block text-sm font-medium text-gray-700 mb-1
+  display: block;
+  font-family: $font-family-base;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $gray-700;
+  margin-bottom: $spacing-1;
+}
+
+.finzly-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.finzly-input {
+  // Base: px-4 py-2 rounded-lg transition-colors duration-200 text-gray-900 disabled:bg-gray-100 disabled:cursor-not-allowed
+  font-family: $font-family-base;
+  padding: $spacing-2 $spacing-4;
+  border-radius: $radius-lg;
+  transition: $transition-colors;
+  color: $gray-900;
+  font-size: $text-base;
+  width: 100%;
+
+  &:disabled {
+    background-color: $gray-100;
+    cursor: not-allowed;
+  }
+
+  // default: "border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+  &.finzly-input-default {
+    border: 1px solid $gray-300;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px $blue-500;
+      border-color: transparent;
+    }
+  }
+
+  // outlined: "border-2 border-gray-300 focus:border-blue-500 bg-white"
+  &.finzly-input-outlined {
+    border: 2px solid $gray-300;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+      border-color: $blue-500;
+    }
+  }
+
+  // filled: "border-0 bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500"
+  &.finzly-input-filled {
+    border: none;
+    background-color: $gray-100;
+
+    &:focus {
+      outline: none;
+      background-color: white;
+      box-shadow: 0 0 0 2px $blue-500;
+    }
+  }
+
+  // Error state: "border-red-500 focus:ring-red-500"
+  &.finzly-input-error {
+    border-color: $red-500;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px $red-500;
+    }
+  }
+
+  // Icon padding: startIcon ? "pl-10" : endIcon ? "pr-10" : ""
+  &.finzly-input-has-start-icon {
+    padding-left: $spacing-10;
+  }
+
+  &.finzly-input-has-end-icon {
+    padding-right: $spacing-10;
+  }
+
+  &.finzly-input-full-width {
+    width: 100%;
+  }
+}
+
+// Icon positioning: absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400
+.finzly-input-icon-start {
+  position: absolute;
+  left: $spacing-3;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $gray-400;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  
+  .material-icons {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.finzly-input-icon-end {
+  position: absolute;
+  right: $spacing-3;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $gray-400;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  
+  .material-icons {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+// Helper text: mt-1 text-sm text-gray-500
+.finzly-input-helper {
+  display: block;
+  margin-top: $spacing-1;
+  font-size: $text-sm;
+  color: $gray-500;
+}
+
+// Error message: mt-1 text-sm text-red-600
+.finzly-input-error-message {
+  display: block;
+  margin-top: $spacing-1;
+  font-size: $text-sm;
+  color: $red-600;
+}
+
+// -----------------------------------------------------------------------------
+// Finzly Textarea (Exact React Match)
+// -----------------------------------------------------------------------------
+.finzly-textarea-wrapper {
+  display: block;
+  
+  &.finzly-textarea-wrapper-full-width {
+    width: 100%;
+  }
+}
+
+.finzly-textarea-label {
+  display: block;
+  font-family: $font-family-base;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $gray-700;
+  margin-bottom: $spacing-1;
+}
+
+.finzly-textarea {
+  font-family: $font-family-base;
+  padding: $spacing-2 $spacing-4;
+  border-radius: $radius-lg;
+  transition: $transition-colors;
+  color: $gray-900;
+  font-size: $text-base;
+  width: 100%;
+  border: 1px solid $gray-300;
+  background-color: white;
+
+  &:disabled {
+    background-color: $gray-100;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $blue-500;
+    border-color: transparent;
+  }
+
+  &.finzly-textarea-error {
+    border-color: $red-500;
+
+    &:focus {
+      box-shadow: 0 0 0 2px $red-500;
+    }
+  }
+
+  // Resize options
+  &.finzly-textarea-resize-none {
+    resize: none;
+  }
+
+  &.finzly-textarea-resize-vertical {
+    resize: vertical;
+  }
+
+  &.finzly-textarea-resize-horizontal {
+    resize: horizontal;
+  }
+
+  &.finzly-textarea-resize-both {
+    resize: both;
+  }
+}
+
+.finzly-textarea-helper {
+  display: block;
+  margin-top: $spacing-1;
+  font-size: $text-sm;
+  color: $gray-500;
+}
+
+.finzly-textarea-error-message {
+  display: block;
+  margin-top: $spacing-1;
+  font-size: $text-sm;
+  color: $red-600;
+}
+
+// -----------------------------------------------------------------------------
+// Finzly Checkbox (Exact React Match)
+// -----------------------------------------------------------------------------
+.finzly-checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.finzly-checkbox-container {
+  display: flex;
+  align-items: center;
+  height: 1.25rem;  // h-5
+}
+
+.finzly-checkbox-input-wrapper {
+  position: relative;
+}
+
+.finzly-checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.finzly-checkbox-custom {
+  // w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: $radius-default;
+  border: 2px solid;
+  transition: $transition-all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  // Default: border-gray-300 bg-white
+  border-color: $gray-300;
+  background-color: white;
+
+  // Checked: bg-blue-600 border-blue-600
+  &.finzly-checkbox-checked {
+    background-color: $blue-600;
+    border-color: $blue-600;
+
+    .finzly-checkbox-checkmark {
+      width: 0.875rem;
+      height: 0.875rem;
+      color: white;
+    }
+  }
+
+  // Error: border-red-500
+  &.finzly-checkbox-error {
+    border-color: $red-500;
+  }
+
+  // Disabled: opacity-50 cursor-not-allowed
+  &.finzly-checkbox-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Hover (not disabled): hover:border-blue-500
+  .finzly-checkbox-input:not(:disabled) ~ & {
+    &:hover {
+      border-color: $blue-500;
+    }
+  }
+}
+
+.finzly-checkbox-label-wrapper {
+  margin-left: $spacing-3;  // ml-3
+  flex: 1;
+}
+
+.finzly-checkbox-label {
+  // text-sm font-medium text-gray-700 / disabled: text-gray-400
+  font-family: $font-family-base;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $gray-700;
+  cursor: pointer;
+
+  &.finzly-checkbox-label-disabled {
+    color: $gray-400;
+    cursor: not-allowed;
+  }
+}
+
+.finzly-checkbox-helper-text {
+  // text-xs text-gray-500 mt-0.5
+  font-size: $text-xs;
+  color: $gray-500;
+  margin-top: $spacing-0-5;
+}
+
+.finzly-checkbox-error-text {
+  // text-xs text-red-600 mt-0.5
+  font-size: $text-xs;
+  color: $red-600;
+  margin-top: $spacing-0-5;
+}
+
+// -----------------------------------------------------------------------------
+// Finzly Radio (Exact React Match)
+// -----------------------------------------------------------------------------
+.finzly-radio-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.finzly-radio-container {
+  display: flex;
+  align-items: center;
+  height: 1.25rem;
+}
+
+.finzly-radio-input-wrapper {
+  position: relative;
+}
+
+.finzly-radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.finzly-radio-custom {
+  // w-5 h-5 rounded-full border-2 transition-all duration-200 flex items-center justify-center
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: $radius-full;
+  border: 2px solid;
+  transition: $transition-all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  // Default: border-gray-300 bg-white
+  border-color: $gray-300;
+  background-color: white;
+
+  // Checked: border-blue-600
+  &.finzly-radio-checked {
+    border-color: $blue-600;
+
+    .finzly-radio-dot {
+      // w-2.5 h-2.5 rounded-full bg-blue-600
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: $radius-full;
+      background-color: $blue-600;
+    }
+  }
+
+  // Error: border-red-500
+  &.finzly-radio-error {
+    border-color: $red-500;
+  }
+
+  // Disabled: opacity-50 cursor-not-allowed bg-gray-100
+  &.finzly-radio-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: $gray-100;
+  }
+
+  // Hover (not disabled): hover:border-blue-500
+  .finzly-radio-input:not(:disabled) ~ & {
+    &:hover {
+      border-color: $blue-500;
+    }
+  }
+}
+
+.finzly-radio-label-wrapper {
+  margin-left: $spacing-3;
+  flex: 1;
+}
+
+.finzly-radio-label {
+  font-family: $font-family-base;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $gray-700;
+  cursor: pointer;
+
+  &.finzly-radio-label-disabled {
+    color: $gray-400;
+    cursor: not-allowed;
+  }
+}
+
+.finzly-radio-helper-text {
+  font-size: $text-xs;
+  color: $gray-500;
+  margin-top: $spacing-0-5;
+}
+
+.finzly-radio-error-text {
+  font-size: $text-xs;
+  color: $red-600;
+  margin-top: $spacing-0-5;
+}
+
+
+
+

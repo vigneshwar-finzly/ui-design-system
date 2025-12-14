@@ -1,0 +1,22 @@
+<button
+  [type]="type"
+  [class]="buttonClass"
+  [disabled]="disabled || loading"
+  (click)="onClick()">
+  <span *ngIf="loading" class="finzly-button-spinner">
+    <svg class="animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  </span>
+  <ng-container *ngIf="!loading">
+    <span *ngIf="hasIcon && iconPosition === 'left'" class="finzly-button-icon-start">
+      <span class="material-icons">{{ icon }}</span>
+    </span>
+    <span class="finzly-button-text">{{ text }}</span>
+    <span *ngIf="hasIcon && iconPosition === 'right'" class="finzly-button-icon-end">
+      <span class="material-icons">{{ icon }}</span>
+    </span>
+  </ng-container>
+</button>
+

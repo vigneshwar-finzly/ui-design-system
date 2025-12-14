@@ -1,0 +1,769 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Finzly Picker Components</h1>
+    <p class="demo-intro">
+      Modern, responsive date and time picker components with beautiful UI and seamless form integration.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY DATE PICKER COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-date-picker" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">calendar_today</span>
+        <h2>Finzly Date Picker Component</h2>
+      </div>
+      <p class="section-description">
+        Modern calendar date picker with month navigation and today quick select.
+      </p>
+
+      <!-- Basic Date Picker -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Date Picker</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('date-basic', 'preview')" (click)="setActiveTab('date-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('date-basic', 'code')" (click)="setActiveTab('date-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('date-basic', 'preview')">
+              <finzly-date-picker
+                label="Select Date"
+                placeholder="Choose a date"
+                [(ngModel)]="selectedDate">
+              </finzly-date-picker>
+              <p class="value-display">Selected: <strong>{{ selectedDate ? (selectedDate | date:'medium') : '(none)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('date-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dateBasic)" [class.copied]="isCopied(examples.dateBasic)">
+                <span class="material-icons">{{ isCopied(examples.dateBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dateBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dateBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date Picker with Min/Max -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Min/Max Date</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('date-minmax', 'preview')" (click)="setActiveTab('date-minmax', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('date-minmax', 'code')" (click)="setActiveTab('date-minmax', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('date-minmax', 'preview')">
+              <finzly-date-picker
+                label="Appointment Date"
+                [required]="true"
+                helperText="Select a date within next 30 days"
+                [(ngModel)]="appointmentDate">
+              </finzly-date-picker>
+              <p class="value-display">Selected: <strong>{{ appointmentDate ? (appointmentDate | date:'fullDate') : '(none)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('date-minmax', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dateMinMax)" [class.copied]="isCopied(examples.dateMinMax)">
+                <span class="material-icons">{{ isCopied(examples.dateMinMax) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dateMinMax) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dateMinMax }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date Picker States -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Validation States</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('date-states', 'preview')" (click)="setActiveTab('date-states', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('date-states', 'code')" (click)="setActiveTab('date-states', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('date-states', 'preview')">
+              <finzly-date-picker label="Success" state="success" helperText="Date confirmed!" [(ngModel)]="selectedDate"></finzly-date-picker>
+              <finzly-date-picker label="Error" state="error" errorText="Date is required" [(ngModel)]="selectedDate"></finzly-date-picker>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('date-states', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dateValidation)" [class.copied]="isCopied(examples.dateValidation)">
+                <span class="material-icons">{{ isCopied(examples.dateValidation) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dateValidation) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dateValidation }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date Formats -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Date Formats</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('date-formats', 'preview')" (click)="setActiveTab('date-formats', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('date-formats', 'code')" (click)="setActiveTab('date-formats', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('date-formats', 'preview')">
+              <finzly-date-picker label="US Format (MM/dd/yyyy)" format="MM/dd/yyyy" [(ngModel)]="usDate"></finzly-date-picker>
+              <finzly-date-picker label="UK Format (dd/MM/yyyy)" format="dd/MM/yyyy" [(ngModel)]="ukDate"></finzly-date-picker>
+              <finzly-date-picker label="ISO Format (yyyy-MM-dd)" format="yyyy-MM-dd" [(ngModel)]="selectedDate"></finzly-date-picker>
+              <finzly-date-picker label="Long Format (MMMM dd, yyyy)" format="MMMM dd, yyyy" [(ngModel)]="selectedDate"></finzly-date-picker>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('date-formats', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dateFormats)" [class.copied]="isCopied(examples.dateFormats)">
+                <span class="material-icons">{{ isCopied(examples.dateFormats) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dateFormats) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dateFormats }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timezone Support -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Timezone Support</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('date-timezone', 'preview')" (click)="setActiveTab('date-timezone', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('date-timezone', 'code')" (click)="setActiveTab('date-timezone', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('date-timezone', 'preview')">
+              <finzly-date-picker label="UTC" timezone="UTC" [(ngModel)]="selectedDate"></finzly-date-picker>
+              <finzly-date-picker label="New York" timezone="America/New_York" [(ngModel)]="selectedDate"></finzly-date-picker>
+              <finzly-date-picker label="Tokyo" timezone="Asia/Tokyo" [(ngModel)]="selectedDate"></finzly-date-picker>
+              <finzly-date-picker label="London" timezone="Europe/London" [(ngModel)]="selectedDate"></finzly-date-picker>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('date-timezone', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dateTimezone)" [class.copied]="isCopied(examples.dateTimezone)">
+                <span class="material-icons">{{ isCopied(examples.dateTimezone) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dateTimezone) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dateTimezone }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY TIME PICKER COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-time-picker" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">schedule</span>
+        <h2>Finzly Time Picker Component</h2>
+      </div>
+      <p class="section-description">
+        Intuitive time picker with hour/minute controls and AM/PM toggle.
+      </p>
+
+      <!-- Basic Time Picker -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Time Picker</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('time-basic', 'preview')" (click)="setActiveTab('time-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('time-basic', 'code')" (click)="setActiveTab('time-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('time-basic', 'preview')">
+              <finzly-time-picker
+                label="Select Time"
+                placeholder="Choose a time"
+                [(ngModel)]="selectedTime">
+              </finzly-time-picker>
+              <p class="value-display">Selected: <strong>{{ selectedTime || '(none)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('time-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.timeBasic)" [class.copied]="isCopied(examples.timeBasic)">
+                <span class="material-icons">{{ isCopied(examples.timeBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.timeBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.timeBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 24 Hour Format -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">24-Hour Format</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('time-24hour', 'preview')" (click)="setActiveTab('time-24hour', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('time-24hour', 'code')" (click)="setActiveTab('time-24hour', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('time-24hour', 'preview')">
+              <finzly-time-picker
+                label="Meeting Time"
+                [use24Hour]="true"
+                [(ngModel)]="meetingTime">
+              </finzly-time-picker>
+              <p class="value-display">Selected: <strong>{{ meetingTime || '(none)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('time-24hour', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.time24Hour)" [class.copied]="isCopied(examples.time24Hour)">
+                <span class="material-icons">{{ isCopied(examples.time24Hour) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.time24Hour) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.time24Hour }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minute Step -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Minute Step</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('time-step', 'preview')" (click)="setActiveTab('time-step', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('time-step', 'code')" (click)="setActiveTab('time-step', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('time-step', 'preview')">
+              <finzly-time-picker
+                label="Time Slot"
+                [minuteStep]="15"
+                helperText="15-minute intervals"
+                [(ngModel)]="selectedTime">
+              </finzly-time-picker>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('time-step', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.timeMinuteStep)" [class.copied]="isCopied(examples.timeMinuteStep)">
+                <span class="material-icons">{{ isCopied(examples.timeMinuteStep) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.timeMinuteStep) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.timeMinuteStep }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY DATE-TIME PICKER COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-date-time-picker" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">event</span>
+        <h2>Finzly DateTime Picker Component</h2>
+      </div>
+      <p class="section-description">
+        Combined date and time picker for selecting complete date-time values.
+      </p>
+
+      <!-- Basic DateTime Picker -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic DateTime Picker</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('datetime-basic', 'preview')" (click)="setActiveTab('datetime-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('datetime-basic', 'code')" (click)="setActiveTab('datetime-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('datetime-basic', 'preview')">
+              <finzly-date-time-picker
+                label="Event Date & Time"
+                [(ngModel)]="selectedDateTime">
+              </finzly-date-time-picker>
+              <p class="value-display">Selected: <strong>{{ selectedDateTime ? (selectedDateTime | date:'medium') : '(none)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('datetime-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dateTimeBasic)" [class.copied]="isCopied(examples.dateTimeBasic)">
+                <span class="material-icons">{{ isCopied(examples.dateTimeBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dateTimeBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dateTimeBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 24-Hour Format -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">24-Hour Format</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('datetime-24hour', 'preview')" (click)="setActiveTab('datetime-24hour', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('datetime-24hour', 'code')" (click)="setActiveTab('datetime-24hour', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('datetime-24hour', 'preview')">
+              <finzly-date-time-picker
+                label="Event Schedule"
+                [use24Hour]="true"
+                [(ngModel)]="eventDateTime">
+              </finzly-date-time-picker>
+              <p class="value-display">Selected: <strong>{{ eventDateTime ? (eventDateTime | date:'short') : '(none)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('datetime-24hour', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dateTime24Hour)" [class.copied]="isCopied(examples.dateTime24Hour)">
+                <span class="material-icons">{{ isCopied(examples.dateTime24Hour) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dateTime24Hour) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dateTime24Hour }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Validation -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Validation</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('datetime-validation', 'preview')" (click)="setActiveTab('datetime-validation', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('datetime-validation', 'code')" (click)="setActiveTab('datetime-validation', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('datetime-validation', 'preview')">
+              <form [formGroup]="pickerForm">
+                <finzly-date-time-picker
+                  label="Event Date & Time"
+                  [required]="true"
+                  [state]="getFieldState(pickerForm, 'eventDateTime')"
+                  [errorText]="getFieldError(pickerForm, 'eventDateTime')"
+                  formControlName="eventDateTime">
+                </finzly-date-time-picker>
+              </form>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('datetime-validation', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dateTimeValidation)" [class.copied]="isCopied(examples.dateTimeValidation)">
+                <span class="material-icons">{{ isCopied(examples.dateTimeValidation) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dateTimeValidation) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dateTimeValidation }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY CUSTOM DATE PICKER COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-custom-date-picker" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">date_range</span>
+        <h2>Finzly Custom Date Picker Component</h2>
+      </div>
+      <p class="section-description">
+        Advanced date picker with quick selection presets (TODAY, FDM, LDM, FDY, LDY) and custom date calculations.
+      </p>
+
+      <!-- Basic Custom Date Picker -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic with Presets</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-basic', 'preview')" (click)="setActiveTab('custom-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-basic', 'code')" (click)="setActiveTab('custom-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-basic', 'preview')">
+              <finzly-custom-date-picker
+                label="Select Date with Presets"
+                [(ngModel)]="customDate">
+              </finzly-custom-date-picker>
+              <p class="value-display">Selected: <strong>{{ customDate ? (customDate | date:'medium') : '(none)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customBasic)" [class.copied]="isCopied(examples.customBasic)">
+                <span class="material-icons">{{ isCopied(examples.customBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- With All Options -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With All Preset Options</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-presets', 'preview')" (click)="setActiveTab('custom-presets', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-presets', 'code')" (click)="setActiveTab('custom-presets', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-presets', 'preview')">
+              <finzly-custom-date-picker
+                label="Quick Date Selection"
+                [showPresets]="true"
+                [showCustomOption]="true"
+                helperText="Click presets or use custom calculation"
+                [(ngModel)]="presetDate">
+              </finzly-custom-date-picker>
+              <p class="value-display">Selected: <strong>{{ presetDate ? (presetDate | date:'fullDate') : '(none)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-presets', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customPresets)" [class.copied]="isCopied(examples.customPresets)">
+                <span class="material-icons">{{ isCopied(examples.customPresets) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customPresets) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customPresets }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Validation -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Form Validation</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-advanced', 'preview')" (click)="setActiveTab('custom-advanced', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-advanced', 'code')" (click)="setActiveTab('custom-advanced', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-advanced', 'preview')">
+              <finzly-custom-date-picker
+                label="Report Date Range"
+                [required]="true"
+                helperText="Select using presets or custom calculation"
+                [(ngModel)]="customDate">
+              </finzly-custom-date-picker>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-advanced', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customAdvanced)" [class.copied]="isCopied(examples.customAdvanced)">
+                <span class="material-icons">{{ isCopied(examples.customAdvanced) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customAdvanced) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customAdvanced }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complete Form Example -->
+    <div class="demo-section">
+      <h2 class="demo-section-subtitle">Complete Form Example</h2>
+      <p class="section-description">All picker components in a reactive form.</p>
+      <div class="tabbed-example">
+        <div class="tabs">
+          <button class="tab-btn" [class.active]="isTabActive('pickers-form', 'preview')" (click)="setActiveTab('pickers-form', 'preview')">
+            <span class="material-icons">visibility</span>
+            Preview
+          </button>
+          <button class="tab-btn" [class.active]="isTabActive('pickers-form', 'code')" (click)="setActiveTab('pickers-form', 'code')">
+            <span class="material-icons">code</span>
+            Code
+          </button>
+        </div>
+        <div class="tab-content">
+          <div class="demo-preview" *ngIf="isTabActive('pickers-form', 'preview')">
+            <div class="card" style="max-width: 700px;">
+              <form [formGroup]="pickerForm" (ngSubmit)="onSubmitForm()">
+                <finzly-date-picker
+                  label="Appointment Date"
+                  [required]="true"
+                  [state]="getFieldState(pickerForm, 'appointmentDate')"
+                  [errorText]="getFieldError(pickerForm, 'appointmentDate')"
+                  formControlName="appointmentDate">
+                </finzly-date-picker>
+
+                <finzly-time-picker
+                  label="Start Time"
+                  [required]="true"
+                  [state]="getFieldState(pickerForm, 'startTime')"
+                  [errorText]="getFieldError(pickerForm, 'startTime')"
+                  formControlName="startTime">
+                </finzly-time-picker>
+
+                <finzly-date-time-picker
+                  label="Event Date & Time"
+                  [required]="true"
+                  [state]="getFieldState(pickerForm, 'eventDateTime')"
+                  [errorText]="getFieldError(pickerForm, 'eventDateTime')"
+                  formControlName="eventDateTime">
+                </finzly-date-time-picker>
+
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                  <button type="submit" class="btn btn-primary">Submit Form</button>
+                  <button type="button" class="btn btn-outline" (click)="pickerForm.reset()">Reset</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="code-view" *ngIf="isTabActive('pickers-form', 'code')">
+            <button class="copy-btn" (click)="copyCode(examples.completeForm)" [class.copied]="isCopied(examples.completeForm)">
+              <span class="material-icons">{{ isCopied(examples.completeForm) ? 'check' : 'content_copy' }}</span>
+              {{ isCopied(examples.completeForm) ? 'Copied!' : 'Copy' }}
+            </button>
+            <pre class="demo-code">{{ examples.completeForm }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- API REFERENCE -->
+    <!-- ========================================================================= -->
+    
+    <section id="api-reference" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">code</span>
+        <h2>Component API</h2>
+      </div>
+      <p class="section-description">
+        Complete API reference for all picker components with inputs, outputs, and usage examples.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Date Picker API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-date', 'preview')" (click)="setActiveTab('api-date', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-date', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() placeholder: string = 'Select date'        // Placeholder
+&#64;Input() required: boolean = false                   // Required field
+&#64;Input() disabled: boolean = false                   // Disable picker
+&#64;Input() minDate?: Date                              // Minimum selectable date
+&#64;Input() maxDate?: Date                              // Maximum selectable date
+&#64;Input() state: 'default'|'success'|'error'|'warning' = 'default'
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() errorText: string = ''                       // Error message
+&#64;Input() format: string = 'MM/dd/yyyy'               // Date format
+&#64;Input() timezone?: string                           // Timezone
+
+// Supports ngModel and formControlName (ControlValueAccessor)
+// Value: Date | null</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Time Picker API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-time', 'preview')" (click)="setActiveTab('api-time', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-time', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() placeholder: string = 'Select time'        // Placeholder
+&#64;Input() required: boolean = false                   // Required field
+&#64;Input() disabled: boolean = false                   // Disable picker
+&#64;Input() use24Hour: boolean = false                  // 24-hour format
+&#64;Input() minuteStep: number = 1                     // Minute step interval
+&#64;Input() state: 'default'|'success'|'error'|'warning' = 'default'
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() errorText: string = ''                       // Error message
+
+// Supports ngModel and formControlName (ControlValueAccessor)
+// Value: string | null (format: 'HH:mm' or 'hh:mm AM/PM')</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly DateTime Picker API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-datetime', 'preview')" (click)="setActiveTab('api-datetime', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-datetime', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() placeholder: string = 'Select date & time' // Placeholder
+&#64;Input() required: boolean = false                   // Required field
+&#64;Input() disabled: boolean = false                   // Disable picker
+&#64;Input() minDate?: Date                              // Minimum selectable date
+&#64;Input() maxDate?: Date                              // Maximum selectable date
+&#64;Input() use24Hour: boolean = false                  // 24-hour format
+&#64;Input() minuteStep: number = 1                     // Minute step interval
+&#64;Input() state: 'default'|'success'|'error'|'warning' = 'default'
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() errorText: string = ''                       // Error message
+&#64;Input() format: string = 'MM/dd/yyyy'               // Date format
+
+// Supports ngModel and formControlName (ControlValueAccessor)
+// Value: Date | null</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Custom Date Picker API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-custom-date', 'preview')" (click)="setActiveTab('api-custom-date', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-custom-date', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() placeholder: string = 'Select date range' // Placeholder
+&#64;Input() required: boolean = false                   // Required field
+&#64;Input() disabled: boolean = false                   // Disable picker
+&#64;Input() minDate?: Date                              // Minimum selectable date
+&#64;Input() maxDate?: Date                              // Maximum selectable date
+&#64;Input() state: 'default'|'success'|'error'|'warning' = 'default'
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() errorText: string = ''                       // Error message
+&#64;Input() presets?: CustomDateConfig[]                // Date presets
+&#64;Input() showPresets: boolean = true                 // Show preset buttons
+&#64;Input() allowCustom: boolean = true                  // Allow custom date selection
+
+// Supports ngModel and formControlName (ControlValueAccessor)
+// Value: Date | null
+
+<h4 style="margin-top: 1.5rem;">CustomDateConfig Interface</h4>
+interface CustomDateConfig {{'{' }}
+  preset: DatePreset;               // Preset type
+  operator: '+' | '-';              // Addition or subtraction
+  value: number;                    // Value amount
+  unit: 'day'|'week'|'month'|'year' // Time unit
+{{'}' }}
+
+type DatePreset = 'TODAY' | 'FDW' | 'LDW' | 'FDM' | 'LDM' | 'FDY' | 'LDY' | 'CUSTOM'</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+

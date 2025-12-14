@@ -1,0 +1,34 @@
+<div class="finzly-input-wrapper" [class.finzly-input-wrapper-full-width]="fullWidth">
+  <label *ngIf="label" class="finzly-input-label">
+    {{ label }}
+  </label>
+  
+  <div class="finzly-input-container">
+    <span *ngIf="startIcon" class="finzly-input-icon-start">
+      <span class="material-icons">{{ startIcon }}</span>
+    </span>
+  
+  <input
+    [type]="type"
+    [class]="inputClass"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [required]="required"
+    [attr.maxlength]="maxLength"
+    [attr.minlength]="minLength"
+    [attr.pattern]="pattern"
+    [attr.autocomplete]="autocomplete"
+    [value]="value"
+    (input)="onInputChange($event)"
+    (blur)="onInputBlur()"
+  />
+  
+    <span *ngIf="endIcon" class="finzly-input-icon-end">
+      <span class="material-icons">{{ endIcon }}</span>
+    </span>
+  </div>
+  
+  <span *ngIf="showHelper" class="finzly-input-helper">{{ helperText }}</span>
+  <span *ngIf="showError" class="finzly-input-error-message">{{ errorMessage }}</span>
+</div>
+

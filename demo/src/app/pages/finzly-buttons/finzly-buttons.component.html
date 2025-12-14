@@ -1,0 +1,1016 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Finzly Button Components</h1>
+    <p class="demo-intro">
+      Specialized button components with icons, loading states, and configurable styling.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY BACK BUTTON -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-back-button" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">arrow_back</span>
+        <h2>Finzly Back Button</h2>
+      </div>
+      <p class="section-description">
+        Outlined back button with optional icon. Default icon is arrow_back.
+      </p>
+
+      <!-- Basic Back Button -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Back Button</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('back-basic', 'preview')" (click)="setActiveTab('back-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('back-basic', 'code')" (click)="setActiveTab('back-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('back-basic', 'preview')">
+              <finzly-back-button (clicked)="handleBack()"></finzly-back-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('back-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.backBasic)" [class.copied]="isCopied(examples.backBasic)">
+                <span class="material-icons">{{ isCopied(examples.backBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.backBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.backBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Without Icon -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Without Icon</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('back-noicon', 'preview')" (click)="setActiveTab('back-noicon', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('back-noicon', 'code')" (click)="setActiveTab('back-noicon', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('back-noicon', 'preview')">
+              <finzly-back-button [showIcon]="false" (clicked)="handleBack()"></finzly-back-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('back-noicon', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.backNoIcon)" [class.copied]="isCopied(examples.backNoIcon)">
+                <span class="material-icons">{{ isCopied(examples.backNoIcon) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.backNoIcon) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.backNoIcon }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Text & Size -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Custom Text & Sizes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('back-custom', 'preview')" (click)="setActiveTab('back-custom', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('back-custom', 'code')" (click)="setActiveTab('back-custom', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('back-custom', 'preview')">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <finzly-back-button text="Go Back" size="sm" (clicked)="handleBack()"></finzly-back-button>
+                <finzly-back-button text="Back" size="md" (clicked)="handleBack()"></finzly-back-button>
+                <finzly-back-button text="Return" size="lg" (clicked)="handleBack()"></finzly-back-button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('back-custom', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.backCustom)" [class.copied]="isCopied(examples.backCustom)">
+                <span class="material-icons">{{ isCopied(examples.backCustom) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.backCustom) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.backCustom }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Variants -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Black vs Default Outline</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('back-variant', 'preview')" (click)="setActiveTab('back-variant', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('back-variant', 'code')" (click)="setActiveTab('back-variant', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('back-variant', 'preview')">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <finzly-back-button variant="black" (clicked)="handleBack()"></finzly-back-button>
+                <finzly-back-button variant="default" (clicked)="handleBack()"></finzly-back-button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('back-variant', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.backVariant)" [class.copied]="isCopied(examples.backVariant)">
+                <span class="material-icons">{{ isCopied(examples.backVariant) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.backVariant) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.backVariant }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY SAVE BUTTON -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-save-button" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">save</span>
+        <h2>Finzly Save Button</h2>
+      </div>
+      <p class="section-description">
+        Primary (blue) save button with optional icon and loading state.
+      </p>
+
+      <!-- Basic Save Button -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Save Button</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('save-basic', 'preview')" (click)="setActiveTab('save-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('save-basic', 'code')" (click)="setActiveTab('save-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('save-basic', 'preview')">
+              <finzly-save-button (clicked)="handleSave()"></finzly-save-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('save-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.saveBasic)" [class.copied]="isCopied(examples.saveBasic)">
+                <span class="material-icons">{{ isCopied(examples.saveBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.saveBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.saveBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Without Icon -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Without Icon</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('save-noicon', 'preview')" (click)="setActiveTab('save-noicon', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('save-noicon', 'code')" (click)="setActiveTab('save-noicon', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('save-noicon', 'preview')">
+              <finzly-save-button [showIcon]="false" (clicked)="handleSave()"></finzly-save-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('save-noicon', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.saveNoIcon)" [class.copied]="isCopied(examples.saveNoIcon)">
+                <span class="material-icons">{{ isCopied(examples.saveNoIcon) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.saveNoIcon) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.saveNoIcon }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Loading State -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Loading State</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('save-loading', 'preview')" (click)="setActiveTab('save-loading', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('save-loading', 'code')" (click)="setActiveTab('save-loading', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('save-loading', 'preview')">
+              <finzly-save-button [loading]="isSaving" (clicked)="handleSave()"></finzly-save-button>
+              <p class="demo-note">Click to see loading state (2 seconds)</p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('save-loading', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.saveLoading)" [class.copied]="isCopied(examples.saveLoading)">
+                <span class="material-icons">{{ isCopied(examples.saveLoading) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.saveLoading) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.saveLoading }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Icon -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Custom Icon & Text</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('save-customicon', 'preview')" (click)="setActiveTab('save-customicon', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('save-customicon', 'code')" (click)="setActiveTab('save-customicon', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('save-customicon', 'preview')">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <finzly-save-button text="Submit" icon="send" (clicked)="handleSave()"></finzly-save-button>
+                <finzly-save-button text="Publish" icon="publish" (clicked)="handleSave()"></finzly-save-button>
+                <finzly-save-button text="Upload" icon="upload" (clicked)="handleSave()"></finzly-save-button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('save-customicon', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.saveCustomIcon)" [class.copied]="isCopied(examples.saveCustomIcon)">
+                <span class="material-icons">{{ isCopied(examples.saveCustomIcon) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.saveCustomIcon) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.saveCustomIcon }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY CANCEL BUTTON -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-cancel-button" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">close</span>
+        <h2>Finzly Cancel Button</h2>
+      </div>
+      <p class="section-description">
+        Cancel button with outline or danger variant and optional icon.
+      </p>
+
+      <!-- Basic Cancel Button -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Cancel Button</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('cancel-basic', 'preview')" (click)="setActiveTab('cancel-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('cancel-basic', 'code')" (click)="setActiveTab('cancel-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('cancel-basic', 'preview')">
+              <finzly-cancel-button (clicked)="handleCancel()"></finzly-cancel-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('cancel-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.cancelBasic)" [class.copied]="isCopied(examples.cancelBasic)">
+                <span class="material-icons">{{ isCopied(examples.cancelBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.cancelBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.cancelBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Without Icon -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Without Icon</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('cancel-noicon', 'preview')" (click)="setActiveTab('cancel-noicon', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('cancel-noicon', 'code')" (click)="setActiveTab('cancel-noicon', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('cancel-noicon', 'preview')">
+              <finzly-cancel-button [showIcon]="false" (clicked)="handleCancel()"></finzly-cancel-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('cancel-noicon', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.cancelNoIcon)" [class.copied]="isCopied(examples.cancelNoIcon)">
+                <span class="material-icons">{{ isCopied(examples.cancelNoIcon) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.cancelNoIcon) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.cancelNoIcon }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danger Variant -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Danger Variant</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('cancel-danger', 'preview')" (click)="setActiveTab('cancel-danger', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('cancel-danger', 'code')" (click)="setActiveTab('cancel-danger', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('cancel-danger', 'preview')">
+              <finzly-cancel-button variant="danger" (clicked)="handleCancel()"></finzly-cancel-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('cancel-danger', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.cancelDanger)" [class.copied]="isCopied(examples.cancelDanger)">
+                <span class="material-icons">{{ isCopied(examples.cancelDanger) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.cancelDanger) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.cancelDanger }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY CLOSE BUTTON -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-close-button" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">close</span>
+        <h2>Finzly Close Button</h2>
+      </div>
+      <p class="section-description">
+        Small square close button for dialog boxes. Perfect for top-right corner placement.
+      </p>
+
+      <!-- Basic Close Button -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Close Button</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('close-basic', 'preview')" (click)="setActiveTab('close-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('close-basic', 'code')" (click)="setActiveTab('close-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('close-basic', 'preview')">
+              <finzly-close-button (clicked)="handleClose()"></finzly-close-button>
+              <p class="demo-note">Hover to see rotate animation and red highlight</p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('close-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.closeBasic)" [class.copied]="isCopied(examples.closeBasic)">
+                <span class="material-icons">{{ isCopied(examples.closeBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.closeBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.closeBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- In Dialog Example -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">In Dialog Header</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('close-dialog', 'preview')" (click)="setActiveTab('close-dialog', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('close-dialog', 'code')" (click)="setActiveTab('close-dialog', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('close-dialog', 'preview')">
+              <div class="mock-dialog">
+                <div class="dialog-header-example">
+                  <h3>Dialog Title</h3>
+                  <finzly-close-button (clicked)="handleClose()"></finzly-close-button>
+                </div>
+                <div class="dialog-body-example">
+                  <p>Dialog content goes here...</p>
+                </div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('close-dialog', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.closeDialog)" [class.copied]="isCopied(examples.closeDialog)">
+                <span class="material-icons">{{ isCopied(examples.closeDialog) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.closeDialog) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.closeDialog }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sizes -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('close-sizes', 'preview')" (click)="setActiveTab('close-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('close-sizes', 'code')" (click)="setActiveTab('close-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('close-sizes', 'preview')">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <finzly-close-button size="sm" (clicked)="handleClose()"></finzly-close-button>
+                <finzly-close-button size="md" (clicked)="handleClose()"></finzly-close-button>
+                <finzly-close-button size="lg" (clicked)="handleClose()"></finzly-close-button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('close-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.closeSizes)" [class.copied]="isCopied(examples.closeSizes)">
+                <span class="material-icons">{{ isCopied(examples.closeSizes) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.closeSizes) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.closeSizes }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY DROPDOWN BUTTON -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-dropdown-button" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">arrow_drop_down</span>
+        <h2>Finzly Dropdown Button</h2>
+      </div>
+      <p class="section-description">
+        Split button with dropdown selector on left and action button on right.
+      </p>
+
+      <!-- Basic Dropdown Button -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Dropdown Button</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('dropdown-basic', 'preview')" (click)="setActiveTab('dropdown-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('dropdown-basic', 'code')" (click)="setActiveTab('dropdown-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('dropdown-basic', 'preview')">
+              <finzly-dropdown-button
+                text="Action"
+                [options]="actionOptions"
+                [(selectedOption)]="selectedActionOption"
+                variant="outline"
+                (buttonClicked)="handleDropdownAction()"
+                (optionSelected)="onDropdownOptionSelected($event)">
+              </finzly-dropdown-button>
+              <p class="demo-note">Click dropdown to select option, click "Action" to execute</p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('dropdown-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dropdownBasic)" [class.copied]="isCopied(examples.dropdownBasic)">
+                <span class="material-icons">{{ isCopied(examples.dropdownBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dropdownBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dropdownBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Example -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Export with Options</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('dropdown-export', 'preview')" (click)="setActiveTab('dropdown-export', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('dropdown-export', 'code')" (click)="setActiveTab('dropdown-export', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('dropdown-export', 'preview')">
+              <finzly-dropdown-button
+                text="Export"
+                icon="download"
+                [options]="exportOptions"
+                [(selectedOption)]="selectedExportOption"
+                placeholder="Select format"
+                variant="outline"
+                (buttonClicked)="handleDropdownAction()"
+                (optionSelected)="onDropdownOptionSelected($event)">
+              </finzly-dropdown-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('dropdown-export', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dropdownExport)" [class.copied]="isCopied(examples.dropdownExport)">
+                <span class="material-icons">{{ isCopied(examples.dropdownExport) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dropdownExport) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dropdownExport }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outline Variant -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Outline Variant (Default)</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('dropdown-variants', 'preview')" (click)="setActiveTab('dropdown-variants', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('dropdown-variants', 'code')" (click)="setActiveTab('dropdown-variants', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('dropdown-variants', 'preview')">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <finzly-dropdown-button text="Actions" [options]="actionOptions" variant="outline"></finzly-dropdown-button>
+                <finzly-dropdown-button text="Export" [options]="exportOptions" variant="outline"></finzly-dropdown-button>
+                <finzly-dropdown-button text="More Options" [options]="actionOptions" variant="outline"></finzly-dropdown-button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('dropdown-variants', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dropdownVariants)" [class.copied]="isCopied(examples.dropdownVariants)">
+                <span class="material-icons">{{ isCopied(examples.dropdownVariants) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dropdownVariants) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dropdownVariants }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY CUSTOM BUTTON -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-custom-button" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">tune</span>
+        <h2>Finzly Custom Button</h2>
+      </div>
+      <p class="section-description">
+        Fully customizable button with custom text, icon, and variant. Icon first, text second.
+      </p>
+
+      <!-- Basic Custom Button -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Custom Button</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-basic', 'preview')" (click)="setActiveTab('custom-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-basic', 'code')" (click)="setActiveTab('custom-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-basic', 'preview')">
+              <finzly-custom-button
+                text="Custom Action"
+                icon="settings"
+                (clicked)="handleCustom()">
+              </finzly-custom-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customBasic)" [class.copied]="isCopied(examples.customBasic)">
+                <span class="material-icons">{{ isCopied(examples.customBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- All Variants -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">All Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-variants', 'preview')" (click)="setActiveTab('custom-variants', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-variants', 'code')" (click)="setActiveTab('custom-variants', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-variants', 'preview')">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <finzly-custom-button text="Primary" icon="check" variant="primary" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Success" icon="check_circle" variant="success" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Warning" icon="warning" variant="warning" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Danger" icon="error" variant="danger" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Outline" icon="circle" variant="outline" (clicked)="handleCustom()"></finzly-custom-button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-variants', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customVariants)" [class.copied]="isCopied(examples.customVariants)">
+                <span class="material-icons">{{ isCopied(examples.customVariants) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customVariants) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customVariants }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icon Positions -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Icon Position</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-iconpos', 'preview')" (click)="setActiveTab('custom-iconpos', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-iconpos', 'code')" (click)="setActiveTab('custom-iconpos', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-iconpos', 'preview')">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <finzly-custom-button text="Download" icon="download" iconPosition="left" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Next" icon="arrow_forward" iconPosition="right" (clicked)="handleCustom()"></finzly-custom-button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-iconpos', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customIconPosition)" [class.copied]="isCopied(examples.customIconPosition)">
+                <span class="material-icons">{{ isCopied(examples.customIconPosition) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customIconPosition) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customIconPosition }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sizes -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-sizes', 'preview')" (click)="setActiveTab('custom-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-sizes', 'code')" (click)="setActiveTab('custom-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-sizes', 'preview')">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <finzly-custom-button text="Small" icon="star" size="sm" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Medium" icon="star" size="md" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Large" icon="star" size="lg" (clicked)="handleCustom()"></finzly-custom-button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customSizes)" [class.copied]="isCopied(examples.customSizes)">
+                <span class="material-icons">{{ isCopied(examples.customSizes) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customSizes) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customSizes }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complete Example -->
+    <div class="demo-section">
+      <h2 class="demo-section-subtitle">All Buttons Together</h2>
+      <p class="section-description">Common button combinations in forms.</p>
+      <div class="tabbed-example">
+        <div class="tabs">
+          <button class="tab-btn" [class.active]="isTabActive('all-buttons', 'preview')" (click)="setActiveTab('all-buttons', 'preview')">
+            <span class="material-icons">visibility</span>
+            Preview
+          </button>
+          <button class="tab-btn" [class.active]="isTabActive('all-buttons', 'code')" (click)="setActiveTab('all-buttons', 'code')">
+            <span class="material-icons">code</span>
+            Code
+          </button>
+        </div>
+        <div class="tab-content">
+          <div class="demo-preview" *ngIf="isTabActive('all-buttons', 'preview')">
+            <div class="card" style="max-width: 600px; padding: 2rem;">
+              <h3 style="margin-top: 0;">Form Actions</h3>
+              <div class="button-group">
+                <finzly-back-button (clicked)="handleBack()"></finzly-back-button>
+                <finzly-cancel-button (clicked)="handleCancel()"></finzly-cancel-button>
+                <finzly-save-button [loading]="isSaving" (clicked)="handleSave()"></finzly-save-button>
+              </div>
+              <hr style="margin: 2rem 0; border-color: #e5e7eb;">
+              <h3>Custom Actions</h3>
+              <div class="button-group">
+                <finzly-custom-button text="Delete" icon="delete" variant="danger" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Approve" icon="check_circle" variant="success" (clicked)="handleCustom()"></finzly-custom-button>
+                <finzly-custom-button text="Export" icon="download" variant="outline" (clicked)="handleCustom()"></finzly-custom-button>
+              </div>
+            </div>
+          </div>
+          <div class="code-view" *ngIf="isTabActive('all-buttons', 'code')">
+            <button class="copy-btn" (click)="copyCode(examples.allButtons)" [class.copied]="isCopied(examples.allButtons)">
+              <span class="material-icons">{{ isCopied(examples.allButtons) ? 'check' : 'content_copy' }}</span>
+              {{ isCopied(examples.allButtons) ? 'Copied!' : 'Copy' }}
+            </button>
+            <pre class="demo-code">{{ examples.allButtons }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- API REFERENCE -->
+    <!-- ========================================================================= -->
+    
+    <section id="api-reference" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">code</span>
+        <h2>Component API</h2>
+      </div>
+      <p class="section-description">
+        Complete API reference for all button components with inputs, outputs, and usage examples.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Back Button API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-back', 'preview')" (click)="setActiveTab('api-back', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-back', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() text: string = 'Back'                      // Button text
+&#64;Input() showIcon: boolean = true                   // Show icon
+&#64;Input() icon: string = 'refresh'                   // Icon name
+&#64;Input() disabled: boolean = false                   // Disable button
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'          // Button size
+&#64;Input() type: 'button' | 'submit' | 'reset' = 'button'
+&#64;Input() variant: 'black' | 'default' = 'black'    // Button variant
+
+&#64;Output() clicked                                    // Click event emitter</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Save Button API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-save', 'preview')" (click)="setActiveTab('api-save', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-save', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() text: string = 'Save'                      // Button text
+&#64;Input() showIcon: boolean = true                   // Show icon
+&#64;Input() icon: string = 'save'                      // Icon name
+&#64;Input() disabled: boolean = false                   // Disable button
+&#64;Input() loading: boolean = false                    // Loading state
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'          // Button size
+&#64;Input() type: 'button' | 'submit' | 'reset' = 'button'
+
+&#64;Output() clicked                                    // Click event emitter</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Cancel Button API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-cancel', 'preview')" (click)="setActiveTab('api-cancel', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-cancel', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() text: string = 'Cancel'                    // Button text
+&#64;Input() showIcon: boolean = true                   // Show icon
+&#64;Input() icon: string = 'close'                      // Icon name
+&#64;Input() disabled: boolean = false                   // Disable button
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'          // Button size
+&#64;Input() type: 'button' | 'submit' | 'reset' = 'button'
+&#64;Input() variant: 'outline' | 'danger' = 'outline' // Button variant
+
+&#64;Output() clicked                                    // Click event emitter</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Close Button API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-close', 'preview')" (click)="setActiveTab('api-close', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-close', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() icon: string = 'close'                      // Icon name
+&#64;Input() ariaLabel: string = 'Close'                // Accessibility label
+&#64;Input() disabled: boolean = false                   // Disable button
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'          // Button size
+
+&#64;Output() clicked                                    // Click event emitter</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Custom Button API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-custom', 'preview')" (click)="setActiveTab('api-custom', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-custom', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() text: string = 'Button'                     // Button text
+&#64;Input() icon: string = ''                           // Icon name
+&#64;Input() showIcon: boolean = true                   // Show icon
+&#64;Input() disabled: boolean = false                   // Disable button
+&#64;Input() loading: boolean = false                    // Loading state
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'          // Button size
+&#64;Input() variant: 'primary'|'outline'|'secondary'|'danger'|'success'|'warning' = 'primary'
+&#64;Input() type: 'button' | 'submit' | 'reset' = 'button'
+&#64;Input() iconPosition: 'left' | 'right' = 'left'   // Icon position
+
+&#64;Output() clicked                                    // Click event emitter</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Dropdown Button API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-dropdown-btn', 'preview')" (click)="setActiveTab('api-dropdown-btn', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-dropdown-btn', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() text: string = 'Action'                     // Button text
+&#64;Input() icon: string = ''                           // Icon name
+&#64;Input() options: DropdownButtonOption[] = []        // Dropdown options
+&#64;Input() selectedOption: DropdownButtonOption | null = null
+&#64;Input() disabled: boolean = false                   // Disable button
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'          // Button size
+&#64;Input() variant: 'primary'|'outline'|'secondary'|'success'|'warning'|'danger' = 'primary'
+&#64;Input() type: 'button' | 'submit' | 'reset' = 'button'
+&#64;Input() placeholder: string = 'Select...'          // Placeholder text
+
+&#64;Output() buttonClicked                              // Main button click
+&#64;Output() optionSelected                              // Option selection
+
+<h4 style="margin-top: 1.5rem;">DropdownButtonOption Interface</h4>
+interface DropdownButtonOption {{'{' }}
+  label: string;           // Option label
+  value: any;              // Option value
+  icon?: string;           // Optional icon
+  disabled?: boolean;      // Disable option
+{{'}' }}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+

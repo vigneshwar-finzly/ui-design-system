@@ -1,0 +1,32 @@
+<div class="finzly-radio-wrapper">
+  <div class="finzly-radio-container">
+    <div class="finzly-radio-input-wrapper">
+      <input
+        type="radio"
+        class="finzly-radio-input"
+        [id]="id"
+        [name]="name"
+        [value]="value"
+        [disabled]="disabled"
+        [checked]="isChecked"
+        (change)="onRadioChange($event)"
+        (blur)="onRadioBlur()"
+      />
+      <div class="finzly-radio-custom" 
+           [class.finzly-radio-checked]="isChecked"
+           [class.finzly-radio-error]="!!error"
+           [class.finzly-radio-disabled]="disabled">
+        <div *ngIf="isChecked" class="finzly-radio-dot"></div>
+      </div>
+    </div>
+    
+    <div *ngIf="label || helperText || error" class="finzly-radio-label-wrapper">
+      <label *ngIf="label" class="finzly-radio-label" [for]="id" [class.finzly-radio-label-disabled]="disabled">
+        {{ label }}
+      </label>
+      <span *ngIf="error" class="finzly-radio-error-text">{{ error }}</span>
+      <span *ngIf="helperText && !error" class="finzly-radio-helper-text">{{ helperText }}</span>
+    </div>
+  </div>
+</div>
+

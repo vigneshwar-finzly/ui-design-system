@@ -1,0 +1,10 @@
+<button
+  [type]="type"
+  [class]="buttonClass"
+  [disabled]="disabled || loading"
+  (click)="onClick()">
+  <span *ngIf="loading" class="material-icons spinning">refresh</span>
+  <span *ngIf="!loading && showIcon" class="material-icons">{{ icon }}</span>
+  {{ loading ? 'Saving...' : text }}
+</button>
+

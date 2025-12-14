@@ -1,0 +1,270 @@
+// =============================================================================
+// Dialogs - Matching React FinzlyDialog Component
+// =============================================================================
+
+@import 'variables';
+
+// -----------------------------------------------------------------------------
+// Dialog Backdrop
+// -----------------------------------------------------------------------------
+.finzly-dialog-backdrop {
+  // fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+// -----------------------------------------------------------------------------
+// Dialog Container
+// -----------------------------------------------------------------------------
+.finzly-dialog-container {
+  // relative bg-white rounded-lg shadow-2xl w-full
+  position: relative;
+  background-color: white;
+  border-radius: $radius-lg;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  animation: zoomIn 0.2s ease;
+
+  // Sizes
+  &.finzly-dialog-sm {
+    max-width: 24rem;  // max-w-sm
+  }
+
+  &.finzly-dialog-md {
+    max-width: 28rem;  // max-w-md
+  }
+
+  &.finzly-dialog-lg {
+    max-width: 32rem;  // max-w-lg
+  }
+
+  &.finzly-dialog-xl {
+    max-width: 36rem;  // max-w-xl
+  }
+
+  &.finzly-dialog-full {
+    max-width: 100%;
+    margin: 0 1rem;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Dialog Header
+// -----------------------------------------------------------------------------
+.finzly-dialog-header {
+  // px-6 py-4 border-b border-gray-200
+  padding: $spacing-4 $spacing-6;
+  border-bottom: 1px solid $gray-200;
+
+  .finzly-dialog-header-content {
+    // flex items-start gap-3
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3;
+  }
+
+  .finzly-dialog-header-icon {
+    // flex-shrink-0 mt-1
+    flex-shrink: 0;
+    margin-top: $spacing-1;
+  }
+
+  .finzly-dialog-header-text {
+    // flex-1 min-w-0
+    flex: 1;
+    min-width: 0;
+  }
+
+  .finzly-dialog-title {
+    // text-lg font-semibold text-gray-900 pr-8
+    font-family: $font-family-base;
+    font-size: $text-lg;
+    font-weight: $font-semibold;
+    color: $gray-900;
+    padding-right: 2rem;
+    margin: 0;
+  }
+
+  .finzly-dialog-subtitle {
+    // text-sm text-gray-600 mt-1
+    font-family: $font-family-base;
+    font-size: $text-sm;
+    color: $gray-600;
+    margin-top: $spacing-1;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Dialog Close Button
+// -----------------------------------------------------------------------------
+.finzly-dialog-close {
+  // absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors
+  position: absolute;
+  top: $spacing-4;
+  right: $spacing-4;
+  color: $gray-400;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: $transition-colors;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+
+  &:hover {
+    color: $gray-600;
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Dialog Body
+// -----------------------------------------------------------------------------
+.finzly-dialog-body {
+  // px-6 py-4
+  padding: $spacing-4 $spacing-6;
+  font-family: $font-family-base;
+
+  p {
+    margin: 0;
+    font-size: $text-base;
+    line-height: 1.6;
+    color: $gray-600;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Dialog Footer
+// -----------------------------------------------------------------------------
+.finzly-dialog-footer {
+  // px-6 py-4 border-t border-gray-200 flex items-center gap-3
+  padding: $spacing-4 $spacing-6;
+  border-top: 1px solid $gray-200;
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+
+  // Alignment options
+  &.finzly-dialog-footer-left {
+    justify-content: flex-start;
+  }
+
+  &.finzly-dialog-footer-center {
+    justify-content: center;
+  }
+
+  &.finzly-dialog-footer-right {
+    justify-content: flex-end;
+  }
+
+  &.finzly-dialog-footer-space-between {
+    justify-content: space-between;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Animations
+// -----------------------------------------------------------------------------
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Dialog Buttons (Basic styles for legacy dialogs)
+// -----------------------------------------------------------------------------
+.btn {
+  font-family: $font-family-base;
+  font-weight: $font-medium;
+  padding: $spacing-2 $spacing-4;
+  border-radius: $radius-lg;
+  transition: $transition-all;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: $text-sm;
+  border: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Primary button for dialogs
+  &.btn-primary,
+  &.btn-info {
+    background-color: $blue-600;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: $blue-700;
+    }
+  }
+
+  &.btn-success {
+    background-color: $green-600;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: $green-700;
+    }
+  }
+
+  &.btn-warning {
+    background-color: $yellow-600;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: $yellow-700;
+    }
+  }
+
+  &.btn-error {
+    background-color: $red-600;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: $red-700;
+    }
+  }
+
+  // Outline variant
+  &.btn-outline {
+    border: 1px solid $gray-300;
+    background-color: white;
+    color: $gray-700;
+
+    &:hover:not(:disabled) {
+      background-color: $gray-50;
+    }
+  }
+}
+

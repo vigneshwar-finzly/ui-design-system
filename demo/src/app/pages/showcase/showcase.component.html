@@ -1,0 +1,1021 @@
+<div class="showcase-container">
+  <!-- Header -->
+  <div class="showcase-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1>Finzly Component Library</h1>
+        <p>Production-ready Angular components for enterprise applications</p>
+      </div>
+      <finzly-badge variant="info" size="lg">v1.0.0</finzly-badge>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="showcase-content">
+    <!-- Welcome Alert -->
+    <div class="section-alert">
+      <div class="alert alert-info">
+        <div class="flex">
+          <div class="alert-icon">
+            <span class="material-icons">info</span>
+          </div>
+          <div class="alert-content">
+            <div class="alert-title">Welcome to Finzly Component Library</div>
+            <div class="alert-description">
+              This showcase demonstrates all available components with live examples and ready-to-use code snippets.
+              Click any "Copy" button to grab the code and use it in your project.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyButton Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyButton</h2>
+        <p>Versatile button component with multiple variants and sizes</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div class="button-group">
+              <finzly-custom-button variant="primary">Primary</finzly-custom-button>
+              <finzly-custom-button variant="secondary">Secondary</finzly-custom-button>
+              <finzly-custom-button variant="outline">Outline</finzly-custom-button>
+              <finzly-custom-button variant="ghost">Ghost</finzly-custom-button>
+              <finzly-custom-button variant="danger">Danger</finzly-custom-button>
+            </div>
+            <div class="button-group">
+              <finzly-custom-button size="sm">Small</finzly-custom-button>
+              <finzly-custom-button size="md">Medium</finzly-custom-button>
+              <finzly-custom-button size="lg">Large</finzly-custom-button>
+            </div>
+            <div class="button-group">
+              <finzly-custom-button [loading]="true">Loading</finzly-custom-button>
+              <finzly-custom-button [disabled]="true">Disabled</finzly-custom-button>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(buttonCode)"
+              [class.copied]="isCopied(buttonCode)">
+              <span class="material-icons">{{ isCopied(buttonCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(buttonCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ buttonCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyInput Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyInput</h2>
+        <p>Text input component with support for labels, icons, and validation states</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-input
+              label="Email"
+              placeholder="Enter your email"
+              [fullWidth]="true">
+            </finzly-input>
+            <finzly-input
+              label="Search"
+              placeholder="Search..."
+              startIcon="search"
+              [fullWidth]="true">
+            </finzly-input>
+            <finzly-input
+              label="Error State"
+              error="This field is required"
+              [fullWidth]="true">
+            </finzly-input>
+            <finzly-input
+              label="With Helper Text"
+              helperText="Enter a valid email address"
+              [fullWidth]="true">
+            </finzly-input>
+            <finzly-input
+              label="Disabled"
+              placeholder="Disabled input"
+              [disabled]="true"
+              [fullWidth]="true">
+            </finzly-input>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(inputCode)"
+              [class.copied]="isCopied(inputCode)">
+              <span class="material-icons">{{ isCopied(inputCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(inputCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ inputCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyBadge Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyBadge</h2>
+        <p>Status indicators and labels</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div class="badge-group">
+              <finzly-badge variant="success">Success</finzly-badge>
+              <finzly-badge variant="warning">Warning</finzly-badge>
+              <finzly-badge variant="error">Error</finzly-badge>
+              <finzly-badge variant="info">Info</finzly-badge>
+              <finzly-badge variant="default">Default</finzly-badge>
+            </div>
+            <div class="badge-group">
+              <finzly-badge variant="success" size="sm">Small</finzly-badge>
+              <finzly-badge variant="success" size="md">Medium</finzly-badge>
+              <finzly-badge variant="success" size="lg">Large</finzly-badge>
+            </div>
+            <div class="badge-group">
+              <finzly-badge variant="success" [dot]="true">With Dot</finzly-badge>
+              <finzly-badge variant="info" [rounded]="true">Rounded</finzly-badge>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(badgeCode)"
+              [class.copied]="isCopied(badgeCode)">
+              <span class="material-icons">{{ isCopied(badgeCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(badgeCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ badgeCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyCheckbox & Radio Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyCheckbox & FinzlyRadio</h2>
+        <p>Selection controls for forms</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div class="checkbox-group">
+              <h5>Checkboxes</h5>
+              <finzly-checkbox
+                label="Accept terms and conditions"
+                [(ngModel)]="checkboxValue">
+              </finzly-checkbox>
+              <finzly-checkbox
+                label="Subscribe to newsletter"
+                helperText="Get updates about new features">
+              </finzly-checkbox>
+              <finzly-checkbox
+                label="Disabled option"
+                [disabled]="true">
+              </finzly-checkbox>
+            </div>
+            <div class="radio-group">
+              <h5>Radio Buttons</h5>
+              <finzly-radio-button
+                label="Credit Card"
+                value="option1"
+                name="payment"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+              <finzly-radio-button
+                label="PayPal"
+                value="option2"
+                name="payment"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+              <finzly-radio-button
+                label="Bank Transfer"
+                value="option3"
+                name="payment"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(checkboxCode + '\n\n' + radioCode)"
+              [class.copied]="isCopied(checkboxCode + '\n\n' + radioCode)">
+              <span class="material-icons">{{ isCopied(checkboxCode + '\n\n' + radioCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(checkboxCode + '\n\n' + radioCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ checkboxCode }}
+
+{{ radioCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlySelect Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlySelect</h2>
+        <p>Dropdown select component</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-dropdown
+              [options]="countryOptions"
+              placeholder="Select a country">
+            </finzly-dropdown>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(selectCode)"
+              [class.copied]="isCopied(selectCode)">
+              <span class="material-icons">{{ isCopied(selectCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(selectCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ selectCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyTextarea Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyTextarea</h2>
+        <p>Multi-line text input component</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-textarea
+              label="Comments"
+              placeholder="Enter your comments..."
+              [rows]="4"
+              helperText="Maximum 500 characters"
+              [fullWidth]="true">
+            </finzly-textarea>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(textareaCode)"
+              [class.copied]="isCopied(textareaCode)">
+              <span class="material-icons">{{ isCopied(textareaCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(textareaCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ textareaCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyDatepicker Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyDatepicker</h2>
+        <p>Date selection input</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-date-picker
+              label="Select Date"
+              helperText="Choose a date from the calendar">
+            </finzly-date-picker>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(datepickerCode)"
+              [class.copied]="isCopied(datepickerCode)">
+              <span class="material-icons">{{ isCopied(datepickerCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(datepickerCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ datepickerCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyTimePicker Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyTimePicker</h2>
+        <p>Time selection input</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-time-picker
+              label="Select Time"
+              helperText="Choose a time">
+            </finzly-time-picker>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(timepickerCode)"
+              [class.copied]="isCopied(timepickerCode)">
+              <span class="material-icons">{{ isCopied(timepickerCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(timepickerCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ timepickerCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyDateTimePicker Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyDateTimePicker</h2>
+        <p>Combined date and time selection</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-date-time-picker
+              label="Select Date & Time"
+              helperText="Choose both date and time">
+            </finzly-date-time-picker>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(datetimepickerCode)"
+              [class.copied]="isCopied(datetimepickerCode)">
+              <span class="material-icons">{{ isCopied(datetimepickerCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(datetimepickerCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ datetimepickerCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyInputEmail Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyInputEmail</h2>
+        <p>Email input with validation</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-input-email
+              label="Email Address"
+              placeholder="Enter your email">
+            </finzly-input-email>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(emailInputCode)"
+              [class.copied]="isCopied(emailInputCode)">
+              <span class="material-icons">{{ isCopied(emailInputCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(emailInputCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ emailInputCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyAmountInput Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyAmountInput</h2>
+        <p>Currency amount input with formatting</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-amount-input
+              label="Amount"
+              placeholder="0.00">
+            </finzly-amount-input>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(amountInputCode)"
+              [class.copied]="isCopied(amountInputCode)">
+              <span class="material-icons">{{ isCopied(amountInputCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(amountInputCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ amountInputCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyToggle Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyToggle</h2>
+        <p>Toggle switch for binary choices</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div class="space-y-3">
+              <finzly-toggle
+                label="Enable notifications"
+                [(ngModel)]="toggleValue">
+              </finzly-toggle>
+              <finzly-toggle
+                label="Dark mode"
+                [disabled]="true">
+              </finzly-toggle>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(toggleCode)"
+              [class.copied]="isCopied(toggleCode)">
+              <span class="material-icons">{{ isCopied(toggleCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(toggleCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ toggleCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specialized Buttons Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>Specialized Buttons</h2>
+        <p>Pre-configured buttons for common actions</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div class="button-group">
+              <finzly-back-button></finzly-back-button>
+              <finzly-save-button></finzly-save-button>
+              <finzly-cancel-button></finzly-cancel-button>
+              <finzly-close-button></finzly-close-button>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(specialButtonsCode)"
+              [class.copied]="isCopied(specialButtonsCode)">
+              <span class="material-icons">{{ isCopied(specialButtonsCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(specialButtonsCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ specialButtonsCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyCustomDatePicker Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyCustomDatePicker</h2>
+        <p>Advanced date picker with presets and quick selections</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box input-preview">
+            <finzly-custom-date-picker
+              label="Select Date"
+              helperText="Advanced date picker with presets">
+            </finzly-custom-date-picker>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(customDatepickerCode)"
+              [class.copied]="isCopied(customDatepickerCode)">
+              <span class="material-icons">{{ isCopied(customDatepickerCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(customDatepickerCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ customDatepickerCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyToast Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyToast</h2>
+        <p>Toast notifications for user feedback</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div class="button-group">
+              <finzly-custom-button
+                (click)="showToast('success', 'Success!', 'Your changes have been saved successfully.')">
+                Show Success Toast
+              </finzly-custom-button>
+              <finzly-custom-button
+                variant="secondary"
+                (click)="showToast('error', 'Error!', 'Unable to complete the operation. Please try again.')">
+                Show Error Toast
+              </finzly-custom-button>
+              <finzly-custom-button
+                variant="outline"
+                (click)="showToast('warning', 'Warning!', 'Please review your input before proceeding.')">
+                Show Warning Toast
+              </finzly-custom-button>
+              <finzly-custom-button
+                variant="ghost"
+                (click)="showToast('info', 'Information', 'This is an informational message with important details.')">
+                Show Info Toast
+              </finzly-custom-button>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(toastCode)"
+              [class.copied]="isCopied(toastCode)">
+              <span class="material-icons">{{ isCopied(toastCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(toastCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ toastCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyDialog Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>FinzlyDialog</h2>
+        <p>Modal dialogs with multiple variants</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div class="button-group">
+              <finzly-custom-button (click)="openBasicDialog()">Basic Dialog</finzly-custom-button>
+              <finzly-custom-button variant="secondary" (click)="openFormDialog()">Form Dialog</finzly-custom-button>
+              <finzly-custom-button (click)="openConfirmDialog()">Confirmation Dialog</finzly-custom-button>
+              <finzly-custom-button variant="danger" (click)="openDeleteDialog()">Delete Confirmation</finzly-custom-button>
+              <finzly-custom-button variant="outline" (click)="openAlertDialog()">Alert Dialog</finzly-custom-button>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <div class="code-header">
+            <h4>Code Example</h4>
+            <button
+              class="copy-button"
+              (click)="copyCode(dialogCode)"
+              [class.copied]="isCopied(dialogCode)">
+              <span class="material-icons">{{ isCopied(dialogCode) ? 'check' : 'content_copy' }}</span>
+              <span>{{ isCopied(dialogCode) ? 'Copied!' : 'Copy' }}</span>
+            </button>
+          </div>
+          <pre class="code-block"><code>{{ dialogCode }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Getting Started Section -->
+    <div class="component-section getting-started">
+      <div class="section-header">
+        <h2>Getting Started</h2>
+        <p>Quick setup guide for using Finzly components</p>
+      </div>
+      <div class="section-content">
+        <div class="getting-started-content">
+          <div class="step">
+            <h4>1. Import Components</h4>
+            <p>All components are available through a single import:</p>
+            <pre class="code-block"><code>import {{ '{' }} FinzlyCustomButtonComponent, FinzlyInputComponent {{ '}' }} from '&#64;npmswapstech/finzly-theme';</code></pre>
+          </div>
+          <div class="step">
+            <h4>2. Setup Toast Service</h4>
+            <p>Inject FinzlyToastrService in your component to enable toast notifications:</p>
+            <pre class="code-block"><code>constructor(private toastrService: FinzlyToastrService) {{ '{}' }}
+
+showToast() {{ '{' }}
+  this.toastrService.show({{ '{' }}
+    type: 'success',
+    message: 'Operation completed!'
+  {{ '}' }});
+{{ '}' }}</code></pre>
+          </div>
+          <div class="step">
+            <h4>3. Use Components</h4>
+            <p>Start building with Finzly components:</p>
+            <pre class="code-block"><code>&lt;finzly-input
+  label="Email"
+  placeholder="Enter email"
+  [fullWidth]="true"&gt;
+&lt;/finzly-input&gt;
+
+&lt;finzly-custom-button
+  variant="primary"
+  [fullWidth]="true"&gt;
+  Submit
+&lt;/finzly-custom-button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typography & Layout Components Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>Typography Components</h2>
+        <p>Text styling components for consistent typography across your application</p>
+      </div>
+    </div>
+
+    <!-- FinzlyLabel Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h3>FinzlyLabel</h3>
+        <p>Form labels with variants, sizes, and required indicator</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <!-- Variants -->
+              <div>
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Variants</h5>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <finzly-label variant="default">Default Label (Medium)</finzly-label>
+                  <finzly-label variant="medium">Medium Label (Semibold)</finzly-label>
+                  <finzly-label variant="bold">Bold Label</finzly-label>
+                </div>
+              </div>
+              
+              <!-- Sizes -->
+              <div>
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Sizes</h5>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <finzly-label size="sm">Small Label</finzly-label>
+                  <finzly-label size="md">Medium Label</finzly-label>
+                  <finzly-label size="lg">Large Label</finzly-label>
+                </div>
+              </div>
+              
+              <!-- Required -->
+              <div>
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Required Field</h5>
+                <finzly-label [required]="true">Email Address</finzly-label>
+                <finzly-input type="email" placeholder="your@email.com"></finzly-input>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <h4>Code Example</h4>
+          <pre class="code-block"><code>&lt;!-- Variants --&gt;
+&lt;finzly-label variant="default"&gt;Default Label&lt;/finzly-label&gt;
+&lt;finzly-label variant="medium"&gt;Medium Label&lt;/finzly-label&gt;
+&lt;finzly-label variant="bold"&gt;Bold Label&lt;/finzly-label&gt;
+
+&lt;!-- Sizes --&gt;
+&lt;finzly-label size="sm"&gt;Small&lt;/finzly-label&gt;
+&lt;finzly-label size="md"&gt;Medium&lt;/finzly-label&gt;
+&lt;finzly-label size="lg"&gt;Large&lt;/finzly-label&gt;
+
+&lt;!-- Required --&gt;
+&lt;finzly-label [required]="true"&gt;Email&lt;/finzly-label&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyHeading Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h3>FinzlyHeading</h3>
+        <p>Semantic headings (H1-H6) with consistent styling</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <finzly-heading [level]="1">Heading Level 1</finzly-heading>
+              <finzly-heading [level]="2">Heading Level 2</finzly-heading>
+              <finzly-heading [level]="3">Heading Level 3</finzly-heading>
+              <finzly-heading [level]="4">Heading Level 4</finzly-heading>
+              <finzly-heading [level]="5">Heading Level 5</finzly-heading>
+              <finzly-heading [level]="6">Heading Level 6</finzly-heading>
+              
+              <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Weight Variants</h5>
+                <finzly-heading [level]="2" weight="normal">Normal Weight</finzly-heading>
+                <finzly-heading [level]="2" weight="medium">Medium Weight</finzly-heading>
+                <finzly-heading [level]="2" weight="semibold">Semibold Weight</finzly-heading>
+                <finzly-heading [level]="2" weight="bold">Bold Weight</finzly-heading>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <h4>Code Example</h4>
+          <pre class="code-block"><code>&lt;!-- Levels --&gt;
+&lt;finzly-heading [level]="1"&gt;H1 Heading&lt;/finzly-heading&gt;
+&lt;finzly-heading [level]="2"&gt;H2 Heading&lt;/finzly-heading&gt;
+&lt;finzly-heading [level]="3"&gt;H3 Heading&lt;/finzly-heading&gt;
+
+&lt;!-- Weights --&gt;
+&lt;finzly-heading [level]="2" weight="normal"&gt;Normal&lt;/finzly-heading&gt;
+&lt;finzly-heading [level]="2" weight="bold"&gt;Bold&lt;/finzly-heading&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlyText Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h3>FinzlyText</h3>
+        <p>Paragraph text with size, weight, and color variants</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <!-- Sizes -->
+              <div>
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Sizes</h5>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <finzly-text size="xs">Extra Small Text (12px)</finzly-text>
+                  <finzly-text size="sm">Small Text (14px)</finzly-text>
+                  <finzly-text size="base">Base Text (16px)</finzly-text>
+                  <finzly-text size="lg">Large Text (18px)</finzly-text>
+                  <finzly-text size="xl">Extra Large Text (20px)</finzly-text>
+                </div>
+              </div>
+              
+              <!-- Colors -->
+              <div>
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Colors</h5>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <finzly-text color="default">Default Color (gray-900)</finzly-text>
+                  <finzly-text color="muted">Muted Color (gray-600)</finzly-text>
+                  <finzly-text color="primary">Primary Color (blue-600)</finzly-text>
+                  <finzly-text color="success">Success Color (green-600)</finzly-text>
+                  <finzly-text color="warning">Warning Color (yellow-600)</finzly-text>
+                  <finzly-text color="error">Error Color (red-600)</finzly-text>
+                </div>
+              </div>
+              
+              <!-- Weights -->
+              <div>
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Weights</h5>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <finzly-text weight="normal">Normal Weight</finzly-text>
+                  <finzly-text weight="medium">Medium Weight</finzly-text>
+                  <finzly-text weight="semibold">Semibold Weight</finzly-text>
+                  <finzly-text weight="bold">Bold Weight</finzly-text>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <h4>Code Example</h4>
+          <pre class="code-block"><code>&lt;!-- Sizes --&gt;
+&lt;finzly-text size="xs"&gt;Extra Small&lt;/finzly-text&gt;
+&lt;finzly-text size="base"&gt;Base Size&lt;/finzly-text&gt;
+&lt;finzly-text size="xl"&gt;Extra Large&lt;/finzly-text&gt;
+
+&lt;!-- Colors --&gt;
+&lt;finzly-text color="primary"&gt;Primary&lt;/finzly-text&gt;
+&lt;finzly-text color="success"&gt;Success&lt;/finzly-text&gt;
+&lt;finzly-text color="error"&gt;Error&lt;/finzly-text&gt;
+
+&lt;!-- Combined --&gt;
+&lt;finzly-text size="lg" weight="semibold" color="primary"&gt;
+  Large, semibold, primary text
+&lt;/finzly-text&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout Components Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h2>Layout Components</h2>
+        <p>Container and section components for page structure</p>
+      </div>
+    </div>
+
+    <!-- FinzlyContainer Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h3>FinzlyContainer</h3>
+        <p>Responsive page container with max-width controls</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="background: #f3f4f6; padding: 0.5rem;">
+                <finzly-container maxWidth="sm">
+                  <div style="background: #dbeafe; padding: 1rem; text-align: center;">
+                    Small Container (640px)
+                  </div>
+                </finzly-container>
+              </div>
+              
+              <div style="background: #f3f4f6; padding: 0.5rem;">
+                <finzly-container maxWidth="md">
+                  <div style="background: #dbeafe; padding: 1rem; text-align: center;">
+                    Medium Container (768px)
+                  </div>
+                </finzly-container>
+              </div>
+              
+              <div style="background: #f3f4f6; padding: 0.5rem;">
+                <finzly-container maxWidth="lg">
+                  <div style="background: #dbeafe; padding: 1rem; text-align: center;">
+                    Large Container (1024px)
+                  </div>
+                </finzly-container>
+              </div>
+              
+              <div style="background: #f3f4f6; padding: 0.5rem;">
+                <finzly-container maxWidth="xl">
+                  <div style="background: #dbeafe; padding: 1rem; text-align: center;">
+                    XL Container (1280px) - Default
+                  </div>
+                </finzly-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <h4>Code Example</h4>
+          <pre class="code-block"><code>&lt;!-- Max Width Variants --&gt;
+&lt;finzly-container maxWidth="sm"&gt;Small (640px)&lt;/finzly-container&gt;
+&lt;finzly-container maxWidth="md"&gt;Medium (768px)&lt;/finzly-container&gt;
+&lt;finzly-container maxWidth="lg"&gt;Large (1024px)&lt;/finzly-container&gt;
+&lt;finzly-container maxWidth="xl"&gt;XL (1280px)&lt;/finzly-container&gt;
+&lt;finzly-container maxWidth="2xl"&gt;2XL (1536px)&lt;/finzly-container&gt;
+
+&lt;!-- Options --&gt;
+&lt;finzly-container [padding]="false"&gt;No padding&lt;/finzly-container&gt;
+&lt;finzly-container [centered]="false"&gt;Not centered&lt;/finzly-container&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- FinzlySection Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <h3>FinzlySection</h3>
+        <p>Page sections with spacing and background options</p>
+      </div>
+      <div class="section-content">
+        <div class="preview-section">
+          <h4>Preview</h4>
+          <div class="preview-box">
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Spacing Variants -->
+              <div>
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Spacing Variants</h5>
+                <div style="border: 1px solid #e5e7eb;">
+                  <finzly-section spacing="sm" background="gray">
+                    <finzly-text>Small Spacing (1rem)</finzly-text>
+                  </finzly-section>
+                  <finzly-section spacing="md" background="blue">
+                    <finzly-text>Medium Spacing (1.5rem)</finzly-text>
+                  </finzly-section>
+                  <finzly-section spacing="lg" background="white">
+                    <finzly-text>Large Spacing (2rem/3rem)</finzly-text>
+                  </finzly-section>
+                </div>
+              </div>
+              
+              <!-- Background Variants -->
+              <div>
+                <h5 style="margin-bottom: 0.75rem; color: #6b7280;">Background Variants</h5>
+                <finzly-section spacing="md" background="white">
+                  <finzly-text>White Background</finzly-text>
+                </finzly-section>
+                <finzly-section spacing="md" background="gray">
+                  <finzly-text>Gray Background</finzly-text>
+                </finzly-section>
+                <finzly-section spacing="md" background="blue">
+                  <finzly-text>Blue Background</finzly-text>
+                </finzly-section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="code-section">
+          <h4>Code Example</h4>
+          <pre class="code-block"><code>&lt;!-- Spacing --&gt;
+&lt;finzly-section spacing="sm"&gt;Small&lt;/finzly-section&gt;
+&lt;finzly-section spacing="md"&gt;Medium&lt;/finzly-section&gt;
+&lt;finzly-section spacing="lg"&gt;Large&lt;/finzly-section&gt;
+&lt;finzly-section spacing="xl"&gt;Extra Large&lt;/finzly-section&gt;
+
+&lt;!-- Background --&gt;
+&lt;finzly-section background="white"&gt;White&lt;/finzly-section&gt;
+&lt;finzly-section background="gray"&gt;Gray&lt;/finzly-section&gt;
+&lt;finzly-section background="blue"&gt;Blue&lt;/finzly-section&gt;
+
+&lt;!-- Complete Example --&gt;
+&lt;finzly-section spacing="xl" background="gray"&gt;
+  &lt;finzly-container maxWidth="lg"&gt;
+    &lt;finzly-heading [level]="2"&gt;Section Title&lt;/finzly-heading&gt;
+    &lt;finzly-text&gt;Section content...&lt;/finzly-text&gt;
+  &lt;/finzly-container&gt;
+&lt;/finzly-section&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="showcase-footer">
+      <p>Built with Angular, TypeScript, and SCSS</p>
+      <p>Finzly Component Library © 2024</p>
+    </div>
+  </div>
+</div>
+

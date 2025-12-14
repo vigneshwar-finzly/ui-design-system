@@ -1,0 +1,32 @@
+<span
+  [ngClass]="getBadgeClasses()"
+  [ngStyle]="getCustomStyles() || {}"
+  [attr.role]="clickable ? 'button' : null"
+  [attr.tabindex]="clickable ? 0 : null"
+>
+  <!-- Dot -->
+  <span *ngIf="dot" class="finzly-badge-dot-indicator" [ngClass]="'finzly-badge-dot-' + variant"></span>
+
+  <!-- Icon Before -->
+  <span *ngIf="icon" class="finzly-badge-icon" [innerHTML]="getSafeIcon(icon)"></span>
+
+  <!-- Content -->
+  <ng-content></ng-content>
+
+  <!-- Icon After -->
+  <span *ngIf="iconAfter" class="finzly-badge-icon" [innerHTML]="getSafeIcon(iconAfter)"></span>
+
+  <!-- Remove Button -->
+  <button
+    *ngIf="removable"
+    type="button"
+    class="finzly-badge-remove"
+    (click)="onRemove($event)"
+    aria-label="Remove badge"
+  >
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</span>
+

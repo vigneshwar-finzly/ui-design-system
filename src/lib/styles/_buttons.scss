@@ -1,0 +1,201 @@
+// =============================================================================
+// Buttons - Matching React FinzlyButton Component
+// =============================================================================
+
+@import 'variables';
+
+// -----------------------------------------------------------------------------
+// Finzly Button (Exact React Match)
+// -----------------------------------------------------------------------------
+.finzly-button {
+  // Base styles - matching: font-medium rounded-lg transition-all duration-200 inline-flex items-center justify-center
+  font-family: $font-family-base;
+  font-weight: $font-medium;
+  border-radius: $radius-lg;
+  transition: $transition-all;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  outline: none;
+
+  // Disabled state - matching: disabled:opacity-50 disabled:cursor-not-allowed
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // -----------------------------------------------------------------------------
+  // Sizes - matching React size styles
+  // -----------------------------------------------------------------------------
+  
+  // sm: "px-3 py-1.5 text-sm"
+  &.finzly-button-sm {
+    padding: $spacing-1-5 $spacing-3;  // py-1.5 px-3
+    font-size: $text-sm;
+  }
+
+  // md: "px-4 py-2 text-base"
+  &.finzly-button-md {
+    padding: $spacing-2 $spacing-4;    // py-2 px-4
+    font-size: $text-base;
+  }
+
+  // lg: "px-6 py-3 text-lg"
+  &.finzly-button-lg {
+    padding: $spacing-3 $spacing-6;    // py-3 px-6
+    font-size: $text-lg;
+  }
+
+  // -----------------------------------------------------------------------------
+  // Variants - matching React variant styles
+  // -----------------------------------------------------------------------------
+  
+  // primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-100"
+  &.finzly-button-primary {
+    background-color: $blue-600;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: $blue-700;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 4px $blue-100;
+    }
+  }
+
+  // secondary: "bg-gray-600 text-white hover:bg-gray-700 focus:ring-4 focus:ring-gray-100"
+  &.finzly-button-secondary {
+    background-color: $gray-600;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: $gray-700;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 4px $gray-100;
+    }
+  }
+
+  // outline: "border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-4 focus:ring-blue-100"
+  &.finzly-button-outline {
+    border: 2px solid $blue-600;
+    background-color: transparent;
+    color: $blue-600;
+
+    &:hover:not(:disabled) {
+      background-color: $blue-50;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 4px $blue-100;
+    }
+  }
+
+  // ghost: "text-blue-600 hover:bg-blue-50 focus:ring-4 focus:ring-blue-100"
+  &.finzly-button-ghost {
+    background-color: transparent;
+    color: $blue-600;
+
+    &:hover:not(:disabled) {
+      background-color: $blue-50;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 4px $blue-100;
+    }
+  }
+
+  // danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-4 focus:ring-red-100"
+  &.finzly-button-danger {
+    background-color: $red-600;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: $red-700;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 4px $red-100;
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Full Width
+  // -----------------------------------------------------------------------------
+  &.finzly-button-full-width {
+    width: 100%;
+  }
+
+  // -----------------------------------------------------------------------------
+  // Icon Spacing - matching React icon spacing
+  // -----------------------------------------------------------------------------
+  
+  // Start icon: mr-2 (matching React)
+  .finzly-button-icon-start {
+    margin-right: $spacing-2;  // 0.5rem / 8px
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    svg, .material-icons {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+    }
+  }
+
+  // End icon: ml-2 (matching React)
+  .finzly-button-icon-end {
+    margin-left: $spacing-2;  // 0.5rem / 8px
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    svg, .material-icons {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+    }
+  }
+
+  // Button text wrapper
+  .finzly-button-text {
+    display: inline-block;
+  }
+
+  // -----------------------------------------------------------------------------
+  // Loading Spinner (matching React: -ml-1 mr-2)
+  // -----------------------------------------------------------------------------
+  .finzly-button-spinner {
+    margin-left: -$spacing-1;  // -0.25rem
+    margin-right: $spacing-2;   // 0.5rem
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    svg {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+    }
+  }
+}
+
+// Spinner animation
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+

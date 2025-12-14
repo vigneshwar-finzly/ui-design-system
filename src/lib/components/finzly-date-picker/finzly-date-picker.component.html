@@ -1,0 +1,111 @@
+<div class="finzly-date-picker-wrapper" [class.calendar-open]="isCalendarOpen">
+  <label *ngIf="label" class="finzly-input-label">
+    {{ label }}
+  </label>
+  
+  <div class="date-input-container">
+    <input
+      #inputElement
+      type="text"
+      class="finzly-input finzly-input-default date-input"
+      [placeholder]="placeholder"
+      [value]="formattedDate"
+      [disabled]="disabled"
+      [required]="required"
+      (click)="toggleCalendar()"
+      readonly
+    />
+    <span class="material-icons calendar-icon" (click)="toggleCalendar(); $event.stopPropagation()">
+      calendar_today
+    </span>
+  </div>
+
+  <!-- Calendar Dropdown -->
+  <div class="calendar-dropdown" *ngIf="isCalendarOpen" #calendarDropdown (click)="$event.stopPropagation()">
+    
+    <!-- Date View (Default) -->
+    <ng-container *ngIf="currentView === 'date'">
+      <div class="calendar-header">
+        <button type="button" class="nav-btn" (click)="previousMonth()">
+          <span class="material-icons">chevron_left</span>
+        </button>
+        <div class="month-year clickable" (click)="switchToMonthView()">{{ currentMonthYear }}</div>
+        <button type="button" class="nav-btn" (click)="nextMonth()">
+          <span class="material-icons">chevron_right</span>
+        </button>
+      </div>
+
+      <div class="calendar-weekdays">
+        <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+      </div>
+
+      <div class="calendar-days">
+        <div
+          *ngFor="let day of calendarDays; trackBy: trackByDate"
+          class="calendar-day"
+          [class.other-month]="!day.isCurrentMonth"
+          [class.today]="day.isToday"
+          [class.selected]="day.isSelected"
+          [class.disabled]="isDateDisabled(day.date)"
+          (click)="selectDate(day)">
+          {{ day.day }}
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Month View -->
+    <ng-container *ngIf="currentView === 'month'">
+      <div class="calendar-header">
+        <button type="button" class="nav-btn" (click)="previousYear()">
+          <span class="material-icons">chevron_left</span>
+        </button>
+        <div class="month-year clickable" (click)="switchToYearView()">{{ currentYear }}</div>
+        <button type="button" class="nav-btn" (click)="nextYear()">
+          <span class="material-icons">chevron_right</span>
+        </button>
+      </div>
+
+      <div class="calendar-months">
+        <div
+          *ngFor="let month of months; let i = index; trackBy: trackByIndex"
+          class="calendar-month"
+          [class.current]="isCurrentMonth(i)"
+          [class.selected]="isSelectedMonth(i)"
+          (click)="selectMonth(i)">
+          {{ month }}
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Year View -->
+    <ng-container *ngIf="currentView === 'year'">
+      <div class="calendar-header">
+        <button type="button" class="nav-btn" (click)="previousYearRange()">
+          <span class="material-icons">chevron_left</span>
+        </button>
+        <div class="month-year">{{ yearRangeLabel }}</div>
+        <button type="button" class="nav-btn" (click)="nextYearRange()">
+          <span class="material-icons">chevron_right</span>
+        </button>
+      </div>
+
+      <div class="calendar-years">
+        <div
+          *ngFor="let year of displayedYears; trackBy: trackByYear"
+          class="calendar-year"
+          [class.current]="isCurrentYear(year)"
+          [class.selected]="isSelectedYear(year)"
+          (click)="selectYear(year)">
+          {{ year }}
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+  <p *ngIf="helperText" class="finzly-input-helper">{{ helperText }}</p>
+  <p *ngIf="showError" class="finzly-input-error-message">{{ errorText }}</p>
+</div>
+
+<!-- Backdrop removed for better dialog integration -->
+

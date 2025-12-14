@@ -1,0 +1,11 @@
+<button
+  [type]="type"
+  [class]="buttonClass"
+  [disabled]="disabled"
+  (click)="onClick()">
+  <span *ngIf="showIcon" class="finzly-button-icon-start">
+    <span class="material-icons">{{ icon }}</span>
+  </span>
+  <span class="finzly-button-text">{{ text }}</span>
+</button>
+

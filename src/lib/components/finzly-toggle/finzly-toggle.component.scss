@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+
+.finzly-toggle-wrapper {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+  vertical-align: top;
+}
+
+.toggle-state-label {
+  margin-left: 0.5rem;
+  font-weight: 600;
+  color: $blue-600;
+}
+

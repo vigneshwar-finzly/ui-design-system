@@ -1,0 +1,665 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Finzly Dropdown Component</h1>
+    <p class="demo-intro">
+      A premium, highly customizable dropdown component with search, multi-select, and advanced features.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- SIMPLE DROPDOWN -->
+    <!-- ========================================================================= -->
+    
+    <section id="simple-dropdown" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">arrow_drop_down</span>
+        <h2>Simple Dropdown</h2>
+      </div>
+      <p class="section-description">
+        Basic dropdown with single selection and standard options.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Usage</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('simple-dropdown', 'preview')" (click)="setActiveTab('simple-dropdown', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('simple-dropdown', 'code')" (click)="setActiveTab('simple-dropdown', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('simple-dropdown', 'preview')">
+              <div class="form-group" style="max-width: 400px;">
+                <label class="form-label">Select Country</label>
+                <finzly-dropdown
+                  [options]="countries"
+                  [(ngModel)]="selectedCountry"
+                  placeholder="Choose a country"
+                  (selectionChange)="onSelectionChange($event, 'Country')">
+                </finzly-dropdown>
+                <span class="form-helper">Selected: {{ selectedCountry || 'None' }}</span>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('simple-dropdown', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.simpleDropdown)" [class.copied]="isCopied(examples.simpleDropdown)">
+                <span class="material-icons">{{ isCopied(examples.simpleDropdown) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.simpleDropdown) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.simpleDropdown }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SEARCHABLE DROPDOWN -->
+    <!-- ========================================================================= -->
+    
+    <section id="searchable-dropdown" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">search</span>
+        <h2>Searchable Dropdown</h2>
+      </div>
+      <p class="section-description">
+        Dropdown with built-in search functionality to filter through options.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Search</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('searchable-dropdown', 'preview')" (click)="setActiveTab('searchable-dropdown', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('searchable-dropdown', 'code')" (click)="setActiveTab('searchable-dropdown', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('searchable-dropdown', 'preview')">
+              <div class="form-group" style="max-width: 400px;">
+                <label class="form-label">Select User</label>
+                <finzly-dropdown
+                  [options]="users"
+                  [(ngModel)]="selectedUser"
+                  placeholder="Search users..."
+                  [searchable]="true"
+                  (selectionChange)="onSelectionChange($event, 'User')">
+                </finzly-dropdown>
+                <span class="form-helper">Search through a list of users with descriptions</span>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('searchable-dropdown', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.searchableDropdown)" [class.copied]="isCopied(examples.searchableDropdown)">
+                <span class="material-icons">{{ isCopied(examples.searchableDropdown) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.searchableDropdown) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.searchableDropdown }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MULTI-SELECT DROPDOWN -->
+    <!-- ========================================================================= -->
+    
+    <section id="multi-select-dropdown" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">checklist</span>
+        <h2>Multi-Select Dropdown</h2>
+      </div>
+      <p class="section-description">
+        Select multiple options with premium badge display and individual remove buttons.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Badges</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('multi-select-dropdown', 'preview')" (click)="setActiveTab('multi-select-dropdown', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('multi-select-dropdown', 'code')" (click)="setActiveTab('multi-select-dropdown', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('multi-select-dropdown', 'preview')">
+              <div class="form-group" style="max-width: 500px;">
+                <label class="form-label">Select Multiple Tags</label>
+                <finzly-dropdown
+                  [options]="tags"
+                  [(ngModel)]="selectedTags"
+                  placeholder="Select multiple tags"
+                  [multiSelect]="true"
+                  [searchable]="true"
+                  (selectionChange)="onSelectionChange($event, 'Tags')">
+                </finzly-dropdown>
+                <span class="form-helper">
+                  Selected {{ selectedTags.length }} tag(s). Click the × on any badge to remove it.
+                </span>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('multi-select-dropdown', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.multiSelectDropdown)" [class.copied]="isCopied(examples.multiSelectDropdown)">
+                <span class="material-icons">{{ isCopied(examples.multiSelectDropdown) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.multiSelectDropdown) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.multiSelectDropdown }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- ICONS & DESCRIPTIONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="icons-descriptions" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">label</span>
+        <h2>Icons & Descriptions</h2>
+      </div>
+      <p class="section-description">
+        Enhance dropdown options with icons and descriptive text.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Enhanced Options</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('icons-descriptions', 'preview')" (click)="setActiveTab('icons-descriptions', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('icons-descriptions', 'code')" (click)="setActiveTab('icons-descriptions', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('icons-descriptions', 'preview')">
+              <div class="demo-row">
+                <div class="form-group" style="max-width: 400px;">
+                  <label class="form-label">User Status</label>
+                  <finzly-dropdown
+                    [options]="statuses"
+                    [(ngModel)]="selectedStatus"
+                    placeholder="Select status">
+                  </finzly-dropdown>
+                </div>
+                <div class="form-group" style="max-width: 400px;">
+                  <label class="form-label">Priority Level</label>
+                  <finzly-dropdown
+                    [options]="priorities"
+                    [(ngModel)]="selectedPriority"
+                    placeholder="Select priority">
+                  </finzly-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('icons-descriptions', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.iconsDescriptions)" [class.copied]="isCopied(examples.iconsDescriptions)">
+                <span class="material-icons">{{ isCopied(examples.iconsDescriptions) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.iconsDescriptions) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.iconsDescriptions }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- DROPDOWN SIZES -->
+    <!-- ========================================================================= -->
+    
+    <section id="dropdown-sizes" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">aspect_ratio</span>
+        <h2>Dropdown Sizes</h2>
+      </div>
+      <p class="section-description">
+        Three size variants: small, medium (default), and large.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('dropdown-sizes', 'preview')" (click)="setActiveTab('dropdown-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('dropdown-sizes', 'code')" (click)="setActiveTab('dropdown-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('dropdown-sizes', 'preview')">
+              <div class="form-group" style="max-width: 400px;">
+                <label class="form-label">Small Size</label>
+                <finzly-dropdown
+                  [options]="countries"
+                  [(ngModel)]="selectedCountry"
+                  size="sm"
+                  placeholder="Small dropdown">
+                </finzly-dropdown>
+              </div>
+              <div class="form-group" style="max-width: 400px; margin-top: 1rem;">
+                <label class="form-label">Medium Size (Default)</label>
+                <finzly-dropdown
+                  [options]="countries"
+                  [(ngModel)]="selectedCountry"
+                  size="md"
+                  placeholder="Medium dropdown">
+                </finzly-dropdown>
+              </div>
+              <div class="form-group" style="max-width: 400px; margin-top: 1rem;">
+                <label class="form-label">Large Size</label>
+                <finzly-dropdown
+                  [options]="countries"
+                  [(ngModel)]="selectedCountry"
+                  size="lg"
+                  placeholder="Large dropdown">
+                </finzly-dropdown>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('dropdown-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dropdownSizes)" [class.copied]="isCopied(examples.dropdownSizes)">
+                <span class="material-icons">{{ isCopied(examples.dropdownSizes) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dropdownSizes) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dropdownSizes }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- DISABLED STATES -->
+    <!-- ========================================================================= -->
+    
+    <section id="disabled-states" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">block</span>
+        <h2>Disabled States</h2>
+      </div>
+      <p class="section-description">
+        Disable individual options or the entire dropdown component.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Disabled Options & Component</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('disabled-states', 'preview')" (click)="setActiveTab('disabled-states', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('disabled-states', 'code')" (click)="setActiveTab('disabled-states', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('disabled-states', 'preview')">
+              <div class="demo-row">
+                <div class="form-group" style="max-width: 400px;">
+                  <label class="form-label">With Disabled Option</label>
+                  <finzly-dropdown
+                    [options]="roles"
+                    [(ngModel)]="selectedRole"
+                    placeholder="Select role">
+                  </finzly-dropdown>
+                  <span class="form-helper">"Super Admin" option is disabled</span>
+                </div>
+                <div class="form-group" style="max-width: 400px;">
+                  <label class="form-label">Disabled Dropdown</label>
+                  <finzly-dropdown
+                    [options]="countries"
+                    [(ngModel)]="selectedCountry"
+                    [disabled]="true"
+                    placeholder="Disabled dropdown">
+                  </finzly-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('disabled-states', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.disabledStates)" [class.copied]="isCopied(examples.disabledStates)">
+                <span class="material-icons">{{ isCopied(examples.disabledStates) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.disabledStates) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.disabledStates }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- ERROR STATE -->
+    <!-- ========================================================================= -->
+    
+    <section id="error-state" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">error</span>
+        <h2>Error State</h2>
+      </div>
+      <p class="section-description">
+        Display validation errors with visual feedback.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Error Display</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('error-state', 'preview')" (click)="setActiveTab('error-state', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('error-state', 'code')" (click)="setActiveTab('error-state', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('error-state', 'preview')">
+              <div class="form-group" style="max-width: 400px;">
+                <label class="form-label required">Required Field</label>
+                <finzly-dropdown
+                  [options]="countries"
+                  [(ngModel)]="selectedCountry"
+                  [error]="true"
+                  placeholder="This field is required">
+                </finzly-dropdown>
+                <span class="form-error">Please select a country</span>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('error-state', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.errorState)" [class.copied]="isCopied(examples.errorState)">
+                <span class="material-icons">{{ isCopied(examples.errorState) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.errorState) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.errorState }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FORM EXAMPLE -->
+    <!-- ========================================================================= -->
+    
+    <section id="form-example" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">description</span>
+        <h2>Complete Form Example</h2>
+      </div>
+      <p class="section-description">
+        Real-world form example using multiple dropdown components.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Form Integration</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('form-example', 'preview')" (click)="setActiveTab('form-example', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('form-example', 'code')" (click)="setActiveTab('form-example', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('form-example', 'preview')">
+              <div class="card" style="max-width: 600px;">
+                <form (ngSubmit)="submitForm()">
+                  <div class="form-group">
+                    <label class="form-label required">Country</label>
+                    <finzly-dropdown
+                      [options]="countries"
+                      [(ngModel)]="formData.country"
+                      name="country"
+                      placeholder="Select your country">
+                    </finzly-dropdown>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label required">Department</label>
+                    <finzly-dropdown
+                      [options]="departments"
+                      [(ngModel)]="formData.department"
+                      name="department"
+                      [searchable]="true"
+                      placeholder="Choose your department">
+                    </finzly-dropdown>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Skills (Multi-select)</label>
+                    <finzly-dropdown
+                      [options]="skills"
+                      [(ngModel)]="formData.skills"
+                      name="skills"
+                      [multiSelect]="true"
+                      [searchable]="true"
+                      placeholder="Select your skills">
+                    </finzly-dropdown>
+                    <span class="form-helper">Select all that apply</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Timezone</label>
+                    <finzly-dropdown
+                      [options]="timezones"
+                      [(ngModel)]="formData.timezone"
+                      name="timezone"
+                      [searchable]="true"
+                      placeholder="Select timezone">
+                    </finzly-dropdown>
+                  </div>
+
+                  <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                    <button type="button" class="btn btn-outline">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('form-example', 'code')">
+              <pre class="demo-code">&lt;form (ngSubmit)="submitForm()"&gt;
+  &lt;finzly-dropdown
+    [options]="countries"
+    [(ngModel)]="formData.country"
+    name="country"
+    placeholder="Select your country"&gt;
+  &lt;/finzly-dropdown&gt;
+  
+  &lt;finzly-dropdown
+    [options]="departments"
+    [(ngModel)]="formData.department"
+    [searchable]="true"
+    placeholder="Choose your department"&gt;
+  &lt;/finzly-dropdown&gt;
+  
+  &lt;finzly-dropdown
+    [options]="skills"
+    [(ngModel)]="formData.skills"
+    [multiSelect]="true"
+    [searchable]="true"
+    placeholder="Select your skills"&gt;
+  &lt;/finzly-dropdown&gt;
+&lt;/form&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- API REFERENCE -->
+    <!-- ========================================================================= -->
+    
+    <section id="api-reference" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">code</span>
+        <h2>Component API</h2>
+      </div>
+      <p class="section-description">
+        Complete API reference for inputs, outputs, and interfaces.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Input Properties</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-reference', 'preview')" (click)="setActiveTab('api-reference', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-reference', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() options: DropdownOption[]        // Array of dropdown options
+&#64;Input() placeholder: string               // Placeholder text
+&#64;Input() searchable: boolean = false      // Enable search functionality
+&#64;Input() multiSelect: boolean = false     // Enable multi-select mode
+&#64;Input() disabled: boolean = false        // Disable the dropdown
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'  // Dropdown size
+&#64;Input() maxHeight: string = '300px'      // Max height of dropdown panel
+&#64;Input() error: boolean = false           // Show error state
+&#64;Input() clearable: boolean = true        // Show clear button
+&#64;Input() showCheckboxes: boolean = false  // Show checkboxes for single select
+
+&#64;Output() selectionChange                 // Emits when selection changes
+&#64;Output() searchChange                    // Emits when search term changes</pre>
+
+                <h4 style="margin-top: 2rem;">DropdownOption Interface</h4>
+                <pre class="demo-code">interface DropdownOption {{'{' }}
+  value: any;              // Option value
+  label: string;           // Display label
+  disabled?: boolean;      // Disable option
+  icon?: string;           // Icon/emoji
+  description?: string;    // Additional description
+{{'}' }}</pre>
+
+                <h4 style="margin-top: 2rem;">Usage with ngModel</h4>
+                <pre class="demo-code">// Single select
+&lt;finzly-dropdown 
+  [options]="options" 
+  [(ngModel)]="selectedValue"&gt;
+&lt;/finzly-dropdown&gt;
+
+// Multi-select
+&lt;finzly-dropdown 
+  [options]="options" 
+  [(ngModel)]="selectedValues"
+  [multiSelect]="true"&gt;
+&lt;/finzly-dropdown&gt;</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- KEY FEATURES -->
+    <!-- ========================================================================= -->
+    
+    <section id="key-features" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">star</span>
+        <h2>Key Features</h2>
+      </div>
+      <p class="section-description">
+        Premium features and capabilities of the Finzly Dropdown component.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Feature Highlights</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('key-features', 'preview')" (click)="setActiveTab('key-features', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('key-features', 'preview')">
+              <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div class="demo-card">
+                  <h4>🔍 Searchable</h4>
+                  <p style="color: #737373; font-size: 0.875rem; margin: 0;">Real-time search through options with highlighting</p>
+                </div>
+                <div class="demo-card">
+                  <h4>🏷️ Badge Display</h4>
+                  <p style="color: #737373; font-size: 0.875rem; margin: 0;">Multi-select shows premium badges with × remove</p>
+                </div>
+                <div class="demo-card">
+                  <h4>☑️ Multi-Select</h4>
+                  <p style="color: #737373; font-size: 0.875rem; margin: 0;">Select multiple options with checkboxes</p>
+                </div>
+                <div class="demo-card">
+                  <h4>🎨 Icons & Descriptions</h4>
+                  <p style="color: #737373; font-size: 0.875rem; margin: 0;">Support for icons and secondary text</p>
+                </div>
+                <div class="demo-card">
+                  <h4>📱 Responsive</h4>
+                  <p style="color: #737373; font-size: 0.875rem; margin: 0;">Adapts to mobile with bottom sheet</p>
+                </div>
+                <div class="demo-card">
+                  <h4>⌨️ Keyboard Navigation</h4>
+                  <p style="color: #737373; font-size: 0.875rem; margin: 0;">Full keyboard support (Enter, Escape)</p>
+                </div>
+                <div class="demo-card">
+                  <h4>✨ Premium Design</h4>
+                  <p style="color: #737373; font-size: 0.875rem; margin: 0;">Gradients, shadows, and smooth animations</p>
+                </div>
+                <div class="demo-card">
+                  <h4>🔄 Auto-Wrapping</h4>
+                  <p style="color: #737373; font-size: 0.875rem; margin: 0;">Badges wrap automatically for many selections</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

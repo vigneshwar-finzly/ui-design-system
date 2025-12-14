@@ -1,0 +1,18 @@
+@import '../finzly-inputs/finzly-inputs.component.scss';
+
+// Additional styles specific to pickers demo
+.value-display {
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  background: rgba(99, 102, 241, 0.05);
+  border-left: 3px solid var(--primary, #6366f1);
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--text-primary, #111827);
+
+  strong {
+    color: var(--primary, #6366f1);
+    font-weight: 600;
+  }
+}
+

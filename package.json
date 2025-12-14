@@ -1,0 +1,65 @@
+{
+  "name": "@npmswapstech/finzly-theme",
+  "version": "4.0.0",
+  "description": "A comprehensive Angular UI component library with Finzly design system",
+  "keywords": [
+    "angular",
+    "ui-components",
+    "finzly",
+    "design-system",
+    "component-library"
+  ],
+  "author": "npmswapstech",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npmswapstech/finzly-theme"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "serve": "ng serve --open",
+    "demo": "ng serve finzly-css-demo --open",
+    "build": "ng build",
+    "build:lib": "ng-packagr -p ng-package.json",
+    "build:demo": "ng build finzly-css-demo",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "packagr": "ng-packagr -p ng-package.json"
+  },
+  "peerDependencies": {
+    "@angular/animations": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "rxjs": "^7.0.0",
+    "zone.js": "^0.14.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^18.2.12",
+    "@angular/animations": "^18.2.13",
+    "@angular/cli": "^18.2.12",
+    "@angular/common": "^18.2.13",
+    "@angular/compiler": "^18.2.13",
+    "@angular/compiler-cli": "^18.2.13",
+    "@angular/core": "^18.2.13",
+    "@angular/forms": "^18.2.13",
+    "@angular/language-service": "^18.2.13",
+    "@angular/platform-browser": "^18.2.13",
+    "@angular/platform-browser-dynamic": "^18.2.13",
+    "@angular/router": "^18.2.13",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^18.0.0",
+    "jasmine-core": "~5.3.0",
+    "karma": "~6.4.4",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "^2.1.0",
+    "ng-packagr": "^18.2.1",
+    "rxjs": "^7.8.1",
+    "typescript": "~5.5.0",
+    "zone.js": "^0.14.10"
+  }
+}

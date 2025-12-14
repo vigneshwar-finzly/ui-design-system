@@ -1,0 +1,500 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Badges</h1>
+    <p class="demo-intro">
+      Versatile badge components for displaying status, labels, counts, and notifications with multiple styles and variants.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- SOLID BADGES -->
+    <!-- ========================================================================= -->
+    
+    <section id="solid-badges" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">label</span>
+        <h2>Solid Badges</h2>
+      </div>
+      <p class="section-description">
+        Solid background badges with high contrast for prominent status indicators.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">All Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('solid-badges', 'preview')" (click)="setActiveTab('solid-badges', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('solid-badges', 'code')" (click)="setActiveTab('solid-badges', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('solid-badges', 'preview')">
+              <div class="demo-row">
+                <finzly-badge variant="primary">Primary</finzly-badge>
+                <finzly-badge variant="success">Success</finzly-badge>
+                <finzly-badge variant="warning">Warning</finzly-badge>
+                <finzly-badge variant="error">Error</finzly-badge>
+                <finzly-badge variant="info">Info</finzly-badge>
+                <finzly-badge variant="neutral">Neutral</finzly-badge>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('solid-badges', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.solidBadges)" [class.copied]="isCopied(examples.solidBadges)">
+                <span class="material-icons">{{ isCopied(examples.solidBadges) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.solidBadges) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.solidBadges }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SOFT BADGES -->
+    <!-- ========================================================================= -->
+    
+    <section id="soft-badges" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">label_outline</span>
+        <h2>Soft Badges</h2>
+      </div>
+      <p class="section-description">
+        Subtle badges with soft background colors for less prominent indicators.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Soft Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('soft-badges', 'preview')" (click)="setActiveTab('soft-badges', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('soft-badges', 'code')" (click)="setActiveTab('soft-badges', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('soft-badges', 'preview')">
+              <div class="demo-row">
+                <finzly-badge type="soft" variant="primary">Primary</finzly-badge>
+                <finzly-badge type="soft" variant="success">Success</finzly-badge>
+                <finzly-badge type="soft" variant="warning">Warning</finzly-badge>
+                <finzly-badge type="soft" variant="error">Error</finzly-badge>
+                <finzly-badge type="soft" variant="info">Info</finzly-badge>
+                <finzly-badge type="soft" variant="neutral">Neutral</finzly-badge>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('soft-badges', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.softBadges)" [class.copied]="isCopied(examples.softBadges)">
+                <span class="material-icons">{{ isCopied(examples.softBadges) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.softBadges) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.softBadges }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- OUTLINE BADGES -->
+    <!-- ========================================================================= -->
+    
+    <section id="outline-badges" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">border_color</span>
+        <h2>Outline Badges</h2>
+      </div>
+      <p class="section-description">
+        Bordered badges with transparent backgrounds for minimal styling.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Outline Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('outline-badges', 'preview')" (click)="setActiveTab('outline-badges', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('outline-badges', 'code')" (click)="setActiveTab('outline-badges', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('outline-badges', 'preview')">
+              <div class="demo-row">
+                <finzly-badge type="outline" variant="primary">Primary</finzly-badge>
+                <finzly-badge type="outline" variant="success">Success</finzly-badge>
+                <finzly-badge type="outline" variant="warning">Warning</finzly-badge>
+                <finzly-badge type="outline" variant="error">Error</finzly-badge>
+                <finzly-badge type="outline" variant="info">Info</finzly-badge>
+                <finzly-badge type="outline" variant="neutral">Neutral</finzly-badge>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('outline-badges', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.outlineBadges)" [class.copied]="isCopied(examples.outlineBadges)">
+                <span class="material-icons">{{ isCopied(examples.outlineBadges) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.outlineBadges) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.outlineBadges }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BADGE SIZES -->
+    <!-- ========================================================================= -->
+    
+    <section id="badge-sizes" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">aspect_ratio</span>
+        <h2>Badge Sizes</h2>
+      </div>
+      <p class="section-description">
+        Different badge sizes for various use cases: small (sm), medium (md), and large (lg).
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('badge-sizes', 'preview')" (click)="setActiveTab('badge-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('badge-sizes', 'code')" (click)="setActiveTab('badge-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('badge-sizes', 'preview')">
+              <div class="demo-row">
+                <finzly-badge variant="primary" size="sm">Small</finzly-badge>
+                <finzly-badge variant="primary" size="md">Medium</finzly-badge>
+                <finzly-badge variant="primary" size="lg">Large</finzly-badge>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('badge-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.badgeSizes)" [class.copied]="isCopied(examples.badgeSizes)">
+                <span class="material-icons">{{ isCopied(examples.badgeSizes) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.badgeSizes) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.badgeSizes }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PILL BADGES -->
+    <!-- ========================================================================= -->
+    
+    <section id="pill-badges" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">radio_button_unchecked</span>
+        <h2>Pill Badges</h2>
+      </div>
+      <p class="section-description">
+        Fully rounded pill-shaped badges for tags and labels.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Pill Shapes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('pill-badges', 'preview')" (click)="setActiveTab('pill-badges', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('pill-badges', 'code')" (click)="setActiveTab('pill-badges', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('pill-badges', 'preview')">
+              <div class="demo-row">
+                <finzly-badge variant="primary" [pill]="true">Pill Badge</finzly-badge>
+                <finzly-badge variant="success" [pill]="true">Active</finzly-badge>
+                <finzly-badge variant="warning" [pill]="true">Pending</finzly-badge>
+                <finzly-badge type="soft" variant="info" [pill]="true">Soft Pill</finzly-badge>
+                <finzly-badge type="outline" variant="error" [pill]="true">Outline Pill</finzly-badge>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('pill-badges', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.pillBadges)" [class.copied]="isCopied(examples.pillBadges)">
+                <span class="material-icons">{{ isCopied(examples.pillBadges) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.pillBadges) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.pillBadges }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- DOT BADGES -->
+    <!-- ========================================================================= -->
+    
+    <section id="dot-badges" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">fiber_manual_record</span>
+        <h2>Dot Badges</h2>
+      </div>
+      <p class="section-description">
+        Badges with colored dots for status indicators like online/offline.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Status Dots</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('dot-badges', 'preview')" (click)="setActiveTab('dot-badges', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('dot-badges', 'code')" (click)="setActiveTab('dot-badges', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('dot-badges', 'preview')">
+              <div class="demo-row">
+                <finzly-badge variant="success" [dot]="true">Online</finzly-badge>
+                <finzly-badge variant="warning" [dot]="true">Away</finzly-badge>
+                <finzly-badge variant="error" [dot]="true">Offline</finzly-badge>
+                <finzly-badge variant="neutral" [dot]="true">Idle</finzly-badge>
+                <finzly-badge type="soft" variant="success" [dot]="true">Available</finzly-badge>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('dot-badges', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dotBadges)" [class.copied]="isCopied(examples.dotBadges)">
+                <span class="material-icons">{{ isCopied(examples.dotBadges) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dotBadges) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dotBadges }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- CUSTOM COLORS -->
+    <!-- ========================================================================= -->
+    
+    <section id="custom-colors" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">palette</span>
+        <h2>Custom Color Badges</h2>
+      </div>
+      <p class="section-description">
+        Use any custom color with the badge component using CSS color-mix().
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Custom Colors</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('custom-colors', 'preview')" (click)="setActiveTab('custom-colors', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('custom-colors', 'code')" (click)="setActiveTab('custom-colors', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('custom-colors', 'preview')">
+              <div class="demo-row">
+                <finzly-badge variant="custom" customColor="#f97316">Orange</finzly-badge>
+                <finzly-badge variant="custom" customColor="#14b8a6">Teal</finzly-badge>
+                <finzly-badge variant="custom" customColor="#8b5cf6">Purple</finzly-badge>
+                <finzly-badge variant="custom" customColor="#ec4899">Pink</finzly-badge>
+                <finzly-badge variant="custom" customColor="#84cc16">Lime</finzly-badge>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('custom-colors', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.customColors)" [class.copied]="isCopied(examples.customColors)">
+                <span class="material-icons">{{ isCopied(examples.customColors) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.customColors) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.customColors }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BADGES WITH ICONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="badges-icons" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">add_circle</span>
+        <h2>Badges with Icons</h2>
+      </div>
+      <p class="section-description">
+        Add icons to badges for better visual communication.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Icon Badges</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('badges-icons', 'preview')" (click)="setActiveTab('badges-icons', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('badges-icons', 'code')" (click)="setActiveTab('badges-icons', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('badges-icons', 'preview')">
+              <div class="demo-row">
+                <finzly-badge variant="success" [icon]="checkIcon">Verified</finzly-badge>
+                <finzly-badge variant="info" [icon]="infoIcon">Info</finzly-badge>
+                <finzly-badge variant="warning" [icon]="userIcon">User</finzly-badge>
+                <finzly-badge variant="primary" [icon]="starIcon">Featured</finzly-badge>
+                <finzly-badge type="soft" variant="success" [icon]="checkIcon">Approved</finzly-badge>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('badges-icons', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.badgesIcons)" [class.copied]="isCopied(examples.badgesIcons)">
+                <span class="material-icons">{{ isCopied(examples.badgesIcons) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.badgesIcons) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.badgesIcons }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Section -->
+    <section class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">code</span>
+        <h2>Component API</h2>
+      </div>
+      
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Props / Inputs</h3>
+        <div class="api-table-wrapper">
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>type</code></td>
+                <td><code>'solid' | 'soft' | 'outline'</code></td>
+                <td><code>'solid'</code></td>
+                <td>Badge style type</td>
+              </tr>
+              <tr>
+                <td><code>variant</code></td>
+                <td><code>'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral' | 'custom'</code></td>
+                <td><code>'primary'</code></td>
+                <td>Badge color variant</td>
+              </tr>
+              <tr>
+                <td><code>size</code></td>
+                <td><code>'sm' | 'md' | 'lg'</code></td>
+                <td><code>'md'</code></td>
+                <td>Badge size</td>
+              </tr>
+              <tr>
+                <td><code>pill</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Makes the badge fully rounded</td>
+              </tr>
+              <tr>
+                <td><code>dot</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Adds a colored dot before text</td>
+              </tr>
+              <tr>
+                <td><code>count</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Displays as a small round count badge</td>
+              </tr>
+              <tr>
+                <td><code>customColor</code></td>
+                <td><code>string</code></td>
+                <td><code>undefined</code></td>
+                <td>Custom color (hex) for variant="custom"</td>
+              </tr>
+              <tr>
+                <td><code>icon</code></td>
+                <td><code>string</code></td>
+                <td><code>undefined</code></td>
+                <td>Icon HTML/SVG string to display before text</td>
+              </tr>
+              <tr>
+                <td><code>iconAfter</code></td>
+                <td><code>string</code></td>
+                <td><code>undefined</code></td>
+                <td>Icon HTML/SVG string to display after text</td>
+              </tr>
+              <tr>
+                <td><code>removable</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Adds a remove/close button</td>
+              </tr>
+              <tr>
+                <td><code>clickable</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Makes the badge clickable with hover effects</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

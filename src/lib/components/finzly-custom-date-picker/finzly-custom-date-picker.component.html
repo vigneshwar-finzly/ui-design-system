@@ -1,0 +1,202 @@
+<div class="finzly-custom-date-picker-wrapper" [class.picker-open]="isPickerOpen">
+  <label *ngIf="label" class="finzly-input-label">
+    {{ label }}
+  </label>
+  
+  <div class="date-input-container">
+    <input
+      #inputElement
+      type="text"
+      class="finzly-input finzly-input-default date-input"
+      [placeholder]="placeholder"
+      [value]="formattedDate"
+      [disabled]="disabled"
+      [required]="required"
+      (click)="togglePicker()"
+      readonly
+    />
+    <span class="material-icons calendar-icon" (click)="togglePicker(); $event.stopPropagation()">
+      date_range
+    </span>
+  </div>
+
+  <!-- Custom Date Picker Popup -->
+  <div class="custom-picker-dropdown" *ngIf="isPickerOpen" #pickerDropdown (click)="$event.stopPropagation()">
+    <div class="picker-container">
+      
+      <!-- Left Side: Calendar -->
+      <div class="calendar-section">
+        <!-- Date View -->
+        <ng-container *ngIf="currentView === 'date'">
+          <div class="calendar-header">
+            <button type="button" class="nav-btn" (click)="previousMonth()">
+              <span class="material-icons">chevron_left</span>
+            </button>
+            <div class="month-year clickable" (click)="switchToMonthView()">{{ currentMonthYear }}</div>
+            <button type="button" class="nav-btn" (click)="nextMonth()">
+              <span class="material-icons">chevron_right</span>
+            </button>
+          </div>
+
+          <div class="calendar-weekdays">
+            <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+          </div>
+
+          <div class="calendar-days">
+            <div
+              *ngFor="let day of calendarDays"
+              class="calendar-day"
+              [class.other-month]="!day.isCurrentMonth"
+              [class.today]="day.isToday"
+              [class.selected]="day.isSelected"
+              [class.disabled]="isDateDisabled(day.date)"
+              (click)="selectDate(day)">
+              {{ day.day }}
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Month View -->
+        <ng-container *ngIf="currentView === 'month'">
+          <div class="calendar-header">
+            <button type="button" class="nav-btn" (click)="previousYear()">
+              <span class="material-icons">chevron_left</span>
+            </button>
+            <div class="month-year clickable" (click)="switchToYearView()">{{ currentYear }}</div>
+            <button type="button" class="nav-btn" (click)="nextYear()">
+              <span class="material-icons">chevron_right</span>
+            </button>
+          </div>
+
+          <div class="calendar-months">
+            <div
+              *ngFor="let month of months; let i = index"
+              class="calendar-month"
+              [class.current]="isCurrentMonth(i)"
+              [class.selected]="isSelectedMonth(i)"
+              (click)="selectMonth(i)">
+              {{ month }}
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Year View -->
+        <ng-container *ngIf="currentView === 'year'">
+          <div class="calendar-header">
+            <button type="button" class="nav-btn" (click)="previousYearRange()">
+              <span class="material-icons">chevron_left</span>
+            </button>
+            <div class="month-year">{{ yearRangeLabel }}</div>
+            <button type="button" class="nav-btn" (click)="nextYearRange()">
+              <span class="material-icons">chevron_right</span>
+            </button>
+          </div>
+
+          <div class="calendar-years">
+            <div
+              *ngFor="let year of displayedYears"
+              class="calendar-year"
+              [class.current]="isCurrentYear(year)"
+              [class.selected]="isSelectedYear(year)"
+              (click)="selectYear(year)">
+              {{ year }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Right Side: Selectors or Custom Form -->
+      <div class="selector-section">
+        <!-- Preset Selector List -->
+        <div class="preset-list" *ngIf="!showCustomForm">
+          <div class="preset-items">
+            <div
+              *ngFor="let preset of presets"
+              class="preset-item"
+              [class.active]="selectedPreset === preset.key"
+              (click)="selectPreset(preset.key)">
+              <span class="preset-label">{{ preset.label }}</span>
+              <span class="preset-description">{{ preset.description }}</span>
+            </div>
+            <div
+              class="preset-item custom-item"
+              [class.active]="selectedPreset === 'CUSTOM'"
+              (click)="selectPreset('CUSTOM')">
+              <span class="preset-label">
+                <span class="material-icons">tune</span>
+                CUSTOM
+              </span>
+              <span class="preset-description">Advanced calculation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Form -->
+        <div class="custom-form" *ngIf="showCustomForm">
+          <div class="selector-header">
+            <span class="material-icons">tune</span>
+            <span>Custom</span>
+          </div>
+
+          <div class="custom-fields">
+            <div class="field-group">
+              <label class="field-label">Base</label>
+              <select class="field-select" [(ngModel)]="customConfig.preset">
+                <option value="TODAY">TODAY</option>
+                <option value="FDM">FDM</option>
+                <option value="LDM">LDM</option>
+                <option value="FDY">FDY</option>
+                <option value="LDY">LDY</option>
+                <option value="FDW">FDW</option>
+                <option value="LDW">LDW</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Op</label>
+              <select class="field-select" [(ngModel)]="customConfig.operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Value</label>
+              <input 
+                type="number" 
+                class="field-input" 
+                min="0"
+                [(ngModel)]="customConfig.value"
+                placeholder="0">
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Unit</label>
+              <select class="field-select" [(ngModel)]="customConfig.unit">
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="custom-actions">
+            <button type="button" class="apply-btn" (click)="applyCustom()">
+              <span class="material-icons">check</span>
+              Apply
+            </button>
+            <button type="button" class="back-btn" (click)="cancelCustom()">
+              <span class="material-icons">arrow_back</span>
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span *ngIf="showHelper" class="form-helper">{{ helperText }}</span>
+  <span *ngIf="showError" class="form-error">{{ errorText }}</span>
+</div>
+

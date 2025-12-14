@@ -1,0 +1,1171 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Finzly Input Components</h1>
+    <p class="demo-intro">
+      Complete set of production-ready form components with built-in validation, formatting, and consistent styling.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY INPUT COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-input" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">input</span>
+        <h2>Finzly Input Component</h2>
+      </div>
+      <p class="section-description">
+        Versatile input component with validation states, sizing options, and helper text support.
+      </p>
+
+      <!-- Basic Input -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Input</h3>
+        <div class="tabbed-example">
+          <!-- Tabs -->
+          <div class="tabs">
+            <button 
+              class="tab-btn" 
+              [class.active]="isTabActive('input-basic', 'preview')"
+              (click)="setActiveTab('input-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button 
+              class="tab-btn" 
+              [class.active]="isTabActive('input-basic', 'code')"
+              (click)="setActiveTab('input-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          
+          <!-- Tab Content -->
+          <div class="tab-content">
+            <!-- Preview Tab -->
+            <div class="demo-preview" *ngIf="isTabActive('input-basic', 'preview')">
+              <finzly-input
+                label="Full Name"
+                placeholder="Enter your name"
+                [(ngModel)]="textValue">
+              </finzly-input>
+              <p class="value-display">Value: <strong>{{ textValue || '(empty)' }}</strong></p>
+            </div>
+            
+            <!-- Code Tab -->
+            <div class="code-view" *ngIf="isTabActive('input-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.inputBasic)" [class.copied]="isCopied(examples.inputBasic)">
+                <span class="material-icons">{{ isCopied(examples.inputBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.inputBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.inputBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Required Input -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Required Input</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button 
+              class="tab-btn" 
+              [class.active]="isTabActive('input-required', 'preview')"
+              (click)="setActiveTab('input-required', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button 
+              class="tab-btn" 
+              [class.active]="isTabActive('input-required', 'code')"
+              (click)="setActiveTab('input-required', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('input-required', 'preview')">
+              <finzly-input
+                label="Email Address"
+                type="email"
+                [required]="true"
+                placeholder="your@email.com"
+                [(ngModel)]="emailValue">
+              </finzly-input>
+            </div>
+            
+            <div class="code-view" *ngIf="isTabActive('input-required', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.inputRequired)" [class.copied]="isCopied(examples.inputRequired)">
+                <span class="material-icons">{{ isCopied(examples.inputRequired) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.inputRequired) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.inputRequired }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Sizes -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('input-sizes', 'preview')" (click)="setActiveTab('input-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('input-sizes', 'code')" (click)="setActiveTab('input-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('input-sizes', 'preview')">
+              <finzly-input label="Small" size="sm" [(ngModel)]="textValue"></finzly-input>
+              <finzly-input label="Medium (default)" [(ngModel)]="textValue"></finzly-input>
+              <finzly-input label="Large" size="lg" [(ngModel)]="textValue"></finzly-input>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('input-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.inputSizesCode)" [class.copied]="isCopied(examples.inputSizesCode)">
+                <span class="material-icons">{{ isCopied(examples.inputSizesCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.inputSizesCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.inputSizesCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Validation States -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Validation States</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('input-states', 'preview')" (click)="setActiveTab('input-states', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('input-states', 'code')" (click)="setActiveTab('input-states', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('input-states', 'preview')">
+              <finzly-input
+                label="Success State"
+                state="success"
+                helperText="This looks good!"
+                [(ngModel)]="textValue">
+              </finzly-input>
+              <finzly-input
+                label="Error State"
+                state="error"
+                errorText="This field is required"
+                [(ngModel)]="textValue">
+              </finzly-input>
+              <finzly-input
+                label="Warning State"
+                state="warning"
+                helperText="Please double-check"
+                [(ngModel)]="textValue">
+              </finzly-input>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('input-states', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.inputStatesCode)" [class.copied]="isCopied(examples.inputStatesCode)">
+                <span class="material-icons">{{ isCopied(examples.inputStatesCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.inputStatesCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.inputStatesCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reactive Form -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Reactive Forms</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('input-reactive', 'preview')" (click)="setActiveTab('input-reactive', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('input-reactive', 'code')" (click)="setActiveTab('input-reactive', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('input-reactive', 'preview')">
+              <form [formGroup]="inputForm">
+                <finzly-input
+                  label="Full Name"
+                  [required]="true"
+                  [state]="getFieldState(inputForm, 'name')"
+                  [errorText]="getFieldError(inputForm, 'name')"
+                  formControlName="name">
+                </finzly-input>
+                <finzly-input
+                  label="Email"
+                  type="email"
+                  [required]="true"
+                  [state]="getFieldState(inputForm, 'email')"
+                  [errorText]="getFieldError(inputForm, 'email')"
+                  formControlName="email">
+                </finzly-input>
+              </form>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('input-reactive', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.inputValidation)" [class.copied]="isCopied(examples.inputValidation)">
+                <span class="material-icons">{{ isCopied(examples.inputValidation) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.inputValidation) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.inputValidation }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY AMOUNT INPUT COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-amount-input" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">payments</span>
+        <h2>Finzly Amount Input Component</h2>
+      </div>
+      <p class="section-description">
+        Specialized input for currency and numeric amounts with automatic thousand separator formatting.
+      </p>
+
+      <!-- Basic Amount -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Amount Input</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('amount-basic', 'preview')" (click)="setActiveTab('amount-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('amount-basic', 'code')" (click)="setActiveTab('amount-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('amount-basic', 'preview')">
+              <finzly-amount-input
+                label="Amount"
+                [(ngModel)]="amountValue">
+              </finzly-amount-input>
+              <p class="value-display">Value: <strong>{{ amountValue !== null ? amountValue : '(empty)' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('amount-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.amountBasic)" [class.copied]="isCopied(examples.amountBasic)">
+                <span class="material-icons">{{ isCopied(examples.amountBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.amountBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.amountBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amount with Options -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Min/Max & Validation</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('amount-custom', 'preview')" (click)="setActiveTab('amount-custom', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('amount-custom', 'code')" (click)="setActiveTab('amount-custom', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('amount-custom', 'preview')">
+              <finzly-amount-input
+                label="Price"
+                [prefix]="'$'"
+                [decimalPrecision]="2"
+                [minValue]="0"
+                [maxValue]="10000"
+                helperText="Enter a value between $0 and $10,000"
+                [(ngModel)]="priceValue">
+              </finzly-amount-input>
+              <p class="value-display">Value: <strong>${{ priceValue }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('amount-custom', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.amountCustom)" [class.copied]="isCopied(examples.amountCustom)">
+                <span class="material-icons">{{ isCopied(examples.amountCustom) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.amountCustom) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.amountCustom }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amount Sizes -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('amount-sizes', 'preview')" (click)="setActiveTab('amount-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('amount-sizes', 'code')" (click)="setActiveTab('amount-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('amount-sizes', 'preview')">
+              <finzly-amount-input label="Small" size="sm" [(ngModel)]="priceValue"></finzly-amount-input>
+              <finzly-amount-input label="Medium (default)" [(ngModel)]="priceValue"></finzly-amount-input>
+              <finzly-amount-input label="Large" size="lg" [(ngModel)]="priceValue"></finzly-amount-input>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('amount-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.amountSizesCode)" [class.copied]="isCopied(examples.amountSizesCode)">
+                <span class="material-icons">{{ isCopied(examples.amountSizesCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.amountSizesCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.amountSizesCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY TEXTAREA COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-textarea" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">notes</span>
+        <h2>Finzly Textarea Component</h2>
+      </div>
+      <p class="section-description">
+        Multi-line text input with auto-resize and character counter support.
+      </p>
+
+      <!-- Basic Textarea -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Textarea</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('textarea-basic', 'preview')" (click)="setActiveTab('textarea-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('textarea-basic', 'code')" (click)="setActiveTab('textarea-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('textarea-basic', 'preview')">
+              <finzly-textarea
+                label="Description"
+                placeholder="Enter description"
+                [rows]="4"
+                [(ngModel)]="textareaValue">
+              </finzly-textarea>
+              <p class="value-display">Length: <strong>{{ textareaValue.length }} characters</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('textarea-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.textareaBasic)" [class.copied]="isCopied(examples.textareaBasic)">
+                <span class="material-icons">{{ isCopied(examples.textareaBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.textareaBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.textareaBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Textarea -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Auto-Resize & Character Count</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('textarea-advanced', 'preview')" (click)="setActiveTab('textarea-advanced', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('textarea-advanced', 'code')" (click)="setActiveTab('textarea-advanced', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('textarea-advanced', 'preview')">
+              <finzly-textarea
+                label="Comments"
+                [required]="true"
+                [autoResize]="true"
+                [showCharCount]="true"
+                [maxLength]="500"
+                helperText="Maximum 500 characters"
+                [(ngModel)]="textareaValue">
+              </finzly-textarea>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('textarea-advanced', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.textareaAdvanced)" [class.copied]="isCopied(examples.textareaAdvanced)">
+                <span class="material-icons">{{ isCopied(examples.textareaAdvanced) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.textareaAdvanced) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.textareaAdvanced }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Validation States -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Validation States</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('textarea-states', 'preview')" (click)="setActiveTab('textarea-states', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('textarea-states', 'code')" (click)="setActiveTab('textarea-states', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('textarea-states', 'preview')">
+              <finzly-textarea label="Success" state="success" helperText="Looks good!" [(ngModel)]="textareaValue"></finzly-textarea>
+              <finzly-textarea label="Error" state="error" errorText="Required field" [(ngModel)]="textareaValue"></finzly-textarea>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('textarea-states', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.textareaStatesCode)" [class.copied]="isCopied(examples.textareaStatesCode)">
+                <span class="material-icons">{{ isCopied(examples.textareaStatesCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.textareaStatesCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.textareaStatesCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY CHECKBOX COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-checkbox" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">check_box</span>
+        <h2>Finzly Checkbox Component</h2>
+      </div>
+      <p class="section-description">
+        Checkbox input with custom styling and form integration.
+      </p>
+
+      <!-- Basic Checkbox -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Checkbox</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('checkbox-basic', 'preview')" (click)="setActiveTab('checkbox-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('checkbox-basic', 'code')" (click)="setActiveTab('checkbox-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('checkbox-basic', 'preview')">
+              <finzly-checkbox
+                label="Accept terms and conditions"
+                [(ngModel)]="checkboxValue">
+              </finzly-checkbox>
+              <p class="value-display">Checked: <strong>{{ checkboxValue }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('checkbox-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.checkboxBasic)" [class.copied]="isCopied(examples.checkboxBasic)">
+                <span class="material-icons">{{ isCopied(examples.checkboxBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.checkboxBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.checkboxBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multiple Checkboxes -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Multiple Checkboxes</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('checkbox-multiple', 'preview')" (click)="setActiveTab('checkbox-multiple', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('checkbox-multiple', 'code')" (click)="setActiveTab('checkbox-multiple', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('checkbox-multiple', 'preview')">
+              <finzly-checkbox label="Option 1" [(ngModel)]="checkboxValue"></finzly-checkbox>
+              <finzly-checkbox label="Option 2 (checked)" [ngModel]="true"></finzly-checkbox>
+              <finzly-checkbox label="Option 3 (disabled)" [disabled]="true"></finzly-checkbox>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('checkbox-multiple', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.checkboxGroup)" [class.copied]="isCopied(examples.checkboxGroup)">
+                <span class="material-icons">{{ isCopied(examples.checkboxGroup) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.checkboxGroup) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.checkboxGroup }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Helper Text -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Helper Text</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('checkbox-helper', 'preview')" (click)="setActiveTab('checkbox-helper', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('checkbox-helper', 'code')" (click)="setActiveTab('checkbox-helper', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('checkbox-helper', 'preview')">
+              <finzly-checkbox
+                label="Subscribe to newsletter"
+                helperText="You can unsubscribe at any time"
+                [(ngModel)]="checkboxValue">
+              </finzly-checkbox>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('checkbox-helper', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.checkboxHelperCode)" [class.copied]="isCopied(examples.checkboxHelperCode)">
+                <span class="material-icons">{{ isCopied(examples.checkboxHelperCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.checkboxHelperCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.checkboxHelperCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY RADIO BUTTON COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-radio" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">radio_button_checked</span>
+        <h2>Finzly Radio Button Component</h2>
+      </div>
+      <p class="section-description">
+        Radio button input for single-choice selections.
+      </p>
+
+      <!-- Basic Radio -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Radio Group</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('radio-basic', 'preview')" (click)="setActiveTab('radio-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('radio-basic', 'code')" (click)="setActiveTab('radio-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('radio-basic', 'preview')">
+              <finzly-radio-button
+                label="Option 1"
+                [value]="'option1'"
+                name="radioGroup"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+              <finzly-radio-button
+                label="Option 2"
+                [value]="'option2'"
+                name="radioGroup"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+              <finzly-radio-button
+                label="Option 3"
+                [value]="'option3'"
+                name="radioGroup"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+              <p class="value-display">Selected: <strong>{{ radioValue }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('radio-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.radioBasic)" [class.copied]="isCopied(examples.radioBasic)">
+                <span class="material-icons">{{ isCopied(examples.radioBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.radioBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.radioBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Radio with Helper Text -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Helper Text</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('radio-helper', 'preview')" (click)="setActiveTab('radio-helper', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('radio-helper', 'code')" (click)="setActiveTab('radio-helper', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('radio-helper', 'preview')">
+              <finzly-radio-button
+                label="Basic Plan"
+                [value]="'basic'"
+                name="plan"
+                helperText="Free forever"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+              <finzly-radio-button
+                label="Pro Plan"
+                [value]="'pro'"
+                name="plan"
+                helperText="$19/month"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('radio-helper', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.radioHelperCode)" [class.copied]="isCopied(examples.radioHelperCode)">
+                <span class="material-icons">{{ isCopied(examples.radioHelperCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.radioHelperCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.radioHelperCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disabled Radio -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Disabled State</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('radio-disabled', 'preview')" (click)="setActiveTab('radio-disabled', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('radio-disabled', 'code')" (click)="setActiveTab('radio-disabled', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('radio-disabled', 'preview')">
+              <finzly-radio-button
+                label="Active Option"
+                [value]="'active'"
+                name="disabled-group"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+              <finzly-radio-button
+                label="Disabled Option"
+                [value]="'disabled'"
+                name="disabled-group"
+                [disabled]="true"
+                [(ngModel)]="radioValue">
+              </finzly-radio-button>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('radio-disabled', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.radioDisabledCode)" [class.copied]="isCopied(examples.radioDisabledCode)">
+                <span class="material-icons">{{ isCopied(examples.radioDisabledCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.radioDisabledCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.radioDisabledCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FINZLY TOGGLE COMPONENT -->
+    <!-- ========================================================================= -->
+    
+    <section id="finzly-toggle" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">toggle_on</span>
+        <h2>Finzly Toggle Component</h2>
+      </div>
+      <p class="section-description">
+        Toggle switch for boolean on/off states.
+      </p>
+
+      <!-- Basic Toggle -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Basic Toggle</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('toggle-basic', 'preview')" (click)="setActiveTab('toggle-basic', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('toggle-basic', 'code')" (click)="setActiveTab('toggle-basic', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('toggle-basic', 'preview')">
+              <finzly-toggle
+                label="Enable notifications"
+                [(ngModel)]="toggleValue">
+              </finzly-toggle>
+              <p class="value-display">State: <strong>{{ toggleValue ? 'ON' : 'OFF' }}</strong></p>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('toggle-basic', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.toggleBasic)" [class.copied]="isCopied(examples.toggleBasic)">
+                <span class="material-icons">{{ isCopied(examples.toggleBasic) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.toggleBasic) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.toggleBasic }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle with Labels -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With On/Off Labels</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('toggle-labels', 'preview')" (click)="setActiveTab('toggle-labels', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('toggle-labels', 'code')" (click)="setActiveTab('toggle-labels', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('toggle-labels', 'preview')">
+              <finzly-toggle
+                label="Dark Mode"
+                [onLabel]="'On'"
+                [offLabel]="'Off'"
+                [(ngModel)]="toggleValue">
+              </finzly-toggle>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('toggle-labels', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.toggleLabels)" [class.copied]="isCopied(examples.toggleLabels)">
+                <span class="material-icons">{{ isCopied(examples.toggleLabels) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.toggleLabels) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.toggleLabels }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multiple Toggles -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Multiple Toggles</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('toggle-multiple', 'preview')" (click)="setActiveTab('toggle-multiple', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('toggle-multiple', 'code')" (click)="setActiveTab('toggle-multiple', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('toggle-multiple', 'preview')">
+              <finzly-toggle label="Email Notifications" [ngModel]="true"></finzly-toggle>
+              <finzly-toggle label="SMS Notifications" [(ngModel)]="toggleValue"></finzly-toggle>
+              <finzly-toggle label="Push Notifications" [disabled]="true"></finzly-toggle>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('toggle-multiple', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.toggleMultipleCode)" [class.copied]="isCopied(examples.toggleMultipleCode)">
+                <span class="material-icons">{{ isCopied(examples.toggleMultipleCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.toggleMultipleCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.toggleMultipleCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle with Helper Text -->
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Helper Text</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('toggle-helper', 'preview')" (click)="setActiveTab('toggle-helper', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('toggle-helper', 'code')" (click)="setActiveTab('toggle-helper', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('toggle-helper', 'preview')">
+              <finzly-toggle
+                label="Two-Factor Authentication"
+                helperText="Adds an extra layer of security"
+                [(ngModel)]="toggleValue">
+              </finzly-toggle>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('toggle-helper', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.toggleHelperCode)" [class.copied]="isCopied(examples.toggleHelperCode)">
+                <span class="material-icons">{{ isCopied(examples.toggleHelperCode) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.toggleHelperCode) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.toggleHelperCode }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- COMPLETE FORM EXAMPLE -->
+    <!-- ========================================================================= -->
+    
+    <div class="demo-section">
+      <h2 class="demo-section-subtitle">Complete Form Example</h2>
+      <p class="section-description">All components working together in a reactive form.</p>
+      <div class="tabbed-example">
+        <div class="tabs">
+          <button class="tab-btn" [class.active]="isTabActive('complete-form', 'preview')" (click)="setActiveTab('complete-form', 'preview')">
+            <span class="material-icons">visibility</span>
+            Preview
+          </button>
+          <button class="tab-btn" [class.active]="isTabActive('complete-form', 'code')" (click)="setActiveTab('complete-form', 'code')">
+            <span class="material-icons">code</span>
+            Code
+          </button>
+        </div>
+        <div class="tab-content">
+          <div class="demo-preview" *ngIf="isTabActive('complete-form', 'preview')">
+            <div class="card" style="max-width: 700px;">
+              <form [formGroup]="allComponentsForm" (ngSubmit)="onSubmitForm(allComponentsForm)">
+                <finzly-input
+                  label="Full Name"
+                  [required]="true"
+                  [state]="getFieldState(allComponentsForm, 'fullName')"
+                  [errorText]="getFieldError(allComponentsForm, 'fullName')"
+                  formControlName="fullName">
+                </finzly-input>
+
+                <finzly-amount-input
+                  label="Price"
+                  [required]="true"
+                  [minValue]="0"
+                  formControlName="price">
+                </finzly-amount-input>
+
+                <finzly-textarea
+                  label="Description"
+                  [required]="true"
+                  [autoResize]="true"
+                  [maxLength]="200"
+                  [showCharCount]="true"
+                  formControlName="description">
+                </finzly-textarea>
+
+                <finzly-checkbox
+                  label="I agree to the terms and conditions"
+                  formControlName="terms">
+                </finzly-checkbox>
+
+                <div style="margin: 1rem 0;">
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Select Plan:</label>
+                  <finzly-radio-button
+                    label="Basic Plan"
+                    [value]="'basic'"
+                    name="plan"
+                    formControlName="plan">
+                  </finzly-radio-button>
+                  <finzly-radio-button
+                    label="Pro Plan"
+                    [value]="'pro'"
+                    name="plan"
+                    formControlName="plan">
+                  </finzly-radio-button>
+                </div>
+
+                <finzly-toggle
+                  label="Enable email notifications"
+                  formControlName="notifications">
+                </finzly-toggle>
+
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                  <button type="submit" class="btn btn-primary">Submit Form</button>
+                  <button type="button" class="btn btn-outline" (click)="allComponentsForm.reset()">Reset</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="code-view" *ngIf="isTabActive('complete-form', 'code')">
+            <button class="copy-btn" (click)="copyCode(examples.completeForm)" [class.copied]="isCopied(examples.completeForm)">
+              <span class="material-icons">{{ isCopied(examples.completeForm) ? 'check' : 'content_copy' }}</span>
+              {{ isCopied(examples.completeForm) ? 'Copied!' : 'Copy' }}
+            </button>
+            <pre class="demo-code">{{ examples.completeForm }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- API REFERENCE -->
+    <!-- ========================================================================= -->
+    
+    <section id="api-reference" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">code</span>
+        <h2>Component API</h2>
+      </div>
+      <p class="section-description">
+        Complete API reference for all input components with inputs, outputs, and usage examples.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Input API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-input', 'preview')" (click)="setActiveTab('api-input', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-input', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string                              // Label text
+&#64;Input() placeholder: string = ''                    // Placeholder text
+&#64;Input() required: boolean = false                   // Required field
+&#64;Input() disabled: boolean = false                   // Disable input
+&#64;Input() type: 'text'|'email'|'password'|'number'|'tel'|'url' = 'text'
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'            // Input size
+&#64;Input() state: 'default'|'success'|'error'|'warning' = 'default'
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() errorText: string = ''                      // Error message
+&#64;Input() maxLength?: number                          // Max character length
+&#64;Input() minLength?: number                          // Min character length
+&#64;Input() pattern?: string                            // Validation pattern
+&#64;Input() autocomplete?: string                       // Autocomplete attribute
+
+// Supports ngModel and formControlName (ControlValueAccessor)</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Amount Input API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-amount', 'preview')" (click)="setActiveTab('api-amount', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-amount', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() placeholder: string = '0.00'                // Placeholder
+&#64;Input() required: boolean = false                   // Required field
+&#64;Input() disabled: boolean = false                   // Disable input
+&#64;Input() size: 'sm' | 'md' | 'lg' = 'md'            // Input size
+&#64;Input() state: 'default'|'success'|'error'|'warning' = 'default'
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() errorText: string = ''                      // Error message
+&#64;Input() prefix: string = '$'                        // Currency prefix
+&#64;Input() suffix: string = ''                          // Currency suffix
+&#64;Input() decimalPrecision: number = 2                // Decimal places
+&#64;Input() allowNegative: boolean = true               // Allow negative values
+&#64;Input() maxValue?: number                           // Maximum value
+&#64;Input() minValue?: number                           // Minimum value
+&#64;Input() showPrefix: boolean = true                  // Show prefix
+&#64;Input() showSuffix: boolean = false                 // Show suffix
+
+// Supports ngModel and formControlName (ControlValueAccessor)</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Textarea API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-textarea', 'preview')" (click)="setActiveTab('api-textarea', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-textarea', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() placeholder: string = ''                    // Placeholder
+&#64;Input() required: boolean = false                   // Required field
+&#64;Input() disabled: boolean = false                   // Disable textarea
+&#64;Input() rows: number = 4                            // Initial rows
+&#64;Input() maxLength?: number                          // Max character length
+&#64;Input() minLength?: number                          // Min character length
+&#64;Input() state: 'default'|'success'|'error'|'warning' = 'default'
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() errorText: string = ''                      // Error message
+&#64;Input() autoResize: boolean = true                  // Auto-resize height
+&#64;Input() showCharCount: boolean = false              // Show character counter
+
+// Supports ngModel and formControlName (ControlValueAccessor)</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Checkbox API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-checkbox', 'preview')" (click)="setActiveTab('api-checkbox', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-checkbox', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() disabled: boolean = false                   // Disable checkbox
+&#64;Input() id: string                                  // Unique ID (auto-generated)
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() indeterminate: boolean = false               // Indeterminate state
+
+// Supports ngModel and formControlName (ControlValueAccessor)
+// Value: boolean</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Radio Button API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-radio', 'preview')" (click)="setActiveTab('api-radio', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-radio', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() value: any                                  // Radio value
+&#64;Input() name: string                                // Group name (auto-generated)
+&#64;Input() disabled: boolean = false                   // Disable radio
+&#64;Input() id: string                                  // Unique ID (auto-generated)
+&#64;Input() helperText: string = ''                     // Helper text
+
+// Supports ngModel and formControlName (ControlValueAccessor)
+// Use same 'name' for radio group</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Finzly Toggle API</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('api-toggle', 'preview')" (click)="setActiveTab('api-toggle', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('api-toggle', 'preview')">
+              <div class="card">
+                <h4>Input Properties</h4>
+                <pre class="demo-code" style="white-space: pre-wrap;">&#64;Input() label: string = ''                          // Label text
+&#64;Input() disabled: boolean = false                   // Disable toggle
+&#64;Input() id: string                                  // Unique ID (auto-generated)
+&#64;Input() helperText: string = ''                     // Helper text
+&#64;Input() onLabel: string = ''                        // Label when ON
+&#64;Input() offLabel: string = ''                        // Label when OFF
+
+// Supports ngModel and formControlName (ControlValueAccessor)
+// Value: boolean</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

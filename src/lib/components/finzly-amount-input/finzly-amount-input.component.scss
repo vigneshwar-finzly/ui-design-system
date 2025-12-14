@@ -1,0 +1,9 @@
+// Uses _inputs.scss styles
+
+// Custom styling for amount prefix/suffix
+.amount-prefix,
+.amount-suffix {
+  font-weight: 600;
+  user-select: none;
+}
+

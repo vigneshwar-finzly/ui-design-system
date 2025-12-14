@@ -1,0 +1,39 @@
+@import '../../styles/variables';
+
+.finzly-label {
+  display: block;
+  font-family: $font-family-base;
+  color: $gray-700;
+  
+  // Variant styles
+  &.finzly-label-default {
+    font-weight: $font-medium;
+  }
+  
+  &.finzly-label-medium {
+    font-weight: $font-semibold;
+  }
+  
+  &.finzly-label-bold {
+    font-weight: 700;
+  }
+  
+  // Size styles
+  &.finzly-label-sm {
+    font-size: $text-xs;
+  }
+  
+  &.finzly-label-md {
+    font-size: $text-sm;
+  }
+  
+  &.finzly-label-lg {
+    font-size: $text-base;
+  }
+}
+
+.finzly-label-required {
+  color: $red-500;
+  margin-left: 0.25rem;
+}
+

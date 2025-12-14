@@ -1,0 +1,56 @@
+@import '../../styles/variables';
+
+.finzly-heading {
+  font-family: $font-family-base;
+  color: $gray-900;
+  margin: 0;
+  
+  // Level sizes - matching Tailwind
+  &.finzly-heading-1 {
+    font-size: 2.25rem;  // text-4xl (36px)
+    line-height: 2.5rem;
+  }
+  
+  &.finzly-heading-2 {
+    font-size: 1.875rem;  // text-3xl (30px)
+    line-height: 2.25rem;
+  }
+  
+  &.finzly-heading-3 {
+    font-size: 1.5rem;  // text-2xl (24px)
+    line-height: 2rem;
+  }
+  
+  &.finzly-heading-4 {
+    font-size: $text-xl;  // text-xl (20px)
+    line-height: 1.75rem;
+  }
+  
+  &.finzly-heading-5 {
+    font-size: $text-lg;  // text-lg (18px)
+    line-height: 1.75rem;
+  }
+  
+  &.finzly-heading-6 {
+    font-size: $text-base;  // text-base (16px)
+    line-height: 1.5rem;
+  }
+  
+  // Weight styles
+  &.finzly-heading-normal {
+    font-weight: 400;
+  }
+  
+  &.finzly-heading-medium {
+    font-weight: $font-medium;
+  }
+  
+  &.finzly-heading-semibold {
+    font-weight: $font-semibold;
+  }
+  
+  &.finzly-heading-bold {
+    font-weight: 700;
+  }
+}
+

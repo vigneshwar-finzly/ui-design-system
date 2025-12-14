@@ -1,0 +1,167 @@
+<div class="finzly-date-time-picker-wrapper">
+  <label *ngIf="label" class="finzly-input-label">
+    {{ label }}
+  </label>
+  
+  <div class="datetime-input-container">
+    <input
+      #inputElement
+      type="text"
+      class="finzly-input finzly-input-default datetime-input"
+      [placeholder]="placeholder"
+      [value]="formattedDateTime"
+      [disabled]="disabled"
+      [required]="required"
+      (click)="togglePicker()"
+      readonly
+    />
+    <span class="material-icons datetime-icon" (click)="togglePicker()">
+      event
+    </span>
+  </div>
+
+  <!-- Combined DateTime Picker Dropdown -->
+  <div class="datetime-picker-dropdown" #datetimePickerDropdown *ngIf="isPickerOpen" (click)="$event.stopPropagation()">
+    <div class="datetime-picker-container">
+      <!-- Left Side: Date Picker -->
+      <div class="date-section">
+        <!-- Date View -->
+        <ng-container *ngIf="currentView === 'date'">
+          <div class="calendar-header">
+            <button type="button" class="nav-btn" (click)="previousMonth(); $event.stopPropagation()">
+              <span class="material-icons">chevron_left</span>
+            </button>
+            <div class="month-year clickable" (click)="switchToMonthView(); $event.stopPropagation()">{{ currentMonthYear }}</div>
+            <button type="button" class="nav-btn" (click)="nextMonth(); $event.stopPropagation()">
+              <span class="material-icons">chevron_right</span>
+            </button>
+          </div>
+
+          <div class="calendar-weekdays">
+            <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+          </div>
+
+          <div class="calendar-days">
+            <div
+              *ngFor="let day of calendarDays"
+              class="calendar-day"
+              [class.other-month]="!day.isCurrentMonth"
+              [class.today]="day.isToday"
+              [class.selected]="day.isSelected"
+              [class.disabled]="isDateDisabled(day.date)"
+              (click)="selectDate(day); $event.stopPropagation()">
+              {{ day.day }}
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Month View -->
+        <ng-container *ngIf="currentView === 'month'">
+          <div class="calendar-header">
+            <button type="button" class="nav-btn" (click)="previousYear(); $event.stopPropagation()">
+              <span class="material-icons">chevron_left</span>
+            </button>
+            <div class="month-year clickable" (click)="switchToYearView(); $event.stopPropagation()">{{ currentYear }}</div>
+            <button type="button" class="nav-btn" (click)="nextYear(); $event.stopPropagation()">
+              <span class="material-icons">chevron_right</span>
+            </button>
+          </div>
+
+          <div class="calendar-months">
+            <div
+              *ngFor="let month of months; let i = index"
+              class="calendar-month"
+              [class.current]="isCurrentMonth(i)"
+              [class.selected]="isSelectedMonth(i)"
+              (click)="selectMonth(i); $event.stopPropagation()">
+              {{ month }}
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Year View -->
+        <ng-container *ngIf="currentView === 'year'">
+          <div class="calendar-header">
+            <button type="button" class="nav-btn" (click)="previousYearRange(); $event.stopPropagation()">
+              <span class="material-icons">chevron_left</span>
+            </button>
+            <div class="month-year">{{ yearRangeLabel }}</div>
+            <button type="button" class="nav-btn" (click)="nextYearRange(); $event.stopPropagation()">
+              <span class="material-icons">chevron_right</span>
+            </button>
+          </div>
+
+          <div class="calendar-years">
+            <div
+              *ngFor="let year of displayedYears"
+              class="calendar-year"
+              [class.current]="isCurrentYear(year)"
+              [class.selected]="isSelectedYear(year)"
+              (click)="selectYear(year); $event.stopPropagation()">
+              {{ year }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Right Side: Time Picker -->
+      <div class="time-section">
+        <div class="time-header">
+          <span class="material-icons">schedule</span>
+          <span>Time</span>
+        </div>
+
+        <div class="time-display">
+          <div class="time-unit">
+            <button type="button" class="time-btn" (click)="incrementHour(); $event.stopPropagation()">
+              <span class="material-icons">keyboard_arrow_up</span>
+            </button>
+            <div class="time-value">{{ hour | number:'2.0-0' }}</div>
+            <button type="button" class="time-btn" (click)="decrementHour(); $event.stopPropagation()">
+              <span class="material-icons">keyboard_arrow_down</span>
+            </button>
+          </div>
+
+          <div class="time-separator">:</div>
+
+          <div class="time-unit">
+            <button type="button" class="time-btn" (click)="incrementMinute(); $event.stopPropagation()">
+              <span class="material-icons">keyboard_arrow_up</span>
+            </button>
+            <div class="time-value">{{ minute | number:'2.0-0' }}</div>
+            <button type="button" class="time-btn" (click)="decrementMinute(); $event.stopPropagation()">
+              <span class="material-icons">keyboard_arrow_down</span>
+            </button>
+          </div>
+
+          <div class="period-toggle" *ngIf="!use24Hour">
+            <button 
+              type="button" 
+              class="period-btn" 
+              [class.active]="period === 'AM'"
+              (click)="period = 'AM'; combineDateTime(); $event.stopPropagation()">
+              AM
+            </button>
+            <button 
+              type="button" 
+              class="period-btn" 
+              [class.active]="period === 'PM'"
+              (click)="period = 'PM'; combineDateTime(); $event.stopPropagation()">
+              PM
+            </button>
+          </div>
+        </div>
+
+        <button type="button" class="apply-btn" (click)="applyDateTime(); $event.stopPropagation()">
+          <span class="material-icons">check</span>
+          Apply
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <span *ngIf="showHelper" class="form-helper">{{ helperText }}</span>
+  <span *ngIf="showError" class="form-error">{{ errorText }}</span>
+</div>
+
+<!-- Backdrop removed - using document click listener instead -->

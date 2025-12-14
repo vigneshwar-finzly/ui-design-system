@@ -1,0 +1,405 @@
+<div class="demo-container-with-sidebar">
+  <!-- Left Sidebar Minimap -->
+  <aside class="sidebar-minimap">
+    <div class="minimap-items">
+      <div
+        *ngFor="let section of sections"
+        class="minimap-item"
+        [class.active]="activeSection === section.id"
+        (click)="scrollToSection(section.id)">
+        <span class="material-icons">{{ section.icon }}</span>
+        <span class="item-label">{{ section.title }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    <h1 class="demo-section-title">Alerts & Toasts</h1>
+    <p class="demo-intro">
+      Comprehensive alert and toast notification system with multiple variants, sizes, and configurations.
+    </p>
+
+    <!-- ========================================================================= -->
+    <!-- ALERT VARIANTS -->
+    <!-- ========================================================================= -->
+    
+    <section id="alert-variants" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">notifications</span>
+        <h2>Alert Variants</h2>
+      </div>
+      <p class="section-description">
+        Different alert types for various use cases: primary, success, warning, error, and info.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">All Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('alert-variants', 'preview')" (click)="setActiveTab('alert-variants', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('alert-variants', 'code')" (click)="setActiveTab('alert-variants', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('alert-variants', 'preview')">
+              <div class="alert alert-primary" style="margin-bottom: 1rem;">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-title">Primary Alert</div>
+                  <div class="alert-description">This is a primary alert message.</div>
+                </div>
+              </div>
+
+              <div class="alert alert-success" style="margin-bottom: 1rem;">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-title">Success!</div>
+                  <div class="alert-description">Your changes have been saved successfully.</div>
+                </div>
+              </div>
+
+              <div class="alert alert-warning" style="margin-bottom: 1rem;">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-title">Warning</div>
+                  <div class="alert-description">You have unsaved changes that will be lost.</div>
+                </div>
+              </div>
+
+              <div class="alert alert-error" style="margin-bottom: 1rem;">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-title">Error</div>
+                  <div class="alert-description">Failed to process your request. Please try again.</div>
+                </div>
+              </div>
+
+              <div class="alert alert-info">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-title">Information</div>
+                  <div class="alert-description">New features have been added to your dashboard.</div>
+                </div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('alert-variants', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.alertVariants)" [class.copied]="isCopied(examples.alertVariants)">
+                <span class="material-icons">{{ isCopied(examples.alertVariants) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.alertVariants) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.alertVariants }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- DISMISSIBLE ALERTS -->
+    <!-- ========================================================================= -->
+    
+    <section id="dismissible-alerts" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">close</span>
+        <h2>Dismissible Alerts</h2>
+      </div>
+      <p class="section-description">
+        Alerts with close button for user dismissal.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">With Close Button</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('dismissible-alerts', 'preview')" (click)="setActiveTab('dismissible-alerts', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('dismissible-alerts', 'code')" (click)="setActiveTab('dismissible-alerts', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('dismissible-alerts', 'preview')">
+              <div class="alert alert-success">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-description">This alert can be dismissed.</div>
+                </div>
+                <button class="alert-close">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('dismissible-alerts', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.dismissibleAlerts)" [class.copied]="isCopied(examples.dismissibleAlerts)">
+                <span class="material-icons">{{ isCopied(examples.dismissibleAlerts) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.dismissibleAlerts) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.dismissibleAlerts }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- ALERT SIZES -->
+    <!-- ========================================================================= -->
+    
+    <section id="alert-sizes" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">aspect_ratio</span>
+        <h2>Alert Sizes</h2>
+      </div>
+      <p class="section-description">
+        Three size variants: small, medium (default), and large.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Size Variants</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('alert-sizes', 'preview')" (click)="setActiveTab('alert-sizes', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('alert-sizes', 'code')" (click)="setActiveTab('alert-sizes', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('alert-sizes', 'preview')">
+              <div class="alert alert-info alert-sm" style="margin-bottom: 1rem;">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-description">Small alert</div>
+                </div>
+              </div>
+
+              <div class="alert alert-info" style="margin-bottom: 1rem;">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-description">Default alert size</div>
+                </div>
+              </div>
+
+              <div class="alert alert-info alert-lg">
+                <div class="alert-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="alert-content">
+                  <div class="alert-description">Large alert with more padding</div>
+                </div>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('alert-sizes', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.alertSizes)" [class.copied]="isCopied(examples.alertSizes)">
+                <span class="material-icons">{{ isCopied(examples.alertSizes) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.alertSizes) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.alertSizes }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TOAST NOTIFICATIONS -->
+    <!-- ========================================================================= -->
+    
+    <section id="toast-notifications" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">notifications_active</span>
+        <h2>Toast Notifications</h2>
+      </div>
+      <p class="section-description">
+        Toast notifications using FinzlyToastrService with multiple types and configurations.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Toast Types</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('toast-notifications', 'preview')" (click)="setActiveTab('toast-notifications', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('toast-notifications', 'code')" (click)="setActiveTab('toast-notifications', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('toast-notifications', 'preview')">
+              <div class="demo-row">
+                <button class="btn btn-success" (click)="showToast('success')">Show Success Toast</button>
+                <button class="btn btn-error" (click)="showToast('error')">Show Error Toast</button>
+                <button class="btn btn-warning" (click)="showToast('warning')">Show Warning Toast</button>
+                <button class="btn btn-info" (click)="showToast('info')">Show Info Toast</button>
+                <button class="btn btn-primary" (click)="showToast('primary')">Show Primary Toast</button>
+              </div>
+              <div style="margin-top: 1rem;">
+                <button class="btn btn-outline-primary" (click)="showCustomToast()">Show Custom Toast (No Auto-Dismiss)</button>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('toast-notifications', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.toastNotifications)" [class.copied]="isCopied(examples.toastNotifications)">
+                <span class="material-icons">{{ isCopied(examples.toastNotifications) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.toastNotifications) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.toastNotifications }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TOAST WIDTHS -->
+    <!-- ========================================================================= -->
+    
+    <section id="toast-widths" class="component-section">
+      <div class="section-header">
+        <span class="material-icons section-icon">width_wide</span>
+        <h2>Toast Width Examples</h2>
+      </div>
+      <p class="section-description">
+        Control toast width based on message length to prevent wrapping and improve readability.
+      </p>
+
+      <div class="demo-section">
+        <h3 class="demo-section-subtitle">Width Options</h3>
+        <div class="tabbed-example">
+          <div class="tabs">
+            <button class="tab-btn" [class.active]="isTabActive('toast-widths', 'preview')" (click)="setActiveTab('toast-widths', 'preview')">
+              <span class="material-icons">visibility</span>
+              Preview
+            </button>
+            <button class="tab-btn" [class.active]="isTabActive('toast-widths', 'code')" (click)="setActiveTab('toast-widths', 'code')">
+              <span class="material-icons">code</span>
+              Code
+            </button>
+          </div>
+          <div class="tab-content">
+            <div class="demo-preview" *ngIf="isTabActive('toast-widths', 'preview')">
+              <div class="demo-card" style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 1rem;">Different Message Lengths</h4>
+                <div class="demo-row" style="flex-wrap: wrap;">
+                  <button class="btn btn-outline-success" (click)="showShortMessage()">Short (width: 'sm')</button>
+                  <button class="btn btn-outline-info" (click)="showMediumMessage()">Medium (default)</button>
+                  <button class="btn btn-outline-primary" (click)="showLongMessage()">Long (width: 'lg')</button>
+                </div>
+                <div class="demo-row" style="flex-wrap: wrap; margin-top: 0.5rem;">
+                  <button class="btn btn-outline-warning" (click)="showVeryLongMessage()">Very Long (width: 'xl')</button>
+                  <button class="btn btn-outline-error" (click)="showMultiLineMessage()">Multi-line Error (width: 'xl')</button>
+                  <button class="btn btn-outline" (click)="showMaxWidthMessage()">Maximum Width (width: 'auto')</button>
+                </div>
+              </div>
+
+              <div class="demo-card">
+                <h4>Toast Width Options</h4>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid #e5e5e5;">
+                      <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Option</th>
+                      <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Max Width</th>
+                      <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Use Case</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid #f5f5f5;">
+                      <td style="padding: 0.75rem;"><code>Default</code></td>
+                      <td style="padding: 0.75rem;">22-32rem (512px)</td>
+                      <td style="padding: 0.75rem; color: #737373;">Auto-fits content, general purpose</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #f5f5f5;">
+                      <td style="padding: 0.75rem;"><code>width: 'sm'</code></td>
+                      <td style="padding: 0.75rem;">24rem (384px)</td>
+                      <td style="padding: 0.75rem; color: #737373;">Short messages like "Saved!", "Deleted!"</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #f5f5f5;">
+                      <td style="padding: 0.75rem;"><code>width: 'md'</code></td>
+                      <td style="padding: 0.75rem;">32rem (512px)</td>
+                      <td style="padding: 0.75rem; color: #737373;">Standard notifications</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #f5f5f5;">
+                      <td style="padding: 0.75rem;"><code>width: 'lg'</code></td>
+                      <td style="padding: 0.75rem;">40rem (640px)</td>
+                      <td style="padding: 0.75rem; color: #737373;">Detailed success/info messages</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #f5f5f5;">
+                      <td style="padding: 0.75rem;"><code>width: 'xl'</code></td>
+                      <td style="padding: 0.75rem;">48rem (768px)</td>
+                      <td style="padding: 0.75rem; color: #737373;">Error messages with explanations</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 0.75rem;"><code>width: 'auto'</code></td>
+                      <td style="padding: 0.75rem;">90vw</td>
+                      <td style="padding: 0.75rem; color: #737373;">Maximum width for very long content</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="code-view" *ngIf="isTabActive('toast-widths', 'code')">
+              <button class="copy-btn" (click)="copyCode(examples.toastWidths)" [class.copied]="isCopied(examples.toastWidths)">
+                <span class="material-icons">{{ isCopied(examples.toastWidths) ? 'check' : 'content_copy' }}</span>
+                {{ isCopied(examples.toastWidths) ? 'Copied!' : 'Copy' }}
+              </button>
+              <pre class="demo-code">{{ examples.toastWidths }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<finzly-toastr></finzly-toastr>

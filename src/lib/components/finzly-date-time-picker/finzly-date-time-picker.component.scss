@@ -1,0 +1,460 @@
+@import '../../styles/variables';
+
+.finzly-date-time-picker-wrapper {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.datetime-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.datetime-input {
+  cursor: pointer;
+  padding-right: 2.5rem !important;
+  
+  &:disabled {
+    background-color: $gray-100;
+    cursor: not-allowed;
+  }
+}
+
+.datetime-icon {
+  position: absolute;
+  right: $spacing-3;
+  color: $gray-400;
+  cursor: pointer;
+  pointer-events: none;
+  font-size: 1.25rem;
+}
+
+// DateTime Picker Dropdown
+.datetime-picker-dropdown {
+  position: absolute;  // Changed from fixed to absolute
+  top: calc(100% + 0.5rem);  // Position below the input
+  left: 0;
+  background: white;
+  border: 1px solid $gray-300;
+  border-radius: $radius-lg;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  animation: slideDown 0.2s ease-out;
+}
+
+.datetime-picker-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.datetime-picker-container {
+  display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+// Date Section (Left Side)
+.date-section {
+  padding: 1rem;
+  border-right: 1px solid $gray-200;
+  min-width: 320px;
+
+  @media (max-width: 768px) {
+    border-right: none;
+    border-bottom: 1px solid $gray-200;
+    min-width: 280px;
+  }
+}
+
+// Calendar styles (from date picker)
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid $gray-200;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: $blue-600;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $blue-50;
+  }
+
+  .material-icons {
+    font-size: 1.5rem;
+  }
+}
+
+.month-year {
+  font-weight: 600;
+  font-size: 1rem;
+  color: $gray-900;
+
+  &.clickable {
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: $blue-50;
+      color: $blue-600;
+    }
+  }
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $gray-600;
+  padding: 0.5rem 0;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: $gray-900;
+  font-weight: 500;
+
+  &:hover:not(.disabled):not(.other-month) {
+    background-color: $blue-50;
+    color: $blue-600;
+    transform: scale(1.05);
+  }
+
+  &.other-month {
+    color: $gray-300;
+  }
+
+  &.today {
+    background-color: $blue-50;
+    color: $blue-600;
+    font-weight: 700;
+  }
+
+  &.selected {
+    background-color: $blue-600;
+    color: white;
+    font-weight: 700;
+    // Removed shadow
+
+    &:hover {
+      background-color: $blue-700;
+    }
+  }
+
+  &.disabled {
+    color: $gray-300;
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background: transparent;
+      transform: none;
+    }
+  }
+}
+
+.calendar-months {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.calendar-month {
+  aspect-ratio: 2.5 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: $gray-900;
+
+  &:hover {
+    background-color: $blue-50;
+    color: $blue-600;
+    transform: scale(1.05);
+  }
+
+  &.current {
+    background-color: $blue-50;
+    color: $blue-600;
+    font-weight: 700;
+  }
+
+  &.selected {
+    background-color: $blue-600;
+    color: white;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $blue-600;  // Keep same blue on hover
+      color: white;  // Maintain white text
+      transform: none;  // No scale transform
+    }
+  }
+}
+
+.calendar-years {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  max-height: 280px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $gray-100;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $blue-600;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: $blue-700;
+    }
+  }
+}
+
+.calendar-year {
+  aspect-ratio: 2.5 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: $gray-900;
+
+  &:hover {
+    background-color: $blue-50;
+    color: $blue-600;
+    transform: scale(1.05);
+  }
+
+  &.current {
+    background-color: $blue-50;
+    color: $blue-600;
+    font-weight: 700;
+  }
+
+  &.selected {
+    background-color: $blue-600;
+    color: white;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $blue-600;  // Keep same blue on hover
+      color: white;  // Maintain white text
+      transform: none;  // No scale transform
+    }
+  }
+}
+
+// Time Section (Right Side)
+.time-section {
+  padding: 1rem;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    min-width: 280px;
+  }
+}
+
+.time-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid $gray-200;
+  font-weight: 600;
+  color: $gray-900;
+
+  .material-icons {
+    color: $blue-600;
+  }
+}
+
+.time-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-btn {
+  background: transparent;
+  border: none;
+  color: $blue-600;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $blue-50;
+  }
+
+  .material-icons {
+    font-size: 1.5rem;
+  }
+}
+
+.time-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $gray-900;
+  min-width: 3rem;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: $blue-50;
+}
+
+.time-separator {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $gray-900;
+  padding: 0 0.25rem;
+}
+
+.period-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.period-btn {
+  padding: 0.5rem 0.75rem;
+  background: $gray-100;
+  border: 1.5px solid $gray-200;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: $gray-600;
+
+  &:hover {
+    background: $gray-200;
+    border-color: $blue-600;
+  }
+
+  &.active {
+    background-color: $blue-600;
+    border-color: $blue-600;
+    color: white;
+    // Removed shadow
+  }
+}
+
+.apply-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: $blue-600;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: $blue-700;
+    transform: translateY(-1px);
+    // Removed shadow
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  .material-icons {
+    font-size: 1.125rem;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

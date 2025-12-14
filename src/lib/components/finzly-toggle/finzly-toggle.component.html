@@ -1,0 +1,21 @@
+<div class="finzly-toggle-wrapper form-check">
+  <input
+    type="checkbox"
+    class="toggle"
+    [id]="id"
+    [disabled]="disabled"
+    [checked]="checked"
+    (change)="onToggleChange($event)"
+    (blur)="onToggleBlur()"
+  />
+  
+  <label *ngIf="label" class="form-check-label" [for]="id">
+    {{ label }}
+    <span *ngIf="onLabel || offLabel" class="toggle-state-label">
+      {{ checked ? onLabel : offLabel }}
+    </span>
+  </label>
+  
+  <span *ngIf="helperText" class="form-helper">{{ helperText }}</span>
+</div>
+

@@ -1,0 +1,192 @@
+@import '../../styles/variables';
+
+.finzly-time-picker-wrapper {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.time-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.time-input {
+  cursor: pointer;
+  padding-right: 2.5rem !important;
+  
+  &:disabled {
+    background-color: $gray-100;
+    cursor: not-allowed;
+  }
+}
+
+.time-icon {
+  position: absolute;
+  right: $spacing-3;
+  color: $gray-400;
+  cursor: pointer;
+  pointer-events: none;
+  font-size: 1.25rem;
+}
+
+// Time Picker Dropdown
+.time-picker-dropdown {
+  position: absolute;  // Changed from fixed to absolute
+  top: calc(100% + 0.5rem);  // Position below the input
+  left: 0;
+  background: white;
+  border: 1px solid $gray-300;
+  border-radius: $radius-lg;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  padding: 1.5rem;
+  min-width: 280px;
+  animation: slideDown 0.2s ease-out;
+}
+
+.time-picker-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.time-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-btn {
+  background: transparent;
+  border: none;
+  color: $blue-600;
+  cursor: pointer;
+  padding: $spacing-1;
+  border-radius: $radius-default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition-all;
+
+  &:hover {
+    background-color: $blue-50;
+  }
+
+  .material-icons {
+    font-size: 1.5rem;
+  }
+}
+
+.time-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $gray-900;
+  min-width: 3rem;
+  text-align: center;
+  padding: $spacing-2;
+  border-radius: $radius-lg;
+  background-color: $blue-50;
+}
+
+.time-separator {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $gray-900;
+  padding: 0 0.25rem;
+}
+
+.period-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.period-btn {
+  padding: $spacing-2 $spacing-3;
+  background-color: $gray-100;
+  border: 1px solid $gray-200;
+  border-radius: $radius-default;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: $transition-all;
+  color: $gray-600;
+
+  &:hover {
+    background-color: $gray-200;
+    border-color: $blue-600;
+  }
+
+  &.active {
+    background-color: $blue-600;
+    border-color: $blue-600;
+    color: white;
+  }
+}
+
+.time-picker-footer {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid $gray-200;
+}
+
+.select-btn,
+.cancel-btn {
+  flex: 1;
+  padding: $spacing-2 $spacing-4;
+  border-radius: $radius-lg;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  cursor: pointer;
+  transition: $transition-all;
+  border: none;
+  font-family: $font-family-base;
+}
+
+.select-btn {
+  background-color: $blue-600;
+  color: white;
+
+  &:hover {
+    background-color: $blue-700;
+  }
+}
+
+.cancel-btn {
+  background-color: white;
+  color: $gray-700;
+  border: 1px solid $gray-300;
+
+  &:hover {
+    background-color: $gray-50;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
