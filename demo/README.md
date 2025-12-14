@@ -1,112 +1,51 @@
-# Finzly CSS Demo Application
+# Finzly Component Library - Interactive Documentation
 
-A comprehensive demo application showcasing the Finzly Design System and all its components.
+A state-of-the-art Angular documentation application featuring interactive component playgrounds, real-time state manipulation, and comprehensive accessibility guidelines.
 
-## Features
-
-- **Overview** - Introduction to the design system, color palette, typography, and spacing
-- **Buttons** - All button variants, sizes, and states
-- **Inputs & Forms** - Text inputs, textareas, selects, checkboxes, radios, toggles, and complete form examples
-- **Alerts & Toasts** - Alert messages and toast notification system
-- **Badges** - Status indicators with various styles
-- **Dialogs** - Modal dialogs with different sizes
-- **Tooltips** - Tooltip structure and additional components (progress bars, avatars, spinners, skeleton loaders)
-- **Utilities** - Comprehensive utility class reference
-
-## Running the Demo
+## Quick Start
 
 ```bash
-# Install dependencies (if not already done)
+# Install dependencies
 npm install
 
-# Serve the demo app
+# Run documentation app
 npm run demo
 
-# Or use Angular CLI directly
-ng serve finzly-css-demo --open
+# Build for production
+npm run build:demo
 ```
 
-The application will open at `http://localhost:4200`
+Visit `http://localhost:4200` to explore the interactive documentation.
 
-## Project Structure
+## Key Features
 
-```
-demo/
-├── src/
-│   ├── app/
-│   │   ├── pages/
-│   │   │   ├── overview/
-│   │   │   ├── buttons/
-│   │   │   ├── inputs/
-│   │   │   ├── alerts/
-│   │   │   ├── badges/
-│   │   │   ├── dialogs/
-│   │   │   ├── tooltips/
-│   │   │   └── utilities/
-│   │   ├── app.component.ts
-│   │   ├── app.component.html
-│   │   ├── app.component.scss
-│   │   └── app.routes.ts
-│   ├── index.html
-│   ├── main.ts
-│   └── styles.scss (imports finzly_theme.scss)
-└── tsconfig.app.json
-```
+- 🎮 **Interactive Playground** - Manipulate component props in real-time
+- 🎨 **State Showcase** - Visual matrix of all component states
+- 📚 **Complete API Docs** - Properties, events, and methods reference
+- 🔍 **Smart Search** - Full-text search across all components
+- 🌓 **Dark Mode** - Light and dark theme support
+- ♿ **Accessibility First** - WCAG 2.1 compliant with keyboard navigation
+- 📱 **Fully Responsive** - Optimized for mobile, tablet, and desktop
 
-## Technologies
+## Documentation Structure
 
-- Angular 18+
-- Standalone Components
-- Angular Router with Lazy Loading
-- SCSS
-- Finzly Theme Design System
+Visit these pages in the application:
 
-## Features Demonstrated
+- **/overview** - Welcome page with component categories
+- **/getting-started** - Installation and setup guide
+- **/design-principles** - Design system guidelines
+- **/components/:category** - Browse components by category
+- **/components/:category/:id** - Standard component documentation
+- **/components/:category/:id/showcase** - Interactive playground
 
-### Components
-- Buttons (all variants, sizes, states)
-- Form Controls (inputs, selects, checkboxes, radios, toggles)
-- Alerts & Toast Notifications
-- Badges
-- Dialogs/Modals
-- Cards
-- Progress Bars
-- Avatars
-- Spinners
-- Skeleton Loaders
+## Component Categories
 
-### Design System
-- Color Palette
-- Typography Scale
-- Spacing System
-- Border Radius
-- Elevation (Shadows)
-- Utility Classes
+- **Inputs** - Text fields, textareas, checkboxes, toggles
+- **Buttons** - Action buttons, icon buttons, dropdown buttons
+- **Pickers** - Date, time, and selection pickers
+- **Feedback** - Toasts, dialogs, badges
+- **Layout** - Containers, sections
+- **Data Display** - Text, headings, labels
 
-### Angular Features
-- Standalone Components
-- Lazy Loaded Routes
-- Reactive Programming (RxJS)
-- Dependency Injection
-- Angular Animations
-
-## Customization
-
-The demo uses the Finzly Theme SCSS files located in `src/lib/styles/`. To customize:
-
-1. Modify variables in `src/lib/styles/_variables.scss`
-2. Adjust mixins in `src/lib/styles/_mixins.scss`
-3. Update component styles in respective partial files
-
-## Building for Production
-
-```bash
-ng build finzly-css-demo --configuration production
-```
-
-Output will be in `dist/finzly-css-demo/`
-
-## License
-
-UNLICENSED - For internal use only
+## For more details, see the complete documentation guides in the project root.
 

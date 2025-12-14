@@ -1,0 +1,254 @@
+<div class="component-showcase-page" *ngIf="component">
+  <div class="breadcrumb">
+    <a routerLink="/components">Components</a>
+    <span class="separator">/</span>
+    <a [routerLink]="['/components', component.category]">{{ component.category }}</a>
+    <span class="separator">/</span>
+    <span>{{ component.name }}</span>
+  </div>
+
+  <header class="component-header">
+    <div class="header-content">
+      <h1>{{ component.name }}</h1>
+      <p class="description">{{ component.description }}</p>
+    </div>
+    <div class="component-meta">
+      <div class="meta-badge">
+        <span class="material-icons">code</span>
+        <code>{{ component.selector }}</code>
+      </div>
+      <div class="component-tags">
+        <span *ngFor="let tag of component.tags" class="tag">{{ tag }}</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button
+      *ngFor="let tab of ['playground', 'states', 'api', 'examples', 'accessibility']"
+      [class.active]="activeTab === tab"
+      (click)="setActiveTab(tab)"
+      class="tab-button"
+    >
+      <span class="material-icons">
+        {{
+          tab === 'playground' ? 'play_circle' :
+          tab === 'states' ? 'view_module' :
+          tab === 'api' ? 'api' :
+          tab === 'examples' ? 'code' :
+          'accessibility'
+        }}
+      </span>
+      {{ tab | titlecase }}
+    </button>
+  </div>
+
+  <div class="tab-content">
+    <div *ngIf="activeTab === 'playground'" class="tab-panel">
+      <div class="panel-intro">
+        <h2>Interactive Playground</h2>
+        <p>Experiment with component properties and see changes in real-time.</p>
+      </div>
+
+      <app-interactive-preview
+        [componentSelector]="component.selector"
+        [controls]="interactiveControls"
+      >
+        <!-- Dynamic component rendering based on component type -->
+        <div *ngIf="component.category === 'inputs'">
+          <finzly-input
+            [label]="'Sample Input'"
+            [placeholder]="'Type here...'"
+          ></finzly-input>
+        </div>
+
+        <div *ngIf="component.category === 'buttons'">
+          <finzly-custom-button
+            [label]="'Click Me'"
+          ></finzly-custom-button>
+        </div>
+
+        <div *ngIf="component.category === 'data-display' && component.id === 'finzly-badge'">
+          <finzly-badge
+            [text]="'Badge'"
+          ></finzly-badge>
+        </div>
+      </app-interactive-preview>
+
+      <section class="section">
+        <h3>Import Component</h3>
+        <app-code-example [code]="getImportCode()" language="typescript"></app-code-example>
+      </section>
+    </div>
+
+    <div *ngIf="activeTab === 'states'" class="tab-panel">
+      <div class="panel-intro">
+        <h2>State Variations</h2>
+        <p>Explore all visual states and variants of this component.</p>
+      </div>
+
+      <app-state-showcase [demos]="stateDemos">
+        <!-- Input component states -->
+        <div *ngIf="component.category === 'inputs'">
+          <finzly-input variant="default" [label]="'Default'" [placeholder]="'Enter text'"></finzly-input>
+          <finzly-input variant="disabled" [label]="'Disabled'" [placeholder]="'Enter text'" [disabled]="true"></finzly-input>
+          <finzly-input variant="error" [label]="'Error'" [errorMessage]="'This field has an error'"></finzly-input>
+          <finzly-input variant="required" [label]="'Required'" [required]="true"></finzly-input>
+        </div>
+
+        <!-- Button component states -->
+        <div *ngIf="component.category === 'buttons'">
+          <finzly-custom-button variant="default" [label]="'Default'"></finzly-custom-button>
+          <finzly-custom-button variant="disabled" [label]="'Disabled'" [disabled]="true"></finzly-custom-button>
+          <finzly-custom-button variant="primary" [label]="'Primary'" variant="primary"></finzly-custom-button>
+          <finzly-custom-button variant="secondary" [label]="'Secondary'" variant="secondary"></finzly-custom-button>
+        </div>
+
+        <!-- Badge component states -->
+        <div *ngIf="component.id === 'finzly-badge'">
+          <finzly-badge variant="default" [text]="'Default'"></finzly-badge>
+          <finzly-badge variant="success" [text]="'Success'" variant="success"></finzly-badge>
+          <finzly-badge variant="warning" [text]="'Warning'" variant="warning"></finzly-badge>
+          <finzly-badge variant="error" [text]="'Error'" variant="error"></finzly-badge>
+        </div>
+      </app-state-showcase>
+
+      <section class="usage-guidelines">
+        <h3>Usage Guidelines</h3>
+        <div class="guidelines-grid">
+          <div class="guideline-card do">
+            <div class="guideline-header">
+              <span class="material-icons">check_circle</span>
+              <strong>Do</strong>
+            </div>
+            <ul>
+              <li>Use appropriate states to provide clear feedback</li>
+              <li>Maintain consistent sizing across your interface</li>
+              <li>Follow accessibility best practices</li>
+              <li>Test all interactive states</li>
+            </ul>
+          </div>
+          <div class="guideline-card dont">
+            <div class="guideline-header">
+              <span class="material-icons">cancel</span>
+              <strong>Don't</strong>
+            </div>
+            <ul>
+              <li>Mix different sizes in the same context</li>
+              <li>Override states without good reason</li>
+              <li>Ignore error states</li>
+              <li>Use disabled state as the only indicator</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div *ngIf="activeTab === 'api'" class="tab-panel">
+      <div class="panel-intro">
+        <h2>API Reference</h2>
+        <p>Complete documentation of all component properties, events, and methods.</p>
+      </div>
+
+      <section class="section">
+        <h3>Properties</h3>
+        <div class="api-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+                <th>Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prop of component.properties">
+                <td><code>{{ prop.name }}</code></td>
+                <td><code>{{ prop.type }}</code></td>
+                <td><code *ngIf="prop.default">{{ prop.default }}</code></td>
+                <td>{{ prop.description }}</td>
+                <td>
+                  <span class="badge" [class.required]="prop.required">
+                    {{ prop.required ? 'Yes' : 'No' }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" *ngIf="component.events && component.events.length > 0">
+        <h3>Events</h3>
+        <div class="api-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of component.events">
+                <td><code>{{ event.name }}</code></td>
+                <td><code>{{ event.type }}</code></td>
+                <td>{{ event.description }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div *ngIf="activeTab === 'examples'" class="tab-panel">
+      <div class="panel-intro">
+        <h2>Code Examples</h2>
+        <p>Practical examples showing different ways to use this component.</p>
+      </div>
+
+      <div *ngFor="let example of component.examples" class="example-section">
+        <h3>{{ example.title }}</h3>
+        <p>{{ example.description }}</p>
+        <app-code-example [code]="example.code" [language]="example.language"></app-code-example>
+      </div>
+    </div>
+
+    <div *ngIf="activeTab === 'accessibility'" class="tab-panel">
+      <div class="panel-intro">
+        <h2>Accessibility</h2>
+        <p>How this component ensures accessibility for all users.</p>
+      </div>
+
+      <section class="section">
+        <h3>ARIA Support</h3>
+        <ul class="feature-list">
+          <li *ngFor="let aria of component.accessibility.ariaSupport">
+            <span class="material-icons check-icon">check_circle</span>
+            <code>{{ aria }}</code>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h3>Keyboard Navigation</h3>
+        <ul class="feature-list">
+          <li *ngFor="let key of component.accessibility.keyboardNavigation">
+            <span class="material-icons check-icon">keyboard</span>
+            {{ key }}
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h3>Screen Reader</h3>
+        <div class="info-card">
+          <span class="material-icons">info</span>
+          <p>{{ component.accessibility.screenReaderInfo }}</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

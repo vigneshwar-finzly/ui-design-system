@@ -1,0 +1,20 @@
+<div class="state-showcase">
+  <div *ngFor="let demo of demos" class="demo-section">
+    <div class="demo-header">
+      <h3>{{ demo.title }}</h3>
+      <p>{{ demo.description }}</p>
+    </div>
+
+    <div class="variants-grid">
+      <div *ngFor="let variant of demo.variants" class="variant-card">
+        <div class="variant-label">
+          <span class="label-text">{{ variant.name }}</span>
+          <span class="label-description">{{ variant.description }}</span>
+        </div>
+        <div class="variant-preview">
+          <ng-content [select]="'[variant=' + variant.name + ']'"></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

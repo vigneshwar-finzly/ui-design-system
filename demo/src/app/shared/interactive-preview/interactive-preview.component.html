@@ -1,0 +1,68 @@
+<div class="interactive-preview">
+  <div class="preview-layout">
+    <div class="preview-area">
+      <div class="preview-content">
+        <ng-content></ng-content>
+      </div>
+    </div>
+
+    <div class="controls-panel">
+      <h4 class="controls-title">
+        <span class="material-icons">tune</span>
+        Interactive Controls
+      </h4>
+
+      <div class="controls-list">
+        <div *ngFor="let control of controls" class="control-item">
+          <label class="control-label">{{ control.label }}</label>
+
+          <div [ngSwitch]="control.type">
+            <label *ngSwitchCase="'toggle'" class="toggle-control">
+              <input
+                type="checkbox"
+                [checked]="state[control.name]"
+                (change)="updateState(control.name, $event.target.checked)"
+              />
+              <span class="toggle-slider"></span>
+            </label>
+
+            <select
+              *ngSwitchCase="'select'"
+              class="select-control"
+              [value]="state[control.name]"
+              (change)="updateState(control.name, $event.target.value)"
+            >
+              <option *ngFor="let option of control.options" [value]="option">
+                {{ option }}
+              </option>
+            </select>
+
+            <input
+              *ngSwitchCase="'text'"
+              type="text"
+              class="text-control"
+              [value]="state[control.name]"
+              (input)="updateState(control.name, $event.target.value)"
+            />
+
+            <input
+              *ngSwitchCase="'number'"
+              type="number"
+              class="number-control"
+              [value]="state[control.name]"
+              (input)="updateState(control.name, $event.target.value)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="state-viewer">
+        <div class="state-header">
+          <span class="material-icons">code</span>
+          Current State
+        </div>
+        <pre class="state-code">{{ getStateAsString() }}</pre>
+      </div>
+    </div>
+  </div>
+</div>

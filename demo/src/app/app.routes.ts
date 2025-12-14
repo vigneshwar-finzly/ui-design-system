@@ -28,6 +28,10 @@ export const routes: Routes = [
       {
         path: ':category/:componentId',
         loadComponent: () => import('./pages/components/component-detail/component-detail.component').then(m => m.ComponentDetailComponent)
+      },
+      {
+        path: ':category/:componentId/showcase',
+        loadComponent: () => import('./pages/components/component-showcase/component-showcase.component').then(m => m.ComponentShowcaseComponent)
       }
     ]
   },
