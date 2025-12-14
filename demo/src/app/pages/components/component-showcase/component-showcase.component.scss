@@ -36,8 +36,46 @@
   border-bottom: 2px solid var(--border-color, #e0e0e0);
 }
 
-.header-content {
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.docs-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: white;
+  color: var(--primary, #1976d2);
+  text-decoration: none;
+  border: 2px solid var(--primary, #1976d2);
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--primary, #1976d2);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.25);
+  }
+
+  .material-icons {
+    font-size: 20px;
+  }
+}
+
+.header-content {
+  flex: 1;
 
   h1 {
     font-size: 42px;

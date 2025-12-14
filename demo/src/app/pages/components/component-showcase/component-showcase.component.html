@@ -8,9 +8,15 @@
   </div>
 
   <header class="component-header">
-    <div class="header-content">
-      <h1>{{ component.name }}</h1>
-      <p class="description">{{ component.description }}</p>
+    <div class="header-top">
+      <div class="header-content">
+        <h1>{{ component.name }}</h1>
+        <p class="description">{{ component.description }}</p>
+      </div>
+      <a [routerLink]="['/components', component.category, component.id]" class="docs-button">
+        <span class="material-icons">description</span>
+        View Full Docs
+      </a>
     </div>
     <div class="component-meta">
       <div class="meta-badge">

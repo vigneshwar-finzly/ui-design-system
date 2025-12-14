@@ -10,16 +10,24 @@
   </header>
 
   <div class="components-grid">
-    <a
-      *ngFor="let component of components"
-      [routerLink]="['/components', category.id, component.id]"
-      class="component-card"
-    >
-      <h3>{{ component.name }}</h3>
-      <p>{{ component.description }}</p>
-      <div class="component-tags">
-        <span *ngFor="let tag of component.tags.slice(0, 3)" class="tag">{{ tag }}</span>
+    <div *ngFor="let component of components" class="component-card">
+      <div class="card-content">
+        <h3>{{ component.name }}</h3>
+        <p>{{ component.description }}</p>
+        <div class="component-tags">
+          <span *ngFor="let tag of component.tags.slice(0, 3)" class="tag">{{ tag }}</span>
+        </div>
       </div>
-    </a>
+      <div class="card-actions">
+        <a [routerLink]="['/components', category.id, component.id, 'showcase']" class="action-link primary">
+          <span class="material-icons">play_circle</span>
+          Playground
+        </a>
+        <a [routerLink]="['/components', category.id, component.id]" class="action-link">
+          <span class="material-icons">description</span>
+          Docs
+        </a>
+      </div>
+    </div>
   </div>
 </div>

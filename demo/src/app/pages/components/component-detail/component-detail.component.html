@@ -8,8 +8,16 @@
   </div>
 
   <header class="component-header">
-    <h1>{{ component.name }}</h1>
-    <p class="description">{{ component.description }}</p>
+    <div class="header-top">
+      <div>
+        <h1>{{ component.name }}</h1>
+        <p class="description">{{ component.description }}</p>
+      </div>
+      <a [routerLink]="['/components', component.category, component.id, 'showcase']" class="showcase-button">
+        <span class="material-icons">play_circle</span>
+        Interactive Playground
+      </a>
+    </div>
     <div class="component-meta">
       <span class="meta-item">
         <strong>Module:</strong> {{ component.module }}
